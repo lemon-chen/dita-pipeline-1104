@@ -1,0 +1,244 @@
+package io.agora.spatialaudio;
+
+import io.agora.rtc2.RtcConnection;
+
+public abstract class IBaseSpatialAudioEngine {
+  /**
+   * @brief Releases all resources used by the music content center.
+   *
+   * @details
+   * You must call this method before calling the `destroy()` method of `RtcEngine`.
+   *
+   */
+  protected abstract int release();
+
+  /**
+   * @brief Sets the maximum number of streams that a user can receive in a specified audio reception
+   * range.
+   *
+   * @details
+   * If the number of receivable streams exceeds the set value, the local user receives the `maxCount`
+   * streams that are closest to the local user.
+   *
+   * @param maxCount The maximum number of streams that a user can receive within a specified audio
+   * reception range. The value of this parameter should be ≤ 16, and the default value is 10.
+   *
+   * @return
+   * - 0: Success.
+   * - < 0: Failure.
+   */
+  public abstract int setMaxAudioRecvCount(int maxCount);
+
+  /**
+   * @brief Sets the audio reception range of the local user.
+   *
+   * @details
+   * After the setting is successful, the local user can only hear the remote users within the setting
+   * range or belonging to the same team. You can call this method at any time to update the audio
+   * reception range.
+   *
+   * @param range The maximum audio reception range. The unit is meters. The value of this parameter
+   * must be greater than 0, and the default value is 20.
+   *
+   * @return
+   * - 0: Success.
+   * - < 0: Failure.
+   */
+  public abstract int setAudioRecvRange(float range);
+
+  /**
+   * @brief Sets the length (in meters) of the game engine distance per unit.
+   *
+   * @details
+   * In a game engine, the unit of distance is customized, while in the Agora spatial audio algorithm,
+   * distance is measured in meters. By default, the SDK converts the game engine distance per unit to
+   * one meter. You can call this method to convert the game engine distance per unit to a specified
+   * number of meters.
+   *
+   * @param unit The number of meters that the game engine distance per unit is equal to. The value of
+   * this parameter must be greater than 0.00, and the default value is 1.00. For example, setting
+   * unit as 2.00 means the game engine distance per unit equals 2 meters.The larger the value is, the
+   * faster the sound heard by the local user attenuates when the remote user moves far away from the
+   * local user.
+   *
+   * @return
+   * - 0: Success.
+   * - < 0: Failure.
+   */
+  public abstract int setDistanceUnit(float unit);
+
+  /**
+   * @brief Updates the spatial position of the local user.
+   *
+   * @details
+   * - Under the `ILocalSpatialAudioEngine` class, this method needs to be used with
+   * `updateRemotePosition`. The SDK calculates the relative position between the local and remote
+   * users according to this method and the parameter settings in `updateRemotePosition`, and then
+   * calculates the user's spatial audio effect parameters.
+   *
+   * @param position The coordinates in the world coordinate system. This parameter is an array of
+   * length 3, and the three values represent the front, right, and top coordinates in turn.
+   * @param axisForward The unit vector of the x axis in the coordinate system. This parameter is an
+   * array of length 3, and the three values represent the front, right, and top coordinates in turn.
+   * @param axisRight The unit vector of the y axis in the coordinate system. This parameter is an
+   * array of length 3, and the three values represent the front, right, and top coordinates in turn.
+   * @param axisUp The unit vector of the z axis in the coordinate system. This parameter is an array
+   * of length 3, and the three values represent the front, right, and top coordinates in turn.
+   *
+   * @return
+   * - 0: Success.
+   * - < 0: Failure.
+   */
+  public abstract int updateSelfPosition(
+      float[] position, float[] axisForward, float[] axisRight, float[] axisUp);
+
+  /**
+   * @brief Updates the spatial position of the media player.
+   *
+   * @details
+   * After a successful update, the local user can hear the change in the spatial position of the
+   * media player.
+   * Call timing: This method can be called either before or after joining the channel.
+   *
+   * @param playerId The ID of the media player. You can get the Device ID by calling
+   * `getMediaPlayerId`.
+   * @param positionInfo The spatial position of the media player. See `RemoteVoicePositionInfo`.
+   *
+   * @return
+   * - 0: Success.
+   * - < 0: Failure.
+   */
+  public abstract int updatePlayerPositionInfo(int playerId, RemoteVoicePositionInfo positionInfo);
+
+  /**
+   * @brief Stops or resumes publishing the local audio stream.
+   *
+   * @note
+   * - This method does not affect any ongoing audio recording, because it does not disable the audio
+   * capture device.
+   * - Call this method after the `joinChannel(String token, String channelId, String optionalInfo, int uid)` or `joinChannel(String token, String channelId, int uid, ChannelMediaOptions options)` method.
+   * - When using the spatial audio effect, if you need to set whether to stop subscribing to the
+   * audio stream of a specified user, Agora recommends calling this method instead of the
+   * `muteLocalAudioStream` method in `RtcEngine`.
+   * - A successful call of this method triggers the `onUserMuteAudio` and `onRemoteAudioStateChanged`
+   * callbacks on the remote client.
+   *
+   * @param mute Whether to stop publishing the local audio stream:
+   * - `true`: Stop publishing the local audio stream.
+   * - `false`: Publish the local audio stream.
+   *
+   * @return
+   * - 0: Success.
+   * - < 0: Failure.
+   */
+  public abstract int muteLocalAudioStream(boolean mute);
+
+  /**
+   * @brief Stops or resumes subscribing to the audio streams of all remote users.
+   *
+   * @details
+   * After successfully calling this method, the local user stops or resumes subscribing to the audio
+   * streams of all remote users, including all subsequent users.
+   *
+   * @note
+   * - Call this method after the `joinChannel(String token, String channelId, String optionalInfo, int uid)` or `joinChannel(String token, String channelId, int uid, ChannelMediaOptions options)` method.
+   * - When using the spatial audio effect, if you need to set whether to stop subscribing to the
+   * audio streams of all remote users, Agora recommends calling this method instead of the
+   * `muteAllRemoteAudioStreams` method in `RtcEngine`.
+   * - After calling this method, you need to call `updateSelfPosition` and `updateRemotePosition` to
+   * update the spatial location of the local user and the remote user; otherwise, the settings in
+   * this method do not take effect.
+   *
+   * @param mute Whether to stop subscribing to the audio streams of all remote users:
+   * - `true`: Stop subscribing to the audio streams of all remote users.
+   * - `false`: Subscribe to the audio streams of all remote users.
+   *
+   * @return
+   * - 0: Success.
+   * - < 0: Failure.
+   */
+  public abstract int muteAllRemoteAudioStreams(boolean mute);
+
+  /**
+   * @brief Sets the sound insulation area.
+   *
+   * @details
+   * In virtual interactive scenarios, you can use this method to set the sound insulation area and
+   * sound attenuation coefficient. When the sound source (which can be the user or the media player)
+   * and the listener belong to the inside and outside of the sound insulation area, they can
+   * experience the attenuation effect of sound similar to the real environment when it encounters a
+   * building partition.
+   * - When the sound source and the listener belong to the inside and outside of the sound insulation
+   * area, the sound attenuation effect is determined by the sound attenuation coefficient in
+   * `SpatialAudioZone`.
+   * - If the user or media player is in the same sound insulation area, it is not affected by
+   * `SpatialAudioZone`, and the sound attenuation effect is determined by the `attenuation` parameter
+   * in `setPlayerAttenuation` or `setRemoteAudioAttenuation`. If you do not call
+   * `setPlayerAttenuation` or `setRemoteAudioAttenuation`, the default sound attenuation coefficient
+   * of the SDK is 0.5, which simulates the attenuation of the sound in the real environment.
+   * - If the sound source and the receiver belong to two sound insulation areas, the receiver cannot
+   * hear the sound source.
+   *
+   * @note If this method is called multiple times, the last sound insulation area set takes effect.
+   *
+   * @param zones Sound insulation area settings. See `SpatialAudioZone`. When you set this parameter
+   * to `NULL`, it means clearing all sound insulation zones.
+   *
+   * @return
+   * - 0: Success.
+   * - < 0: Failure.
+   */
+  public abstract int setZones(SpatialAudioZone[] zones);
+
+  /**
+   * @brief Sets the sound attenuation properties of the media player.
+   *
+   * @param playerId The ID of the media player. You can get the Device ID by calling
+   * `getMediaPlayerId`.
+   * @param attenuation The sound attenuation coefficient of the remote user or media player. The
+   * value range is [0,1]. The values are as follows:
+   * - 0: Broadcast mode, where the volume and timbre are not attenuated with distance, and the volume
+   * and timbre heard by local users do not change regardless of distance.
+   * - (0,0.5): Weak attenuation mode, that is, the volume and timbre are only weakly attenuated
+   * during the propagation process, and the sound can travel farther than the real environment.
+   * - 0.5: (Default) simulates the attenuation of the volume in the real environment; the effect is
+   * equivalent to not setting the `speaker_attenuation` parameter.
+   * - (0.5,1]: Strong attenuation mode, that is, the volume and timbre attenuate rapidly during the
+   * propagation process.
+   * @param forceSet Whether to force the sound attenuation effect of the media player:
+   * - `true`: Force `attenuation` to set the attenuation of the media player. At this time, the
+   * attenuation coefficient of the sound insulation are set in the `audioAttenuation` in the
+   * `SpatialAudioZone` does not take effect for the media player.
+   * - `false`: Do not force `attenuation` to set the sound attenuation effect of the media player, as
+   * shown in the following two cases.
+   *   - If the sound source and listener are inside and outside the sound isolation area, the sound
+   * attenuation effect is determined by the `audioAttenuation` in `SpatialAudioZone`.
+   *   - If the sound source and the listener are in the same sound insulation area or outside the
+   * same sound insulation area, the sound attenuation effect is determined by `attenuation` in this
+   * method.
+   *
+   * @return
+   * - 0: Success.
+   * - < 0: Failure.
+   */
+  public abstract int setPlayerAttenuation(int playerId, double attenuation, boolean forceSet);
+
+  public abstract int muteRemoteAudioStream(int uid, boolean mute);
+
+  public abstract int updateSelfPositionEx(float[] position, float[] axisForward, float[] axisRight,
+      float[] axisUp, RtcConnection connection);
+
+  /**
+   * @brief Removes the spatial positions of all remote users.
+   *
+   * @details
+   * After successfully calling this method, the local user no longer hears any remote users.
+   * After leaving the channel, to avoid wasting resources, you can also call this method to delete
+   * the spatial positions of all remote users.
+   *
+   * @return
+   * - 0: Success.
+   * - < 0: Failure.
+   */
+  public abstract int clearRemotePositions();
+}
