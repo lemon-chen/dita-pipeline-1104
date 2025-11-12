@@ -32,6 +32,9 @@ struct RtcConnection {
       : channelId(channel_id), localUid(local_uid) {}
 };
 
+/**
+ * @brief The IRtcEngineEventHandlerEx class.
+ */
 class IRtcEngineEventHandlerEx : public IRtcEngineEventHandler {
  public:
   using IRtcEngineEventHandler::eventHandlerType;
