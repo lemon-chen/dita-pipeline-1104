@@ -2122,8 +2122,16 @@ public abstract class IRtcEngineEventHandler {
    * @brief Occurs when the audio publishing state changes.
    *
    * @param channel The channel name.
-   * @param oldState The previous publishing state. See `STREAM_PUBLISH_STATE`.
-   * @param newState The current publishing stat. See `STREAM_PUBLISH_STATE`.
+   * @param oldState The previous publishing state.
+   * - PUB_STATE_IDLE(0): The initial publishing state after joining the channel.
+   * - PUB_STATE_NO_PUBLISHED(1): Fails to publish the local stream.
+   * - PUB_STATE_PUBLISHING(2): Publishing the local stream.
+   * - PUB_STATE_PUBLISHED(3): Successfully publishes the local stream.
+   * @param newState The current publishing state. 
+   * - PUB_STATE_IDLE(0): The initial publishing state after joining the channel.
+   * - PUB_STATE_NO_PUBLISHED(1): Fails to publish the local stream.
+   * - PUB_STATE_PUBLISHING(2): Publishing the local stream.
+   * - PUB_STATE_PUBLISHED(3): Successfully publishes the local stream.
    * @param elapseSinceLastState The time elapsed (ms) from the previous state to the current state.
    *
    */
@@ -2135,8 +2143,16 @@ public abstract class IRtcEngineEventHandler {
    *
    * @param channel The channel name.
    * @param source The type of the video source. See `VideoSourceType`.
-   * @param oldState The previous publishing state. See `STREAM_PUBLISH_STATE`.
-   * @param newState The current publishing stat. See `STREAM_PUBLISH_STATE`.
+   * @param oldState The previous publishing state.
+   * - PUB_STATE_IDLE(0): The initial publishing state after joining the channel.
+   * - PUB_STATE_NO_PUBLISHED(1): Fails to publish the local stream.
+   * - PUB_STATE_PUBLISHING(2): Publishing the local stream.
+   * - PUB_STATE_PUBLISHED(3): Successfully publishes the local stream.
+   * @param newState The current publishing state.
+   * - PUB_STATE_IDLE(0): The initial publishing state after joining the channel.
+   * - PUB_STATE_NO_PUBLISHED(1): Fails to publish the local stream.
+   * - PUB_STATE_PUBLISHING(2): Publishing the local stream.
+   * - PUB_STATE_PUBLISHED(3): Successfully publishes the local stream.
    * @param elapseSinceLastState The time elapsed (ms) from the previous state to the current state.
    *
    */
