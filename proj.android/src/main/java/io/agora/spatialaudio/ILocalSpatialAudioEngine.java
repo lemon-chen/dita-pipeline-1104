@@ -3,6 +3,9 @@ package io.agora.spatialaudio;
 import io.agora.rtc2.RtcConnection;
 import io.agora.spatialaudio.internal.LocalSpatialAudioImpl;
 
+/**
+ * @brief The local spatial audio engine interface.
+ */
 public abstract class ILocalSpatialAudioEngine extends IBaseSpatialAudioEngine {
   private static ILocalSpatialAudioEngine mInstance = null;
 

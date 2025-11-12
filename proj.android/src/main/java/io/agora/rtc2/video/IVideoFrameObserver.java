@@ -3,6 +3,13 @@ package io.agora.rtc2.video;
 import io.agora.base.VideoFrame;
 import io.agora.base.internal.CalledByNative;
 
+/**
+ * @brief The video frame delegate protocol.
+ *
+ * @details
+ * This protocol defines the callbacks for processing video frames. You can implement these methods
+ * to receive and process video frames captured by local devices or received from remote users.
+ */
 public interface IVideoFrameObserver {
   /**
    * Observer works as a pure renderer and will not modify the original frame.

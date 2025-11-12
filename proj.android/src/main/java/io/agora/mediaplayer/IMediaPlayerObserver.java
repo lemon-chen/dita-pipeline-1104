@@ -7,6 +7,9 @@ import io.agora.mediaplayer.data.PlayerPlaybackStats;
 import io.agora.mediaplayer.data.PlayerUpdatedInfo;
 import io.agora.mediaplayer.data.SrcInfo;
 
+/**
+ * @brief The media player observer interface.
+ */
 public interface IMediaPlayerObserver {
   /**
    * @brief Reports the changes of playback state.

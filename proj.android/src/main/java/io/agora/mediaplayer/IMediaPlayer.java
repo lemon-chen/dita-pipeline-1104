@@ -14,6 +14,9 @@ import io.agora.mediaplayer.data.MediaStreamInfo;
 import io.agora.rtc2.SpatialAudioParams;
 import io.agora.rtc2.audio.IAudioSpectrumObserver;
 
+/**
+ * @brief The media player interface.
+ */
 public interface IMediaPlayer {
   /**
    * @brief Gets the ID of the media player.

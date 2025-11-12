@@ -17,6 +17,9 @@ import io.agora.rtc2.video.WatermarkConfig;
 import io.agora.rtc2.video.WatermarkOptions;
 import java.nio.ByteBuffer;
 
+/**
+ * @brief The `RtcEngineEx` interface,.
+ */
 public abstract class RtcEngineEx extends RtcEngine {
   /**
    * @brief Stops or resumes publishing the local audio stream.

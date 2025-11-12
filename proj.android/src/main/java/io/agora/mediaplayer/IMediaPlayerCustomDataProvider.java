@@ -2,6 +2,9 @@ package io.agora.mediaplayer;
 import io.agora.base.internal.CalledByNative;
 import java.nio.ByteBuffer;
 
+/**
+ * @brief The media player custom data provider interface.
+ */
 public interface IMediaPlayerCustomDataProvider {
   /**
    * @brief Occurs when the SDK reads the media resource data.

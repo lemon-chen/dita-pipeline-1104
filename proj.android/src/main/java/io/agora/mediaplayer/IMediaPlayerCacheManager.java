@@ -4,6 +4,9 @@ import io.agora.base.internal.CalledByNative;
 import io.agora.mediaplayer.data.PlayerUpdatedInfo;
 import io.agora.mediaplayer.data.SrcInfo;
 
+/**
+ * @brief The media player cache manager interface.
+ */
 public interface IMediaPlayerCacheManager {
   /**
    * @brief Deletes all cached media files in the media player.

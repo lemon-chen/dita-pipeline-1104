@@ -2,6 +2,9 @@ package io.agora.musiccontentcenter;
 
 import io.agora.base.internal.CalledByNative;
 
+/**
+ * @brief The music content center event handler interface.
+ */
 public interface IMusicContentCenterEventHandler {
   /**
    * @brief Reports the event of preloading music resources.

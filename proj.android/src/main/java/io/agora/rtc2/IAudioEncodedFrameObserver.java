@@ -3,6 +3,9 @@ package io.agora.rtc2;
 import io.agora.base.internal.CalledByNative;
 import java.nio.ByteBuffer;
 
+/**
+ * @brief The audio encoded frame observer interface.
+ */
 public interface IAudioEncodedFrameObserver {
   /**
    * @brief Gets the encoded audio data of the local user.

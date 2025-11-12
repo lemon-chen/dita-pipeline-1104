@@ -2,10 +2,10 @@ package io.agora.rtc2;
 
 import io.agora.base.internal.CalledByNative;
 
-/**
+/** 
+ * @brief The direct CDN streaming event handler interface.
  * @deprecated v4.6.0.
  */
-
 @Deprecated
 public interface IDirectCdnStreamingEventHandler {
   /**
