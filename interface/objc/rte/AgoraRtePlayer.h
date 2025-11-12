@@ -460,7 +460,7 @@ __attribute__((visibility("default"))) @interface AgoraRtePlayerInfo : NSObject
 @end
 
 
-/*
+/**
  * @brief The RTE player class, which can be used to play URL resources.
  * @since v4.4.0
  */
