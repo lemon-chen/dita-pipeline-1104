@@ -6,8 +6,16 @@
 #import "AgoraConstants.h"
 #import "AgoraObjects.h"
 
+
 @protocol AgoraRtcMediaPlayerProtocol;
 
+/**
+ * @brief The media player delegate protocol.
+ *
+ * @details
+ * This protocol defines the callbacks for the media player. You can implement these methods to
+ * receive and process events related to media playback.
+ */
 @protocol AgoraRtcMediaPlayerDelegate <NSObject>
 @optional
 

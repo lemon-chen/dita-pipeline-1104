@@ -256,7 +256,7 @@ __attribute__((visibility("default"))) @interface AgoraMusicCollection : NSObjec
 @end
 
 /**
- * The request event delegate callback
+ * @brief The music content center event delegate.
  */
 @protocol AgoraMusicContentCenterEventDelegate <NSObject>
 /**
@@ -389,6 +389,9 @@ __attribute__((visibility("default"))) @interface AgoraMusicContentCenterConfig 
 @property(nonatomic, weak) id<AgoraMusicContentCenterEventDelegate> eventDelegate;
 @end
 
+/**
+ * @brief The music player protocol.
+ */
 @protocol AgoraMusicPlayerProtocol <AgoraRtcMediaPlayerProtocol>
 /**
  * @brief Opens a music resource by its resource ID.
@@ -444,7 +447,9 @@ __attribute__((visibility("default"))) @interface AgoraMusicContentCenterConfig 
 
 @end
 
-
+/**
+ * @brief The music content center class.
+ */
 __attribute__((visibility("default"))) @interface AgoraMusicContentCenter : NSObject
 
 /**

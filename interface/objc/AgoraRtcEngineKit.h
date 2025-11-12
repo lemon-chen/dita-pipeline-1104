@@ -26,24 +26,21 @@
 #import "AgoraMediaRecorder.h"
 #import "AgoraVideoEffectObject.h"
 
-/** Agora provides ensured quality of experience (QoE) for worldwide Internet-based voice and video communications through a virtual global network that is especially optimized for real-time web and mobile-to-mobile applications.
-
- The AgoraRtcEngineKit class is the entry point of the Agora SDK that provides simple APIs for applications to easily start voice and video communication.
- */
 
 #pragma mark - AgoraRtcEngineKit
 
 /**
- * Provides all methods that can be invoked by your application.
+ * @brief Provides all methods that can be invoked by your application.
  *
  * Agora provides ensured quality of experience (QoE) for worldwide
  * Internet-based voice and video communications through a virtual global
  * network that is especially optimized for real-time web and mobile-to-mobile
  * applications.
  *
- * `AgoraRtcEngineKit` is the basic interface class of Agora Native SDK. Creating an AgoraRtcEngineKit object and then calling the methods of this object enables the use of Agora Native SDK’s communication functionality.
-*/
-
+ * `AgoraRtcEngineKit` is the basic interface class of Agora Native SDK. Creating an 
+ * AgoraRtcEngineKit object and then calling the methods of this object enables the 
+ * use of Agora Native SDK’s communication functionality.
+ */
 __attribute__((visibility("default"))) @interface AgoraRtcEngineKit : NSObject
 
 #pragma mark Core Methods

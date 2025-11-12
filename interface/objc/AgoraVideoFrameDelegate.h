@@ -9,6 +9,14 @@
 #import "AgoraEnumerates.h"
 
 @class AgoraOutputVideoFrame;
+
+/**
+ * @brief The video frame delegate protocol.
+ *
+ * @details
+ * This protocol defines the callbacks for processing video frames. You can implement these methods
+ * to receive and process video frames captured by local devices or received from remote users.
+ */
 @protocol AgoraVideoFrameDelegate <NSObject>
 @optional
 

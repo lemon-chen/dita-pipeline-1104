@@ -12,7 +12,7 @@
 @class AgoraAudioParams;
 
 /**
- * The AgoraAudioFrameDelegate protocol enables audio frame callback event notifications to your application.
+ * @brief The AgoraAudioFrameDelegate protocol, which enables audio frame callback event notifications to your application.
  */
 @protocol AgoraAudioFrameDelegate <NSObject>
 @optional

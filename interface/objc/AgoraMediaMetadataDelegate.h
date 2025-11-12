@@ -8,8 +8,10 @@
 #import <Foundation/Foundation.h>
 #import "AgoraObjects.h"
 
-/** The definition of AgoraMediaMetadataDelegate.
-@note  Implement the callback in this protocol in the critical thread. We recommend avoiding any time-consuming operation in the critical thread.
+/** 
+ * @brief The definition of AgoraMediaMetadataDelegate.
+ * 
+ * @details Implement the callback in this protocol in the critical thread. We recommend avoiding any time-consuming operation in the critical thread.
 */
 @protocol AgoraMediaMetadataDelegate <NSObject>
 @required

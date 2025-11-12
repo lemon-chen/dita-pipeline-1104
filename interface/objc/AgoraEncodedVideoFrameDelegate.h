@@ -9,6 +9,13 @@
 
 @class AgoraEncodedVideoFrameInfo;
 
+/**
+ * @brief The encoded video frame delegate protocol.
+ *
+ * @details
+ * This protocol defines the callback method for receiving encoded video frames sent by the remote
+ * end. You can implement this method to process the received encoded video frames as needed.
+ */
 @protocol AgoraEncodedVideoFrameDelegate <NSObject>
 @optional
 

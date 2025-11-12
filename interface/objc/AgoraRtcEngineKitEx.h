@@ -11,6 +11,9 @@
 
 
 NS_ASSUME_NONNULL_BEGIN
+/**
+ * @brief The `AgoraRtcEngineKitEx` interface.
+ */
 @interface AgoraRtcEngineKit(Ex)
 
 /**

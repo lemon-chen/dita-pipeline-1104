@@ -5,6 +5,9 @@
 #import <Foundation/Foundation.h>
 #import "AgoraObjects.h"
 
+/**
+ * @brief The audio spectrum event delegate.
+ */
 @protocol AgoraAudioSpectrumDelegate <NSObject>
 @optional
 /**

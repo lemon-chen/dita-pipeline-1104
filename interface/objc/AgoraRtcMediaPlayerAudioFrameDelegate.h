@@ -15,6 +15,13 @@
 @class AgoraRtcEngineKit;
 @class AgoraMediaRecorder;
 
+/**
+ * @brief The media player audio frame delegate protocol.
+ *
+ * @details
+ * This protocol defines the callbacks for processing audio frames from the media player. You can
+ * implement these methods to receive and process audio frames played by the media player.
+ */
 @protocol AgoraRtcMediaPlayerAudioFrameDelegate <NSObject>
 
 /**

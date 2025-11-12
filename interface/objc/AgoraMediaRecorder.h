@@ -10,6 +10,14 @@
 @protocol AgoraMediaRecorderDelegate;
 @class AgoraMediaRecorderConfiguration;
 
+/**
+ * @brief The media recorder class.
+ *
+ * @details
+ * This class provides methods for audio and video stream recording. You can use this class to
+ * start and stop recording, set the recording configuration, and register the recording observer to
+ * listen for recording-related callbacks.
+ */
 __attribute__((visibility("default"))) @interface AgoraMediaRecorder : NSObject
 
 /**

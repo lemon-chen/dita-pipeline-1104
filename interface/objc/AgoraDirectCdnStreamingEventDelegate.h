@@ -17,7 +17,7 @@
 @class AgoraMediaRecorder;
 
 /**
- * The event handler for direct cdn streaming
+ * @brief The event handler for direct cdn streaming
  * 
  * @deprecated v4.6.0.
  *

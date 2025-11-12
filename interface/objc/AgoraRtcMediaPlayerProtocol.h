@@ -21,6 +21,10 @@ typedef NSView View;
 @protocol AgoraAudioSpectrumDelegate;
 
 NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * @brief The media player delegate protocol.
+ */
 @protocol AgoraRtcMediaPlayerProtocol <NSObject>
 
 /**

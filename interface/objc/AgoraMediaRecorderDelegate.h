@@ -9,6 +9,13 @@
 typedef NS_ENUM(NSInteger, AgoraMediaRecorderState);
 typedef NS_ENUM(NSInteger, AgoraMediaRecorderReasonCode);
 
+/**
+ * @brief The media recorder delegate protocol.
+ *
+ * @details
+ * This protocol defines the callbacks for audio and video stream recording. You can implement
+ * these methods to receive recording status updates and information during the recording process.
+ */
 @protocol AgoraMediaRecorderDelegate <NSObject>
 #pragma mark Media Recorder Delegate Methods
 /**

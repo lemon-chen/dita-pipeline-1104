@@ -11,18 +11,18 @@
 #import "AgoraRtcMediaPlayerProtocol.h"
 #import "AgoraH265TranscoderProtocol.h"
 
-/** Agora provides ensured quality of experience (QoE) for worldwide Internet-based voice and video communications through a virtual global network that is especially optimized for real-time web and mobile-to-mobile applications.
-
- The AgoraRtcEngineKit class is the entry point of the Agora SDK that provides simple APIs for applications to easily start voice and video communication.
- */
 @class AgoraRtcEngineKit;
 @class AgoraMediaRecorder;
 
 /**
- * The AgoraRtcEngineDelegate protocol enables callback event notifications to your application.
-
- The SDK uses delegate callbacks in the AgoraRtcEngineDelegate protocol to report runtime events to the application.
- From v1.1, some block callbacks in the SDK are replaced with delegate callbacks. The old block callbacks are therefore deprecated, but can still be used in the current version. However, Agora recommends replacing block callbacks with delegate callbacks. The SDK calls the block callback if a callback is defined in both the block and delegate callbacks.
+ * @brief The AgoraRtcEngineDelegate protocol enables callback event notifications to your application.
+ *
+ * The SDK uses delegate callbacks in the AgoraRtcEngineDelegate protocol to report runtime eventsto the 
+ * application.
+ * From v1.1, some block callbacks in the SDK are replaced with delegate callbacks. The old block callbacks 
+ * are therefore deprecated, but can still be used in the current version. However, Agora recommends replacing
+ * block callbacks with delegate callbacks. The SDK calls the block callback if a callback is defined in both 
+ * the block and delegate callbacks.
  */
 @protocol AgoraRtcEngineDelegate <NSObject>
 @optional

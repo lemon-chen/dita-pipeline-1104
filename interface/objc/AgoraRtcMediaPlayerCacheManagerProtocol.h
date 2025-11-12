@@ -6,6 +6,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * @brief The media player cache manager protocol.
+ *
+ * @details
+ * This protocol provides methods to manage cached media files in the media player. You can use
+ * these methods to set cache parameters, delete cached files, and retrieve cache information.
+ */
 @protocol AgoraRtcMediaPlayerCacheManagerProtocol <NSObject>
 
 /**

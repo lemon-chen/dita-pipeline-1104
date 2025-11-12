@@ -16,6 +16,9 @@
 @class AgoraRtcEngineKit;
 @class AgoraMediaRecorder;
 
+/**
+ * @brief The encoded audio frame event delegate.
+ */
 @protocol AgoraAudioEncodedFrameDelegate <NSObject>
 @required
 

@@ -12,7 +12,6 @@
 /**
  * @brief This class provides methods to retrieve error codes and error messages.
  *
- * @technical preview
  * @since v4.4.0
  */
 __attribute__((visibility("default"))) @interface AgoraRteError : NSObject

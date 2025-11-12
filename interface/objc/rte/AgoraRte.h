@@ -95,7 +95,7 @@ __attribute__((visibility("default"))) @interface AgoraRteConfig : NSObject
 @end
 
 /**
- * The AgoraRte class, which is the basic interface of the Agora Real Time Engagement SDK.
+ * @brief The AgoraRte class, which is the basic interface of the Agora Real Time Engagement SDK.
  * @since v4.4.0
  */
 __attribute__((visibility("default"))) @interface AgoraRte : NSObject

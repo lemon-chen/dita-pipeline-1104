@@ -9,7 +9,7 @@
 #import "AgoraEnumerates.h"
 
 /**
- * The AgoraFaceInfoDelegate protocol enables face info callback event notifications to your application.
+ * @brief The AgoraFaceInfoDelegate protocol, which enables face info callback event notifications to your application.
  */
 @protocol AgoraFaceInfoDelegate <NSObject>
 @optional

@@ -11,7 +11,7 @@
 #import "AgoraRteEnumerates.h"
 
 /**
- * Player Observer, an interface for receiving player event callbacks.
+ * @brief Player Observer, an interface for receiving player event callbacks.
  * @since v4.4.0
  */
 __attribute__((visibility("default"))) @interface AgoraRtePlayerObserver : NSObject

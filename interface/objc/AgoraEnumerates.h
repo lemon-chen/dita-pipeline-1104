@@ -585,10 +585,25 @@ typedef NS_ENUM(NSInteger, AgoraVideoHwEncoderAccelerating) {
   AgoraVideoHwEncoderHardware = 1,
 };
 
+ /**
+ * @brief The clockwise rotation of the video.
+ */
 typedef NS_ENUM(NSInteger, AgoraVideoFrameOrientation) {
+  /**
+   * 0: (Default) No rotation.
+   */
   AgoraVideoFrameOrientation0 = 0,
+  /**
+   * 90: 90 degrees.
+   */
   AgoraVideoFrameOrientation90 = 90,
+  /**
+   * 180: 180 degrees.
+   */
   AgoraVideoFrameOrientation180 = 180,
+  /**
+   * 270: 270 degrees.
+   */
   AgoraVideoFrameOrientation270 = 270,
 };
 

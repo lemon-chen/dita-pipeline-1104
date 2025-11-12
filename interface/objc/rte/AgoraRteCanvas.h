@@ -65,7 +65,7 @@ __attribute__((visibility("default"))) @interface AgoraRteCanvasInitialConfig : 
 
 
 /**
- * @brief Provides methods for configuring player video rendering.
+ * @brief The RTE Canvas Configuration class, which provides methods for configuring player video rendering.
  *
  * @since v4.4.0
  */
@@ -137,7 +137,7 @@ __attribute__((visibility("default"))) @interface AgoraRteCanvasConfig : NSObjec
 
 
 /**
- * AgoraRteCanvas interface, used to set the video rendering view.
+ * @brief The AgoraRteCanvas interface, used to set the video rendering view.
  * @since v4.4.0
  */
 __attribute__((visibility("default"))) @interface AgoraRteCanvas : NSObject

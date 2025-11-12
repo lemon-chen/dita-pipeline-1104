@@ -362,10 +362,25 @@ __attribute__((visibility("default"))) @interface AgoraSpatialAudioKitBase : NSO
  */
 - (int)muteRemoteAudioStream:(NSUInteger)uid mute:(BOOL)mute NS_SWIFT_NAME(muteRemoteAudioStream(_:mute:));
 
+/**
+ * @brief Removes the spatial positions of all remote users.
+ *
+ * @details
+ * After successfully calling this method, the local user no longer hears any remote users.
+ * After leaving the channel, to avoid wasting resources, you can also call this method to delete
+ * the spatial positions of all remote users.
+ *
+ * @return
+ * - 0: Success.
+ * - < 0: Failure.
+ */
 - (int)clearRemotePositions NS_SWIFT_NAME(clearRemotePositions());
 
 @end
 
+/**
+ * @brief The local spatial audio kit class.
+ */
 __attribute__((visibility("default"))) @interface AgoraLocalSpatialAudioKit : AgoraSpatialAudioKitBase
 
 /**
@@ -446,18 +461,6 @@ __attribute__((visibility("default"))) @interface AgoraLocalSpatialAudioKit : Ag
 
 - (int)removeRemotePositionEx:(NSUInteger)uid connection:(AgoraRtcConnection *)connection NS_SWIFT_NAME(removeRemotePositionEx(_:connection:));
 
-/**
- * @brief Removes the spatial positions of all remote users.
- *
- * @details
- * After successfully calling this method, the local user no longer hears any remote users.
- * After leaving the channel, to avoid wasting resources, you can also call this method to delete
- * the spatial positions of all remote users.
- *
- * @return
- * - 0: Success.
- * - < 0: Failure.
- */
 - (int)clearRemotePositionsEx:(AgoraRtcConnection *)connection NS_SWIFT_NAME(clearRemotePositionsEx(_:));
 
 /**
