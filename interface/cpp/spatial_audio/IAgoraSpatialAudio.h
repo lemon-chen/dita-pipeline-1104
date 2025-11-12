@@ -101,7 +101,8 @@ struct LocalSpatialAudioConfig {
   LocalSpatialAudioConfig() : rtcEngine(NULL) {}
 };
 
-/** The IBaseSpatialAudioEngine class provides the common methods of ICloudSpatialAudioEngine and ILocalSpatialAudioEngine.
+/**
+ * @brief The base spatial audio engine interface.
  */
 class ILocalSpatialAudioEngine: public RefCountInterface {
  protected:

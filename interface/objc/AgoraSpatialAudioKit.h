@@ -107,6 +107,9 @@ __attribute__((visibility("default"))) @interface AgoraLocalSpatialAudioConfig :
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * @brief The base class of the spatial audio kit.
+ */
 __attribute__((visibility("default"))) @interface AgoraSpatialAudioKitBase : NSObject
 
 /**

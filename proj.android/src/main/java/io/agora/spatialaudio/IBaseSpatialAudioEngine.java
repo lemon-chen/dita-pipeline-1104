@@ -2,6 +2,9 @@ package io.agora.spatialaudio;
 
 import io.agora.rtc2.RtcConnection;
 
+/**
+ * @brief The base spatial audio engine interface.
+ */
 public abstract class IBaseSpatialAudioEngine {
   /**
    * @brief Releases all resources used by the music content center.
