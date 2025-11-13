@@ -8,6 +8,9 @@ package io.agora.mediaplayer;
 import io.agora.base.AudioFrame;
 import io.agora.base.internal.CalledByNative;
 
+/**
+ * @brief The audio frame observer interface for the media player.
+ */
 public interface IMediaPlayerAudioFrameObserver {
   /**
    * @brief Occurs each time the player receives an audio frame.

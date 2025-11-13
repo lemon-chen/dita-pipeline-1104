@@ -2242,7 +2242,6 @@ public abstract class RtcEngine {
   /**
    * @brief Sets the face shape beauty options.
    *
-   * @technical preview
    *
    * @details
    * Calling this method allows for adjusting specific parts of the face, achieving effects such as
@@ -2276,7 +2275,6 @@ public abstract class RtcEngine {
   /**
    * @brief Sets the face shape options and specifies the media source.
    *
-   * @technical preview
    *
    * @details
    * Calling this method allows for modifying various parts of the face, achieving slimming, enlarging
@@ -2320,7 +2318,6 @@ public abstract class RtcEngine {
   /**
    * @brief Gets the beauty effect options.
    *
-   * @technical preview
    *
    * @details
    * Calling this method can retrieve the current settings of the beauty effect.
@@ -2338,7 +2335,6 @@ public abstract class RtcEngine {
   /**
    * @brief Gets the beauty effect options.
    *
-   * @technical preview
    *
    * @details
    * Calling this method can retrieve the current settings of the beauty effect.
@@ -2363,7 +2359,6 @@ public abstract class RtcEngine {
   /**
    * @brief Sets the options for beauty enhancement facial areas.
    *
-   * @technical preview
    *
    * @details
    * If the preset beauty effects implemented in the `setFaceShapeBeautyOptions(boolean enabled, FaceShapeBeautyOptions options, Constants.MediaSourceType sourceType)` method do not
@@ -2396,7 +2391,6 @@ public abstract class RtcEngine {
   /**
    * @brief Sets the image enhancement options for facial areas and specifies the media source.
    *
-   * @technical preview
    *
    * @details
    * If the preset beauty effects implemented in the `setFaceShapeBeautyOptions(boolean enabled, FaceShapeBeautyOptions options, Constants.MediaSourceType sourceType)` method do not
@@ -2437,8 +2431,6 @@ public abstract class RtcEngine {
 
   /**
    * @brief Gets the facial beauty area options.
-   *
-   * @technical preview
    *
    * @details
    * Calling this method can retrieve the current settings of the beauty effect.
@@ -2528,8 +2520,6 @@ public abstract class RtcEngine {
 
   /**
    * @brief Gets the facial beauty area options.
-   *
-   * @technical preview
    *
    * @details
    * Calling this method can retrieve the current settings of the beauty effect.
@@ -7936,8 +7926,6 @@ public abstract class RtcEngine {
 
   /**
    * @brief Configures `MediaProjection` outside of the SDK to capture screen video streams.
-   *
-   * @technical preview
    *
    * @details
    * After successfully calling this method, the external `MediaProjection` you set will replace the

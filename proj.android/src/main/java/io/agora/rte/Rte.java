@@ -31,6 +31,14 @@ public class Rte {
     return new Rte(handle);
   }
 
+  /**
+   * @brief Constructs an `RTE` object.
+   * @since v4.4.0
+   * 
+   * @details
+   * Call timing: You must call this method before `initMediaEngine`.
+   * @param intialConfig Initialization settings. You can currently pass in null.
+   */
   public Rte(InitialConfig initialConfig) {
     NativeLibsLoader.initializeNativeLibs();
 

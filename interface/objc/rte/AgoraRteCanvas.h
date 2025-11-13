@@ -44,7 +44,6 @@ __attribute__((visibility("default"))) @interface AgoraRteRect : NSObject
 /**
  * The ViewConfig class is used to manage the view config.
  * @since v4.4.0
- * @technical preview
  */
 __attribute__((visibility("default"))) @interface AgoraRteViewConfig : NSObject
 - (instancetype _Nonnull)init;

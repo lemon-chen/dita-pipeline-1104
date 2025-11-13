@@ -4,6 +4,9 @@ import io.agora.base.VideoFrame;
 import io.agora.base.internal.CalledByNative;
 import io.agora.mediaplayer.Constants;
 
+/**
+ * @brief The video frame observer interface for the media player.
+ */
 public interface IMediaPlayerVideoFrameObserver {
   /**
    * @brief Occurs each time the player receives a video frame.

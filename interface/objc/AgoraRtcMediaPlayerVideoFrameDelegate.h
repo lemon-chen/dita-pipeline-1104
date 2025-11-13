@@ -8,6 +8,10 @@
 @protocol AgoraRtcMediaPlayerProtocol;
 @class AgoraOutputVideoFrame;
 
+
+/**
+ * @brief The video frame delegate protocol for the media player.
+ */
 @protocol AgoraRtcMediaPlayerVideoFrameDelegate <NSObject>
 @optional
 /**

@@ -2,6 +2,10 @@ package io.agora.rtc2;
 
 import io.agora.base.internal.CalledByNative;
 import io.agora.rtc2.ExtensionContext;
+
+/**
+ * @brief The media extension observer interface.
+ */
 public interface IMediaExtensionObserver {
   /**
    * @brief The event callback of the extension.
