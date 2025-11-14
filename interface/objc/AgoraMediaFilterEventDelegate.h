@@ -32,6 +32,9 @@
 @property (copy, nonatomic) NSString * _Nullable extensionName;
 @end
 
+/**
+ * @brief The media filter event delegate protocol.
+ */
 @protocol AgoraMediaFilterEventDelegate <NSObject>
 @optional
 /**
