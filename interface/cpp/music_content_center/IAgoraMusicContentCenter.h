@@ -319,6 +319,9 @@ protected:
 };
 
 
+/**
+ * @brief The IMusicContentCenterEventHandler class.
+ */
 class IMusicContentCenterEventHandler {
 public:
     /**
@@ -449,6 +452,9 @@ struct MusicContentCenterConfiguration {
         appId(appid),token(token),mccUid(id),eventHandler(handler),maxCacheSize(maxSize), mccDomain(apiurl){}
 };
 
+/**
+ * @brief The IMusicPlayer interface.
+ */
 class IMusicPlayer : public IMediaPlayer {
 protected:
     virtual ~IMusicPlayer() {};
@@ -507,6 +513,9 @@ public:
     virtual int setPlayMode(MusicPlayMode mode) = 0;
 };
 
+/**
+ * @brief The IMusicContentCenter interface.
+ */
 class IMusicContentCenter
 {
 protected:

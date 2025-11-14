@@ -110,13 +110,13 @@ class ILocalSpatialAudioEngine: public RefCountInterface {
 
  public:
   /**
-   * @brief Destroys `IBaseSpatialAudioEngine`.
+   * @brief Destroys `ILocalSpatialAudioEngine`.
    *
    * @details
-   * This method releases all resources under `IBaseSpatialAudioEngine`. When the user does not need
+   * This method releases all resources under `ILocalSpatialAudioEngine`. When the user does not need
    * to use the spatial audio effect, you can call this method to release resources for other
    * operations.
-   * After calling this method, you can no longer use any of the APIs under `IBaseSpatialAudioEngine`.
+   * After calling this method, you can no longer use any of the APIs under `ILocalSpatialAudioEngine`.
    *
    * @note Call this method before the `release` method under `IRtcEngine`.
    *

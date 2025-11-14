@@ -1167,7 +1167,7 @@ struct VideoFrame {
 };
 
 /**
- * The IVideoFrameObserver class.
+ * @brief The IVideoFrameObserver class.
  */
 class IVideoFrameObserver {
  public:
@@ -1946,7 +1946,7 @@ class IVideoEncodedFrameObserver {
 };
 
 /**
- * The IVideoFrameObserver class.
+ * @brief The IVideoFrameObserver class.
  */
 class IVideoFrameObserver {
  public:
@@ -2522,6 +2522,9 @@ struct RecorderInfo {
       : fileName(name), durationMs(dur), fileSize(size) {}
 };
 
+/**
+ * @brief The IMediaRecorderObserver class.
+ */
 class IMediaRecorderObserver {
  public:
   /**

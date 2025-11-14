@@ -11,6 +11,9 @@
 namespace agora {
 namespace rtc {
 
+/**
+ * @brief The IMediaRecorder interface.
+ */
 class IMediaRecorder : public RefCountInterface {
  protected:
   virtual ~IMediaRecorder() {}
