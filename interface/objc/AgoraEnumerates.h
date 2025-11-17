@@ -4229,7 +4229,7 @@ typedef NS_ENUM(NSInteger, AgoraSimulcastStreamMode) {
 /**
  * @brief Index of video streams of different quality levels.
  *
- * @since v4.6.0
+ * @technical preview
  */
 typedef NS_ENUM(NSInteger, AgoraStreamLayerIndex) {
   /**

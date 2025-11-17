@@ -3784,6 +3784,7 @@ public abstract class RtcEngine {
   /**
    * @brief Starts playing the music file.
    *
+   * @deprecated This method is deprecated. Use `startAudioMixing(String filePath, boolean loopback, int cycle)` instead.
    * @details
    * This method supports playing URI files starting with `content://`. For the audio file formats
    * supported by this method, see ` What formats of audio files does the Agora RTC SDK support`. If
@@ -5526,7 +5527,7 @@ public abstract class RtcEngine {
   /**
    * @brief Sets the simulcast video stream configuration.
    *
-   * @since v4.6.0
+   * @technical preview
    *
    * @details
    * You can call this method to set video streams with different resolutions for the same video

@@ -2449,6 +2449,9 @@ struct MediaRecorderConfiguration {
         videoSourceType(rtc::VIDEO_SOURCE_CAMERA_PRIMARY) {}
 };
 
+/**
+ * @brief The IFaceInfoObserver class.
+ */
 class IFaceInfoObserver {
  public:
   /**

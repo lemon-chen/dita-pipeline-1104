@@ -2353,7 +2353,7 @@ public:
     /**
      * @brief Enables or disables dual-stream mode on the sender side.
      *
-     * @deprecated v4.2.0. This method is deprecated. Use setDualStreamModeEx instead
+     * @deprecated v4.2.0. This method is deprecated. Use setDualStreamModeEx instead.
      *
      * @details
      * You can call this method to enable or disable the dual-stream mode on the publisher side. Dual
@@ -2422,7 +2422,7 @@ public:
     /**
      * @brief Sets the simulcast video stream configuration.
      *
-     * @since v4.6.0
+     * @technical preview
      *
      * @details
      * This method can be called in scenarios involving multiple channels. You can call the

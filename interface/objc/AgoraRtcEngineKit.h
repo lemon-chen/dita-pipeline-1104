@@ -4917,7 +4917,7 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
 /**
  * @brief Sets the simulcast video stream configuration.
  *
- * @since v4.6.0
+ * @technical preview
  *
  * @details
  * You can call this method to set video streams with different resolutions for the same video

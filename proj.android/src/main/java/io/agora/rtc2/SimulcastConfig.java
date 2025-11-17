@@ -6,11 +6,12 @@ import io.agora.base.internal.CalledByNative;
 /**
  * @brief Configure video streams of different quality levels.
  *
- * @since v4.6.0
+ * @technical preview
  */
 public class SimulcastConfig {
   /**
    * @brief Index of video streams of different quality levels.
+   * @technical preview
    */
   public static enum StreamLayerIndex {
     /**
@@ -58,7 +59,7 @@ public class SimulcastConfig {
   /**
    * @brief Configures the parameters of a specific layer in multi-quality video streams.
    *
-   * @since v4.6.0
+   * @technical preview
    *
    * @details
    * Used to configure the resolution, frame rate, and enable status of a specific layer in

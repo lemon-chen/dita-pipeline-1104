@@ -2220,6 +2220,7 @@ enum SIMULCAST_STREAM_MODE {
 
 /**
  * @brief The configuration of the low-quality video stream.
+ * @technical preview
  */
 struct SimulcastStreamConfig {
   /**
@@ -2247,11 +2248,12 @@ struct SimulcastStreamConfig {
 /**
  * @brief Configure video streams of different quality levels.
  *
- * @since v4.6.0
+ * @technical preview
  */
 struct SimulcastConfig {
   /**
    * @brief Index of video streams of different quality levels.
+   * @technical preview
    */
   enum StreamLayerIndex {
    /**
@@ -2289,7 +2291,7 @@ struct SimulcastConfig {
   };
   /**
    * @brief Configures the parameters of a specific layer in multi-quality video streams.
-   *
+   * @technical preview
    * @details
    * Used to configure the resolution, frame rate, and enable status of a specific layer in
    * multi-quality video streams.

@@ -1483,7 +1483,7 @@ __attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration
  * The frame rate (fps) of the encoding video frame. The default value is 15. See
  * `AgoraVideoFrameRate`.
  */
-@property(assign, nonatomic) AgoraVideoFrameRate frameRate;
+@property(assign, nonatomic) NSInteger frameRate;
 
 /**
  * The encoding bitrate (Kbps) of the video. This parameter does not need to be set; keeping the
@@ -1544,7 +1544,7 @@ __attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration
  * @return The initialized `AgoraVideoEncoderConfiguration` object.
  */
 - (instancetype _Nonnull)initWithSize:(CGSize)size
-                            frameRate:(AgoraVideoFrameRate)frameRate
+                            frameRate:(NSInteger)frameRate
                               bitrate:(NSInteger)bitrate
                       orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
                            mirrorMode:(AgoraVideoMirrorMode)mirrorMode NS_SWIFT_NAME(init(size:frameRate:bitrate:orientationMode:mirrorMode:));
@@ -1563,7 +1563,7 @@ __attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration
  */
 - (instancetype _Nonnull)initWithWidth:(NSInteger)width
                                 height:(NSInteger)height
-                             frameRate:(AgoraVideoFrameRate)frameRate
+                             frameRate:(NSInteger)frameRate
                                bitrate:(NSInteger)bitrate
                        orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
                             mirrorMode:(AgoraVideoMirrorMode)mirrorMode NS_SWIFT_NAME(init(width:height:frameRate:bitrate:orientationMode:mirrorMode:));
@@ -3449,7 +3449,7 @@ __attribute__((visibility("default"))) @interface AgoraScreenVideoParameters : N
 /**
  * The video encoding frame rate (fps). The default value is 15.
  */
-@property(assign, nonatomic) AgoraVideoFrameRate frameRate;
+@property(assign, nonatomic) NSInteger frameRate;
 /**
  * The video encoding bitrate (Kbps).
  */
@@ -3559,6 +3559,7 @@ __attribute__((visibility("default"))) @interface AgoraAudioRecordingConfigurati
 
 /**
  * @brief The configuration of the low-quality video stream.
+ * @technical preview
  */
 __attribute__((visibility("default"))) @interface AgoraSimulcastStreamConfig: NSObject
 
@@ -3581,7 +3582,7 @@ __attribute__((visibility("default"))) @interface AgoraSimulcastStreamConfig: NS
 /**
  * @brief Configures the parameters of a specific layer in multi-quality video streams.
  *
- * @since v4.6.0
+ * @technical preview
  *
  * @details
  * Used to configure the resolution, frame rate, and enable status of a specific layer in
@@ -3608,7 +3609,7 @@ __attribute__((visibility("default"))) @interface AgoraStreamLayerConfig: NSObje
 /**
  * @brief Configure video streams of different quality levels.
  *
- * @since v4.6.0
+ * @technical preview
  */
 __attribute__((visibility("default"))) @interface AgoraSimulcastConfig: NSObject
  /**

@@ -719,7 +719,7 @@ public abstract class RtcEngineEx extends RtcEngine {
   /**
    * @brief Sets the simulcast video stream configuration.
    *
-   * @since v4.6.0
+   * @technical preview
    *
    * @details
    * This method can be called in scenarios involving multiple channels. You can call the

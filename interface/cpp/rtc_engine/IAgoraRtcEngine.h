@@ -2493,6 +2493,10 @@ class IRtcEngineEventHandler {
 
   /**
    * @brief Occurs when a specific remote user enables/disables the local video capturing function.
+   * 
+   * @deprecated This method is deprecated. Use the following enumerators from `onRemoteVideoStateChanged`:
+   * - `REMOTE_VIDEO_STATE_STOPPED`(0) and `REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED`(5).
+   * - `REMOTE_VIDEO_STATE_DECODING`(2) and `REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED`(6).
    *
    * @details
    * The SDK triggers this callback when the remote user resumes or stops capturing the video stream
@@ -8374,9 +8378,12 @@ class IRtcEngine : public agora::base::IEngineBase {
   // The following APIs are either deprecated and going to deleted.
 
   /**
-   * Updates the display mode of the local video view.
+   * @brief Updates the display mode of the local video view.
    *
-   * After initializing the local video view, you can call this method to  update its rendering mode.
+   * @deprecated This method is deprecated since v4.0.0. Use `setLocalRenderMode(RENDER_MODE_TYPE
+   * renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode)` instead.
+   * 
+   * @details After initializing the local video view, you can call this method to  update its rendering mode.
    * It affects only the video view that the local user sees, not the published local video stream.
    *
    * @note
@@ -8394,6 +8401,8 @@ class IRtcEngine : public agora::base::IEngineBase {
 
   /**
    * @brief Sets the local video mirror mode.
+   * 
+   * @deprecated This method is deprecated. Use `setupLocalVideo` or `setLocalRenderMode` instead. 
    *
    * @param mirrorMode The local video mirror mode. See `VIDEO_MIRROR_MODE_TYPE`.
    *
@@ -8406,6 +8415,7 @@ class IRtcEngine : public agora::base::IEngineBase {
   /**
    * @brief Enables or disables dual-stream mode on the sender side.
    *
+   * @deprecated This method is deprecated since v4.2.0. Use `setDualStreamMode` instead.
    * @details
    * Dual streams are a pairing of a high-quality video stream and a low-quality video stream:
    * - High-quality video stream: High bitrate, high resolution.
@@ -8433,6 +8443,7 @@ class IRtcEngine : public agora::base::IEngineBase {
   /**
    * @brief Sets the dual-stream mode on the sender side and the low-quality video stream.
    *
+   * @deprecated This method is deprecated since v4.2.0. Use `setDualStreamMode` instead.   
    * @details
    * You can call this method to enable or disable the dual-stream mode on the publisher side. Dual
    * streams are a pairing of a high-quality video stream and a low-quality video stream:
@@ -8498,7 +8509,7 @@ class IRtcEngine : public agora::base::IEngineBase {
   /**
    * @brief Sets the simulcast video stream configuration.
    *
-   * @since v4.6.0
+   * @technical preview
    *
    * @details
    * You can call this method to set video streams with different resolutions for the same video
@@ -10296,8 +10307,6 @@ class IRtcEngine : public agora::base::IEngineBase {
   /**
    * @brief Configures `MediaProjection` outside of the SDK to capture screen video streams.
    *
-   * @technical preview
-   *
    * @details
    * After successfully calling this method, the external `MediaProjection` you set will replace the
    * `MediaProjection` requested by the SDK to capture the screen video stream.
@@ -11057,8 +11066,7 @@ class IRtcEngine : public agora::base::IEngineBase {
   /**
    * @brief Adds a watermark image to the local video.
    *
-   * @deprecated Use addVideoWatermarkEx(const WatermarkConfig& config, const RtcConnection&
-   * connection) instead.
+   * @deprecated Use addVideoWatermark(const WatermarkConfig& configs) instead.
    *
    * @details
    * This method adds a PNG watermark image to the local video in the live streaming. Once the

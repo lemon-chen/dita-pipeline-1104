@@ -5,6 +5,7 @@ import io.agora.base.internal.CalledByNative;
 
 /**
  * @brief The configuration of the low-quality video stream.
+ * @technical preview
  */
 public class SimulcastStreamConfig {
   /**

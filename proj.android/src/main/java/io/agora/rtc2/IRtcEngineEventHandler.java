@@ -2508,6 +2508,7 @@ public abstract class IRtcEngineEventHandler {
   /**
    * @brief Reports the statistics of the audio stream sent by each remote user.
    *
+   * @deprecated This callback is deprecated. Use {@link onRemoteAudioStats onRemoteAudioStats} instead.
    * @details
    * The SDK triggers this callback once every two seconds to report the audio quality of each remote
    * user who is sending an audio stream. If a channel has multiple users sending audio streams, the
