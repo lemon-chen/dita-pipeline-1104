@@ -5220,6 +5220,7 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
 
 /**
  * Sets the external video source.
+ * @technical preview
  *
  * Call this API before `enableVideo` or `startPreview`.
  *
@@ -8801,7 +8802,7 @@ description:(NSString * _Nullable)description NS_SWIFT_NAME(rate(_:rating:descri
 - (void)rtcStatsBlock:(void(^ _Nullable)(AgoraChannelStats * _Nonnull stat))rtcStatsBlock NS_SWIFT_NAME(rtcStatsBlock(_:)) __deprecated_msg("use delegate instead.");
 
 /** The audio quality of the current call reported once every two seconds.
- @deprecated From v1.1
+ @deprecated This callback is deprecated. Use `rtcEngine:remoteAudioStats` instead.
 
  @param audioQualityBlock callback block, which contains the following:
   uid     User ID of the speaker

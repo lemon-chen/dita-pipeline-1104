@@ -3,6 +3,9 @@ package io.agora.musiccontentcenter;
 import io.agora.musiccontentcenter.internal.MusicContentCenterImpl;
 import io.agora.rtc2.RtcEngine;
 
+/**
+ * @brief The `IAgoraMusicContentCenter` class.
+ */
 public abstract class IAgoraMusicContentCenter {
   private static IAgoraMusicContentCenter mInstance = null;
 

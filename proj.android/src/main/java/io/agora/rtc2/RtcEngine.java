@@ -5624,6 +5624,7 @@ public abstract class RtcEngine {
   /**
    * @brief Sets the video stream type to subscribe to.
    *
+   * @deprecated This method is deprecated. Use `setRemoteVideoStreamType(int uid, Constants.VideoStreamType streamType)` instead.
    * @details
    * Depending on the default behavior of the sender and the specific settings when calling
    * `setDualStreamMode(Constants.SimulcastStreamMode mode, SimulcastStreamConfig streamConfig)`, the scenarios for the receiver calling this method are as follows:
@@ -5698,6 +5699,7 @@ public abstract class RtcEngine {
 
   /**
    * @brief Sets the default video stream type to subscribe to.
+   * @deprecated This method is deprecated. Use `setRemoteDefaultVideoStreamType(Constants.VideoStreamType streamType)` instead.
    *
    * @details
    * Depending on the default behavior of the sender and the specific settings when calling

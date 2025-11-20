@@ -6,7 +6,7 @@ import io.agora.rtc2.internal.RtcEngineImpl;
 import java.lang.ref.WeakReference;
 
 /**
- * The `AgoraMediaRecorder` class, for recording the audio and video on the client.
+ * @brief The `AgoraMediaRecorder` class, for recording the audio and video on the client.
  * `AgoraMediaRecorder` can record the following content:
  * - The audio captured by the local microphone and encoded in AAC format by the SDK.
  * - The video captured by the local camera and encoded by the SDK.
