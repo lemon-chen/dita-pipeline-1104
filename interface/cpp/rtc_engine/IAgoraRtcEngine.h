@@ -6887,53 +6887,11 @@ class IRtcEngine : public agora::base::IEngineBase {
    */
   virtual int destroyMediaRecorder(agora_refptr<IMediaRecorder> mediaRecorder) = 0;
 
-  /** Starts playing and mixing the music file.
-
-  This method mixes the specified local audio file with the audio stream from
-  the microphone. You can choose whether the other user can hear the local
-  audio playback and specify the number of playback loops. This method also
-  supports online music playback.
-
-  After calling this method successfully, the SDK triggers the
-
-  \ref IRtcEngineEventHandler::onAudioMixingStateChanged "onAudioMixingStateChanged" (PLAY)
-  callback on the local client.
-  When the audio mixing file playback finishes after calling this method, the
-  SDK triggers the
-  \ref IRtcEngineEventHandler::onAudioMixingStateChanged "onAudioMixingStateChanged" (STOPPED)
-  callback on the local client.
-
-  @note
-  - Call this method after joining a channel, otherwise issues may occur.
-  - If the local audio mixing file does not exist, or if the SDK does not
-  support the file format or cannot access the music file URL, the SDK returns
-  #WARN_AUDIO_MIXING_OPEN_ERROR (701).
-  - If you want to play an online music file, ensure that the time interval
-  between calling this method is more than 100 ms, or the
-  `AUDIO_MIXING_ERROR_TOO_FREQUENT_CALL(702)` error code occurs.
-
-  @param filePath Pointer to the absolute path (including the suffixes of the
-  filename) of the local or online audio file to mix, for example, c:/music/au
-  dio.mp4. Supported audio formats: 3GP, ASF, ADTS, AVI, MP3, MP4, MPEG-4,
-  SAMI, and WAVE.
-  @param loopback Sets which user can hear the audio mixing:
-  - true: Only the local user can hear the audio mixing.
-  - false: Both users can hear the audio mixing.
-
-  @param cycle Sets the number of playback loops:
-  - Positive integer: Number of playback loops.
-  - `-1`: Infinite playback loops.
-
-  @return
-  - 0: Success.
-  - < 0: Failure.
-  */
   /**
    * @brief Starts playing the music file.
    *
    * @details
-   * For the audio file formats supported by this method, see `What formats of audio files does the
-   * Agora RTC SDK support`. If the local music file does not exist, the SDK does not support the file
+   * For the audio file formats supported by this method, see [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format). If the local music file does not exist, the SDK does not support the file
    * format, or the the SDK cannot access the music file URL, the SDK reports
    * AUDIO_MIXING_REASON_CAN_NOT_OPEN.
    * Call timing: You can call this method either before or after joining a channel.
@@ -6957,7 +6915,7 @@ class IRtcEngine : public agora::base::IEngineBase {
    *
    * @param filePath The file path. The SDK supports URLs and absolute path of local files. The
    * absolute path needs to be accurate to the file name and extension. Supported audio formats
-   * include MP3, AAC, M4A, MP4, WAV, and 3GP. See `Supported Audio Formats`.
+   * include MP3, AAC, M4A, MP4, WAV, and 3GP. See [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
    * Attention: If you have preloaded an audio effect into memory by calling `preloadEffect`, ensure
    * that the value of this parameter is the same as that of `filePath` in `preloadEffect`.
    * @param loopback Whether to only play music files on the local client:
@@ -6981,55 +6939,11 @@ class IRtcEngine : public agora::base::IEngineBase {
    */
   virtual int startAudioMixing(const char* filePath, bool loopback, int cycle) = 0;
 
-  /** Starts playing and mixing the music file.
-
-  This method mixes the specified local audio file with the audio stream from
-  the microphone. You can choose whether the other user can hear the local
-  audio playback and specify the number of playback loops. This method also
-  supports online music playback.
-
-  After calling this method successfully, the SDK triggers the
-
-  \ref IRtcEngineEventHandler::onAudioMixingStateChanged "onAudioMixingStateChanged" (PLAY)
-  callback on the local client.
-  When the audio mixing file playback finishes after calling this method, the
-  SDK triggers the
-  \ref IRtcEngineEventHandler::onAudioMixingStateChanged "onAudioMixingStateChanged" (STOPPED)
-  callback on the local client.
-
-  @note
-  - Call this method after joining a channel, otherwise issues may occur.
-  - If the local audio mixing file does not exist, or if the SDK does not
-  support the file format or cannot access the music file URL, the SDK returns
-  #WARN_AUDIO_MIXING_OPEN_ERROR (701).
-  - If you want to play an online music file, ensure that the time interval
-  between calling this method is more than 100 ms, or the
-  `AUDIO_MIXING_ERROR_TOO_FREQUENT_CALL(702)` error code occurs.
-
-  @param filePath Pointer to the absolute path (including the suffixes of the
-  filename) of the local or online audio file to mix, for example, c:/music/au
-  dio.mp4. Supported audio formats: 3GP, ASF, ADTS, AVI, MP3, MP4, MPEG-4,
-  SAMI, and WAVE.
-  @param loopback Sets which user can hear the audio mixing:
-  - true: Only the local user can hear the audio mixing.
-  - false: Both users can hear the audio mixing.
-
-  @param cycle Sets the number of playback loops:
-  - Positive integer: Number of playback loops.
-  - `-1`: Infinite playback loops.
-
-  @param startPos The playback position (ms) of the music file.
-
-  @return
-  - 0: Success.
-  - < 0: Failure.
-  */
   /**
    * @brief Starts playing the music file.
    *
    * @details
-   * For the audio file formats supported by this method, see `What formats of audio files does the
-   * Agora RTC SDK support`. If the local music file does not exist, the SDK does not support the file
+   * For the audio file formats supported by this method, see [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format). If the local music file does not exist, the SDK does not support the file
    * format, or the the SDK cannot access the music file URL, the SDK reports
    * AUDIO_MIXING_REASON_CAN_NOT_OPEN.
    * Call timing: You can call this method either before or after joining a channel.
@@ -7402,8 +7316,7 @@ class IRtcEngine : public agora::base::IEngineBase {
    *
    * @details
    * Ensure the size of all preloaded files does not exceed the limit.
-   * For the audio file formats supported by this method, see `What formats of audio files does the
-   * Agora RTC SDK support`.
+   * For the audio file formats supported by this method, see [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
    * Call timing: Agora recommends that you call this method before joining a channel.
    * 
    * @note
@@ -7455,7 +7368,7 @@ class IRtcEngine : public agora::base::IEngineBase {
    * this parameter is the same as that of `soundId` in `preloadEffect`.
    * @param filePath The file path. The SDK supports URLs and absolute path of local files. The
    * absolute path needs to be accurate to the file name and extension. Supported audio formats
-   * include MP3, AAC, M4A, MP4, WAV, and 3GP. See `Supported Audio Formats`.
+   * include MP3, AAC, M4A, MP4, WAV, and 3GP. See [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
    * Attention: If you have preloaded an audio effect into memory by calling `preloadEffect`, ensure
    * that the value of this parameter is the same as that of `filePath` in `preloadEffect`.
    * @param loopCount The number of times the audio effect loops.
@@ -11887,10 +11800,10 @@ class IRtcEngine : public agora::base::IEngineBase {
    *
    * @param sound1 The absolute path or URL address (including the filename extensions) of the file
    * for the downbeat. For example, `C:\music\audio.mp4`. For the audio file formats supported by this
-   * method, see `What formats of audio files does the Agora RTC SDK support`.
+   * method, see [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
    * @param sound2 The absolute path or URL address (including the filename extensions) of the file
    * for the upbeats. For example, `C:\music\audio.mp4`. For the audio file formats supported by this
-   * method, see `What formats of audio files does the Agora RTC SDK support`.
+   * method, see [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
    * @param config The metronome configuration. See `AgoraRhythmPlayerConfig`.
    *
    * @return

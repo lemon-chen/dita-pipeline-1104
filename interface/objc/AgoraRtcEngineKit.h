@@ -3218,8 +3218,7 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
  *
  * @details
  * Ensure the size of all preloaded files does not exceed the limit.
- * For the audio file formats supported by this method, see `What formats of audio files does the
- * Agora RTC SDK support`.
+ * For the audio file formats supported by this method, see [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
  * Call timing: Agora recommends that you call this method before joining a channel.
  *
  * @param soundId The audio effect ID. The ID of each audio effect file is unique.
@@ -3238,8 +3237,7 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
  *
  * @details
  * Ensure the size of all preloaded files does not exceed the limit.
- * For the audio file formats supported by this method, see `What formats of audio files does the
- * Agora RTC SDK support`.
+ * For the audio file formats supported by this method, see [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
  * Call timing: Agora recommends that you call this method before joining a channel.
  *
  * @note
@@ -3283,8 +3281,7 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
  * value of this parameter is the same as that of `soundId` in `preloadEffect:filePath:`.
  * @param filePath The file path. The SDK supports file paths starting with `ipod-library//`, URLs
  * and absolute file paths of local files. The absolute path needs to be accurate to the file name
- * and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See `Supported
- * Audio Formats`.
+ * and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
  * Attention: If you have preloaded an audio effect into memory by calling
  * `preloadEffect:filePath:`, ensure that the value of this parameter is the same as that of
  * `filePath` in `preloadEffect:filePath:`.
@@ -3334,8 +3331,7 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
  * value of this parameter is the same as that of `soundId` in `preloadEffect:filePath:`.
  * @param filePath The file path. The SDK supports file paths starting with `ipod-library//`, URLs
  * and absolute file paths of local files. The absolute path needs to be accurate to the file name
- * and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See `Supported
- * Audio Formats`.
+ * and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
  * Attention: If you have preloaded an audio effect into memory by calling
  * `preloadEffect:filePath:`, ensure that the value of this parameter is the same as that of
  * `filePath` in `preloadEffect:filePath:`.
@@ -3386,8 +3382,7 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
  * value of this parameter is the same as that of `soundId` in `preloadEffect:filePath:`.
  * @param filePath The file path. The SDK supports file paths starting with `ipod-library//`, URLs
  * and absolute file paths of local files. The absolute path needs to be accurate to the file name
- * and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See `Supported
- * Audio Formats`.
+ * and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
  * Attention: If you have preloaded an audio effect into memory by calling
  * `preloadEffect:filePath:`, ensure that the value of this parameter is the same as that of
  * `filePath` in `preloadEffect:filePath:`.
@@ -3441,8 +3436,7 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
  * value of this parameter is the same as that of `soundId` in `preloadEffect:filePath:`.
  * @param filePath The file path. The SDK supports file paths starting with `ipod-library//`, URLs
  * and absolute file paths of local files. The absolute path needs to be accurate to the file name
- * and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See `Supported
- * Audio Formats`.
+ * and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
  * Attention: If you have preloaded an audio effect into memory by calling
  * `preloadEffect:filePath:`, ensure that the value of this parameter is the same as that of
  * `filePath` in `preloadEffect:filePath:`.
@@ -4185,8 +4179,7 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
  * @brief Starts playing the music file.
  *
  * @details
- * For the audio file formats supported by this method, see `What formats of audio files does the
- * Agora RTC SDK support`. If the local music file does not exist, the SDK does not support the file
+ * For the audio file formats supported by this method, see [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format). If the local music file does not exist, the SDK does not support the file
  * format, or the the SDK cannot access the music file URL, the SDK reports
  * AgoraAudioMixingReasonCanNotOpen.
  * Call timing: You can call this method either before or after joining a channel.
@@ -4233,8 +4226,7 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
  * @brief Starts playing the music file.
  *
  * @details
- * For the audio file formats supported by this method, see `What formats of audio files does the
- * Agora RTC SDK support`. If the local music file does not exist, the SDK does not support the file
+ * For the audio file formats supported by this method, see [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format). If the local music file does not exist, the SDK does not support the file
  * format, or the the SDK cannot access the music file URL, the SDK reports
  * AgoraAudioMixingReasonCanNotOpen.
  * Call timing: You can call this method either before or after joining a channel.
@@ -8133,11 +8125,10 @@ description:(NSString * _Nullable)description NS_SWIFT_NAME(rate(_:rating:descri
  *
  * @param sound1 The absolute path or URL address (including the filename extensions) of the file
  * for the downbeat. For example, `/var/mobile/Containers/Data/audio.mp4`. For the audio file
- * formats supported by this method, see `What formats of audio files does the Agora RTC SDK
- * support`.
+ * formats supported by this method, see [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
  * @param sound2 The absolute path or URL address (including the filename extensions) of the file
  * for the upbeats. For example, `/var/mobile/Containers/Data/audio.mp4`. For the audio file formats
- * supported by this method, see `What formats of audio files does the Agora RTC SDK support`.
+ * supported by this method, see [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
  * @param config The metronome configuration. See `AgoraRhythmPlayerConfig`.
  *
  * @return

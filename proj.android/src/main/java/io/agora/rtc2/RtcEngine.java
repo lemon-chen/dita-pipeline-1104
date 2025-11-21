@@ -3812,7 +3812,7 @@ public abstract class RtcEngine {
    * @param filePath The file path. The SDK supports URI addresses starting with `content://`, paths
    * starting with `/assets/`, URLs and absolute paths of local files. The absolute path needs to be
    * accurate to the file name and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV,
-   * and 3GP. See `Supported Audio Formats`.
+   * and 3GP. See [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
    * Attention: If you have preloaded an audio effect into memory by calling `preloadEffect`, ensure
    * that the value of this parameter is the same as that of `filePath` in `preloadEffect`.
    * @param loopback Whether to only play music files on the local client:
@@ -7146,8 +7146,7 @@ public abstract class RtcEngine {
    *
    * @details
    * Ensure the size of all preloaded files does not exceed the limit.
-   * For the audio file formats supported by this method, see `What formats of audio files does the
-   * Agora RTC SDK support`.
+   * For the audio file formats supported by this method, see [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
    * Call timing: Agora recommends that you call this method before joining a channel.
    *
    * @param soundId The audio effect ID. The ID of each audio effect file is unique.
@@ -7222,7 +7221,7 @@ public abstract class RtcEngine {
    * @param filePath The file path. The SDK supports URI addresses starting with `content://`, paths
    * starting with `/assets/`, URLs and absolute paths of local files. The absolute path needs to be
    * accurate to the file name and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV,
-   * and 3GP. See `Supported Audio Formats`.
+   * and 3GP. See [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
    * Attention: If you have preloaded an audio effect into memory by calling `preloadEffect`, ensure
    * that the value of this parameter is the same as that of `filePath` in `preloadEffect`.
    * @param loopCount The number of times the audio effect loops.
@@ -7276,7 +7275,7 @@ public abstract class RtcEngine {
    * @param filePath The file path. The SDK supports URI addresses starting with `content://`, paths
    * starting with `/assets/`, URLs and absolute paths of local files. The absolute path needs to be
    * accurate to the file name and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV,
-   * and 3GP. See `Supported Audio Formats`.
+   * and 3GP. See [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
    * Attention: If you have preloaded an audio effect into memory by calling `preloadEffect`, ensure
    * that the value of this parameter is the same as that of `filePath` in `preloadEffect`.
    * @param loopCount The number of times the audio effect loops.
@@ -8269,13 +8268,11 @@ public abstract class RtcEngine {
    * @param sound1 The absolute path or URL address (including the filename extensions) of the file
    * for the downbeat. For example,
    * `content://com.android.providers.media.documents/document/audio%203A14441`. For the audio file
-   * formats supported by this method, see `What formats of audio files does the Agora RTC SDK
-   * support`.
+   * formats supported by this method, see [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
    * @param sound2 The absolute path or URL address (including the filename extensions) of the file
    * for the upbeats. For example,
    * `content://com.android.providers.media.documents/document/audio%203A14441`. For the audio file
-   * formats supported by this method, see `What formats of audio files does the Agora RTC SDK
-   * support`.
+   * formats supported by this method, see [What audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
    * @param config The metronome configuration. See `AgoraRhythmPlayerConfig`.
    *
    * @return
