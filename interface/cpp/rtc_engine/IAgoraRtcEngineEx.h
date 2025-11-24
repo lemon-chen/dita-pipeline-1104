@@ -1894,7 +1894,7 @@ public:
      * stream will be destroyed when leaving the channel, and the data stream needs to be recreated if
      * needed.
      * If you need a more comprehensive solution for low-latency, high-concurrency, and scalable
-     * real-time messaging and status synchronization, it is recommended to use `Signaling`.
+     * real-time messaging and status synchronization, it is recommended to use [Signaling](https://docs.agora.io/en/signaling/overview/product-overview).
      *
      * @param streamId An output parameter; the ID of the data stream created.
      * @param config The configurations for the data stream. See `DataStreamConfig`.
@@ -1923,7 +1923,7 @@ public:
      *
      * @note
      * - If you need a more comprehensive solution for low-latency, high-concurrency, and scalable
-     * real-time messaging and status synchronization, it is recommended to use `Signaling`.
+     * real-time messaging and status synchronization, it is recommended to use [Signaling](https://docs.agora.io/en/signaling/overview/product-overview).
      * - Call this method after `joinChannelEx`.
      * - Ensure that you call `createDataStreamEx(int* streamId, const DataStreamConfig& config, const
      * RtcConnection& connection)` to create a data channel before calling this
@@ -2070,7 +2070,7 @@ public:
      * Agora supports reporting and analyzing customized messages. This function is in the beta stage
      * with a free trial. The ability provided in its beta test version is reporting a maximum of 10
      * message pieces within 6 seconds, with each message piece not exceeding 256 bytes and each string
-     * not exceeding 100 bytes. To try out this function, contact `support@agora.io` and discuss the
+     * not exceeding 100 bytes. To try out this function, contact sales and discuss the
      * format of customized messages with us.
      *
      */
@@ -2116,8 +2116,8 @@ public:
      * @brief Starts pushing media streams to a CDN without transcoding.
      *
      * @details
-     * Agora recommends that you use the server-side Media Push function. For details, see `Use RESTful
-     * API`.
+     * Agora recommends that you use the server-side Media Push function. For details, see [Pushing streams using RESTful
+     * APIs](https://docs.agora.io/en/media-push/develop/restful-api).
      * You can call this method to push an audio or video stream to the specified CDN address. This
      * method can push media streams to only one CDN address at a time, so if you need to push streams
      * to multiple addresses, call this method multiple times.
@@ -2149,8 +2149,8 @@ public:
      * @brief Starts Media Push and sets the transcoding configuration.
      *
      * @details
-     * Agora recommends that you use the server-side Media Push function. For details, see `Use RESTful
-     * API`.
+     * Agora recommends that you use the server-side Media Push function. For details, see [Pushing streams using RESTful
+     * APIs](https://docs.agora.io/en/media-push/develop/restful-api).
      * You can call this method to push a live audio-and-video stream to the specified CDN address and
      * set the transcoding configuration. This method can push media streams to only one CDN address at
      * a time, so if you need to push streams to multiple addresses, call this method multiple times.
@@ -2203,8 +2203,8 @@ public:
      * @brief Stops pushing media streams to a CDN.
      *
      * @details
-     * Agora recommends that you use the server-side Media Push function. For details, see `Use RESTful
-     * API`.
+     * Agora recommends that you use the server-side Media Push function. For details, see [Pushing streams using RESTful
+     * APIs](https://docs.agora.io/en/media-push/develop/restful-api).
      * You can call this method to stop the live stream on the specified CDN address. This method can
      * stop pushing media streams to only one CDN address at a time, so if you need to stop pushing
      * streams to multiple addresses, call this method multiple times.
@@ -2320,7 +2320,8 @@ public:
      */
     virtual int resumeAllChannelMediaRelayEx(const RtcConnection& connection) = 0;
 
-   /** Gets the user information by passing in the user account.
+   /** 
+    * @brief Gets the user information by passing in the user account.
     *  It is same as agora::rtc::IRtcEngine::getUserInfoByUserAccount.
     *
     * @param userAccount The user account of the user. Ensure that you set this parameter.
@@ -2335,7 +2336,8 @@ public:
     */
     virtual int getUserInfoByUserAccountEx(const char* userAccount, rtc::UserInfo* userInfo, const RtcConnection& connection) = 0;
 
-    /** Gets the user information by passing in the user ID.
+    /** 
+    * @brief Gets the user information by passing in the user ID.
     *  It is same as agora::rtc::IRtcEngine::getUserInfoByUid.
     *
     * @param uid The user ID of the remote user. Ensure that you set this parameter.

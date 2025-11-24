@@ -1685,13 +1685,14 @@ class IAudioFrameObserverBase {
    */
   virtual bool onEarMonitoringAudioFrame(AudioFrame& audioFrame) = 0;
   /**
-   * Occurs when the before-mixing playback audio frame is received.
-   * @param channelId The channel name
-   * @param userId ID of the remote user.
-   * @param audioFrame The reference to the audio frame: AudioFrame.
+   * @brief Retrieves the audio frame before mixing of subscribed remote users.
+   *
+   * @param channelId The channel ID.
+   * @param userId The ID of subscribed remote users.
+   * @param audioFrame The raw audio data. See `AudioFrame`.
+   *
    * @return
-   * - true: The before-mixing playback audio frame is valid and is encoded and sent.
-   * - false: The before-mixing playback audio frame is invalid and is not encoded or sent.
+   * Without practical meaning.
    */
   virtual bool onPlaybackAudioFrameBeforeMixing(const char* channelId, base::user_id_t userId,
                                                 AudioFrame& audioFrame) {

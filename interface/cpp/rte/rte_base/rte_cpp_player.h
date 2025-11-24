@@ -966,8 +966,7 @@ class PlayerConfig {
    * If you have higher requirements for video resolution switching, you can `contact technical
    * support` to enable
    * the ABR (Adaptive Bitrate) feature. Once enabled, you can customize the resolution for each video
-   * quality layer, and the audience can switch between all video quality layers as needed. For
-   * detailed implementation, see `Audience-side URL streaming`.
+   * quality layer, and the audience can switch between all video quality layers as needed.
    * Applicable scenarios: In unstable network environments, the audience can choose an appropriate
    * video quality level based on actual network conditions to ensure a smooth viewing experience.
    * Call timing: This method must be called before `SetConfigs(PlayerConfig* config, Error* err)`.

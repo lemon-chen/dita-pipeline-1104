@@ -383,8 +383,7 @@ public abstract class RtcEngine {
    * - When preloading one channel, calling this method to pass in the new token.
    * - When preloading more than one channels:
    *   - If you use a wildcard token for all preloaded channels, call `updatePreloadChannelToken` to
-   * update the token.Note: When generating a wildcard token, ensure the user ID is not set as 0. See
-   * `Secure authentication with tokens`.
+   * update the token. Note: When generating a wildcard token, ensure the user ID is not set as 0. 
    *   - If you use different tokens to preload different channels, call this method to pass in your
    * user ID, channel name and the new token.
    * @param channelName The channel name that you want to preload. This parameter signifies the
@@ -444,8 +443,7 @@ public abstract class RtcEngine {
    * - When preloading one channel, calling this method to pass in the new token.
    * - When preloading more than one channels:
    *   - If you use a wildcard token for all preloaded channels, call `updatePreloadChannelToken` to
-   * update the token.Note: When generating a wildcard token, ensure the user ID is not set as 0. See
-   * `Secure authentication with tokens`.
+   * update the token. Note: When generating a wildcard token, ensure the user ID is not set as 0. 
    *   - If you use different tokens to preload different channels, call this method to pass in your
    * user ID, channel name and the new token.
    * @param channelName The channel name that you want to preload. This parameter signifies the
@@ -4815,6 +4813,7 @@ public abstract class RtcEngine {
 
   /**
    * Sets the external video source.
+   * @technical preview
    *
    * Once the external video source is enabled, the SDK prepares to accept the external video frame.
    *
