@@ -337,8 +337,7 @@ class ILocalSpatialAudioEngine: public RefCountInterface {
    * - Call this method after the `joinChannel(const char* token, const char* channelId, const char*
    * info, uid_t uid)` or `joinChannel(const char* token, const char* channelId, uid_t uid, const
    * ChannelMediaOptions& options)` method.
-   * - When using the spatial audio effect, if you need to set whether to stop subscribing to the
-   * audio stream of a specified user, Agora recommends calling this method instead of the
+   * - When using the spatial audio effect, if you need to set whether to stop publishing the local audio stream, Agora recommends calling this method instead of the
    * `muteLocalAudioStream` method in `IRtcEngine`.
    * - A successful call of this method triggers the `onUserMuteAudio` and `onRemoteAudioStateChanged`
    * callbacks on the remote client.

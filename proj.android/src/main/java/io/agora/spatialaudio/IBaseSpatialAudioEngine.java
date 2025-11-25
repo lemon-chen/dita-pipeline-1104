@@ -120,8 +120,7 @@ public abstract class IBaseSpatialAudioEngine {
    * - This method does not affect any ongoing audio recording, because it does not disable the audio
    * capture device.
    * - Call this method after the `joinChannel(String token, String channelId, String optionalInfo, int uid)` or `joinChannel(String token, String channelId, int uid, ChannelMediaOptions options)` method.
-   * - When using the spatial audio effect, if you need to set whether to stop subscribing to the
-   * audio stream of a specified user, Agora recommends calling this method instead of the
+   * - When using the spatial audio effect, if you need to set whether to stop publishing the local audio stream, Agora recommends calling this method instead of the
    * `muteLocalAudioStream` method in `RtcEngine`.
    * - A successful call of this method triggers the `onUserMuteAudio` and `onRemoteAudioStateChanged`
    * callbacks on the remote client.
@@ -226,6 +225,26 @@ public abstract class IBaseSpatialAudioEngine {
    */
   public abstract int setPlayerAttenuation(int playerId, double attenuation, boolean forceSet);
 
+  /**
+   * @brief Stops or resumes subscribing to the audio stream of a specified user.
+   *
+   * @note
+   * - Call this method after the `joinChannel(String token, String channelId, String optionalInfo, int uid)` or `joinChannel(String token, String channelId, int uid, ChannelMediaOptions options)` method.
+   * - When using the spatial audio effect, if you need to set whether to stop subscribing to the
+   * audio stream of a specified user, Agora recommends calling this method instead of the
+   * `muteRemoteAudioStream` method in `IRtcEngine`.
+   *
+   * @param uid The user ID. This parameter must be the same as the user ID passed in when the user
+   * joined the channel.
+   * @param mute Whether to subscribe to the specified remote user's audio stream.
+   * - `true`: Stop subscribing to the audio stream of the specified user.
+   * - `false`: (Default) Subscribe to the audio stream of the specified user. The SDK decides whether
+   * to subscribe according to the distance between the local user and the remote user.
+   *
+   * @return
+   * - 0: Success.
+   * - < 0: Failure.
+   */
   public abstract int muteRemoteAudioStream(int uid, boolean mute);
 
   public abstract int updateSelfPositionEx(float[] position, float[] axisForward, float[] axisRight,

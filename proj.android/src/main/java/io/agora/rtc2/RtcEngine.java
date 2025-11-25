@@ -377,7 +377,7 @@ public abstract class RtcEngine {
    * Failing to preload a channel does not mean that you can't join a channel, nor will it increase
    * the time of joining a channel.
    *
-   * @param token The token generated on your server for authentication. See .When the token for
+   * @param token The token generated on your server for authentication. When the token for
    * preloading channels expires, you can update the token based on the number of channels you
    * preload.
    * - When preloading one channel, calling this method to pass in the new token.
@@ -5442,7 +5442,7 @@ public abstract class RtcEngine {
    * - `true`: Enable dual-stream mode.
    * - `false`: (Default) Disable dual-stream mode.
    * @param streamConfig The configuration of the low-quality video stream. See
-   * `SimulcastStreamConfig`.Note: When setting `mode` to `DISABLE_SIMULCAST_STREAM`, setting
+   * `SimulcastStreamConfig`. Note: When setting `mode` to `DISABLE_SIMULCAST_STREAM`, setting
    * `streamConfig` will not take effect.
    *
    * @return
