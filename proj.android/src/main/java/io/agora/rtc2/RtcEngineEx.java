@@ -303,7 +303,7 @@ public abstract class RtcEngineEx extends RtcEngine {
    * @note
    * - You can call this method either before or after joining a channel.
    * - The blocklist is not affected by the setting in `muteRemoteVideoStream`,
-   * `muteAllRemoteVideoStreams` and `autoSubscribeAudio` in `ChannelMediaOptions`.
+   * `muteAllRemoteVideoStreams` and `autoSubscribeVideo` in `ChannelMediaOptions`.
    * - Once the blocklist of subscriptions is set, it is effective even if you leave the current
    * channel and rejoin the channel.
    * - If a user is added in the allowlist and blocklist at the same time, only the blocklist takes
@@ -331,7 +331,7 @@ public abstract class RtcEngineEx extends RtcEngine {
    * @note
    * - You can call this method either before or after joining a channel.
    * - The allowlist is not affected by the setting in `muteRemoteVideoStream`,
-   * `muteAllRemoteVideoStreams` and `autoSubscribeAudio` in `ChannelMediaOptions`.
+   * `muteAllRemoteVideoStreams` and `autoSubscribeVideo` in `ChannelMediaOptions`.
    * - Once the allowlist of subscriptions is set, it is effective even if you leave the current
    * channel and rejoin the channel.
    * - If a user is added in the allowlist and blocklist at the same time, only the blocklist takes
@@ -785,7 +785,7 @@ public abstract class RtcEngineEx extends RtcEngine {
    *
    * @note
    * - If you need a more comprehensive solution for low-latency, high-concurrency, and scalable
-   * real-time messaging and status synchronization, it is recommended to use `Signaling`.
+   * real-time messaging and status synchronization, it is recommended to use [Signaling](https://docs.agora.io/en/signaling/overview/product-overview).
    * - Call this method after `joinChannelEx`.
    * - Ensure that you call `createDataStreamEx(DataStreamConfig config, RtcConnection connection)` to create a data channel before calling this
    * method.
@@ -879,7 +879,7 @@ public abstract class RtcEngineEx extends RtcEngine {
    * Each user can create up to five data streams during the lifecycle of `RtcEngine`. The data stream
    * will be destroyed when leaving the channel, and the data stream needs to be recreated if needed.
    * If you need a more comprehensive solution for low-latency, high-concurrency, and scalable
-   * real-time messaging and status synchronization, it is recommended to use `Signaling`.
+   * real-time messaging and status synchronization, it is recommended to use [Signaling](https://docs.agora.io/en/signaling/overview/product-overview).
    *
    * @param config The configurations for the data stream. See `DataStreamConfig`.
    * @param connection The connection information. See `RtcConnection`.
@@ -1365,8 +1365,7 @@ public abstract class RtcEngineEx extends RtcEngine {
    * @brief Starts pushing media streams to a CDN without transcoding.
    *
    * @details
-   * Agora recommends that you use the server-side Media Push function. For details, see `Use RESTful
-   * API`.
+   * Agora recommends that you use the server-side Media Push function. For details, see [Push streams using RESTful APIs](https://docs.agora.io/en/media-push/develop/restful-api).
    * You can call this method to push an audio or video stream to the specified CDN address. This
    * method can push media streams to only one CDN address at a time, so if you need to push streams
    * to multiple addresses, call this method multiple times.
@@ -1397,8 +1396,7 @@ public abstract class RtcEngineEx extends RtcEngine {
    * @brief Starts Media Push and sets the transcoding configuration.
    *
    * @details
-   * Agora recommends that you use the server-side Media Push function. For details, see `Use RESTful
-   * API`.
+   * Agora recommends that you use the server-side Media Push function. For details, see [Push streams using RESTful APIs](https://docs.agora.io/en/media-push/develop/restful-api).
    * You can call this method to push a live audio-and-video stream to the specified CDN address and
    * set the transcoding configuration. This method can push media streams to only one CDN address at
    * a time, so if you need to push streams to multiple addresses, call this method multiple times.
@@ -1432,8 +1430,7 @@ public abstract class RtcEngineEx extends RtcEngine {
    * @brief Updates the transcoding configuration.
    *
    * @details
-   * Agora recommends that you use the server-side Media Push function. For details, see `Use RESTful
-   * API`.
+   * Agora recommends that you use the server-side Media Push function. For details, see [Push streams using RESTful APIs](https://docs.agora.io/en/media-push/develop/restful-api).
    * After you start pushing media streams to CDN with transcoding, you can dynamically update the
    * transcoding configuration according to the scenario. The SDK triggers the `onTranscodingUpdated`
    * callback after the transcoding configuration is updated.
@@ -1451,8 +1448,7 @@ public abstract class RtcEngineEx extends RtcEngine {
    * @brief Stops pushing media streams to a CDN.
    *
    * @details
-   * Agora recommends that you use the server-side Media Push function. For details, see `Use RESTful
-   * API`.
+   * Agora recommends that you use the server-side Media Push function. For details, see [Push streams using RESTful APIs](https://docs.agora.io/en/media-push/develop/restful-api).
    * You can call this method to stop the live stream on the specified CDN address. This method can
    * stop pushing media streams to only one CDN address at a time, so if you need to stop pushing
    * streams to multiple addresses, call this method multiple times.

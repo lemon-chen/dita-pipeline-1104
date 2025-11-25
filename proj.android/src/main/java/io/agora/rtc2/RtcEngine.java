@@ -1167,6 +1167,7 @@ public abstract class RtcEngine {
   /**
    * @brief Sets the audio profile and audio scenario.
    *
+   * @deprecated This method is deprecated. Use `setAudioProfile(int profile)` to set the audio profile; use `setAudioScenario(int scenario)` to set the audio scenario.
    * @details
    * Applicable scenarios: This method is suitable for various audio scenarios. You can choose as
    * needed. For example, in scenarios with high audio quality requirements such as music teaching, it
@@ -1515,8 +1516,7 @@ public abstract class RtcEngine {
    * This method is used to disable the video module.
    * Call timing: This method can be called either before or after joining the channel.
    * - If it is called before joining the channel, the audio-only mode is enabled.
-   * - If it is called after joining the channel, it switches from video mode to audio-only mode.
-   * Then, calling `enableVideo` can swithch to video mode again.
+   * - If it is called after joining the channel, it switches from video mode to audio-only mode Then, calling `enableVideo` can switch to video mode again.
    * Related callbacks: A successful call of this method triggers the `onUserEnableVideo` (`false`)
    * callback on the remote client.
    *
@@ -2599,7 +2599,7 @@ public abstract class RtcEngine {
    * - FACE_SHAPE_AREA_EYEBROWTHICKNESS (501): Eyebrow thickness adjustment. The range is [0, 100],
    * with a default value of 0. The larger the value, the more noticeable the adjustment.
    * @param sourceType The type of the media source to which the filter effect is applied. See
-   * `MediaSourceType`.Attention: In this method, this parameter supports only the following two
+   * `MediaSourceType`. Attention: In this method, this parameter supports only the following two
    * settings:
    * - Use the default value `PRIMARY_CAMERA_SOURCE` if you use camera to capture local video.
    * - Set this parameter to `CUSTOM_VIDEO_SOURCE` if you use custom video source.
@@ -4251,7 +4251,7 @@ public abstract class RtcEngine {
    *
    * @note
    * - For the supported formats of audio files, see
-   * `https://docs.agora.io/en/help/general-product-inquiry/audio_format#extended-audio-file-formats`.
+   * [Which audio file formats does the Agora Video SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format#extended-audio-file-formats).
    * - You need to call this method after calling `startAudioMixing(String filePath, boolean loopback, int cycle, int startPos)` and receiving the
    * `onAudioMixingStateChanged` `(AUDIO_MIXING_STATE_PLAYING)` callback.
    *
@@ -5802,7 +5802,7 @@ public abstract class RtcEngine {
    * @note
    * - You can call this method either before or after joining a channel.
    * - The blocklist is not affected by the setting in `muteRemoteVideoStream`,
-   * `muteAllRemoteVideoStreams` and `autoSubscribeAudio` in `ChannelMediaOptions`.
+   * `muteAllRemoteVideoStreams` and `autoSubscribeVideo` in `ChannelMediaOptions`.
    * - Once the blocklist of subscriptions is set, it is effective even if you leave the current
    * channel and rejoin the channel.
    * - If a user is added in the allowlist and blocklist at the same time, only the blocklist takes
@@ -5829,7 +5829,7 @@ public abstract class RtcEngine {
    * @note
    * - You can call this method either before or after joining a channel.
    * - The allowlist is not affected by the setting in `muteRemoteVideoStream`,
-   * `muteAllRemoteVideoStreams` and `autoSubscribeAudio` in `ChannelMediaOptions`.
+   * `muteAllRemoteVideoStreams` and `autoSubscribeVideo` in `ChannelMediaOptions`.
    * - Once the allowlist of subscriptions is set, it is effective even if you leave the current
    * channel and rejoin the channel.
    * - If a user is added in the allowlist and blocklist at the same time, only the blocklist takes
@@ -5880,8 +5880,7 @@ public abstract class RtcEngine {
    * @brief Starts pushing media streams to a CDN without transcoding.
    *
    * @details
-   * Agora recommends that you use the server-side Media Push function. For details, see `Use RESTful
-   * API`.
+   * Agora recommends that you use the server-side Media Push function. For details, see [Push streams using RESTful APIs](https://docs.agora.io/en/media-push/develop/restful-api).
    * You can call this method to push an audio or video stream to the specified CDN address. This
    * method can push media streams to only one CDN address at a time, so if you need to push streams
    * to multiple addresses, call this method multiple times.
@@ -5912,8 +5911,7 @@ public abstract class RtcEngine {
    * @brief Starts Media Push and sets the transcoding configuration.
    *
    * @details
-   * Agora recommends that you use the server-side Media Push function. For details, see `Use RESTful
-   * API`.
+   * Agora recommends that you use the server-side Media Push function. For details, see [Push streams using RESTful APIs](https://docs.agora.io/en/media-push/develop/restful-api).
    * You can call this method to push a live audio-and-video stream to the specified CDN address and
    * set the transcoding configuration. This method can push media streams to only one CDN address at
    * a time, so if you need to push streams to multiple addresses, call this method multiple times.
@@ -5947,8 +5945,7 @@ public abstract class RtcEngine {
    * @brief Updates the transcoding configuration.
    *
    * @details
-   * Agora recommends that you use the server-side Media Push function. For details, see `Use RESTful
-   * API`.
+   * Agora recommends that you use the server-side Media Push function. For details, see [Push streams using RESTful APIs](https://docs.agora.io/en/media-push/develop/restful-api).
    * After you start pushing media streams to CDN with transcoding, you can dynamically update the
    * transcoding configuration according to the scenario. The SDK triggers the `onTranscodingUpdated`
    * callback after the transcoding configuration is updated.
@@ -5965,8 +5962,7 @@ public abstract class RtcEngine {
    * @brief Stops pushing media streams to a CDN.
    *
    * @details
-   * Agora recommends that you use the server-side Media Push function. For details, see `Use RESTful
-   * API`.
+   * Agora recommends that you use the server-side Media Push function. For details, see [Push streams using RESTful APIs](https://docs.agora.io/en/media-push/develop/restful-api).
    * You can call this method to stop the live stream on the specified CDN address. This method can
    * stop pushing media streams to only one CDN address at a time, so if you need to stop pushing
    * streams to multiple addresses, call this method multiple times.
@@ -5997,7 +5993,7 @@ public abstract class RtcEngine {
    * Each user can create up to five data streams during the lifecycle of `RtcEngine`. The data stream
    * will be destroyed when leaving the channel, and the data stream needs to be recreated if needed.
    * If you need a more comprehensive solution for low-latency, high-concurrency, and scalable
-   * real-time messaging and status synchronization, it is recommended to use `Signaling`.
+   * real-time messaging and status synchronization, it is recommended to use [Signaling](https://docs.agora.io/en/signaling/overview/product-overview).
    *
    * @param reliable Sets whether the recipients are guaranteed to receive the data stream within five
    * seconds:
@@ -6031,7 +6027,7 @@ public abstract class RtcEngine {
    * Each user can create up to five data streams during the lifecycle of `RtcEngine`. The data stream
    * will be destroyed when leaving the channel, and the data stream needs to be recreated if needed.
    * If you need a more comprehensive solution for low-latency, high-concurrency, and scalable
-   * real-time messaging and status synchronization, it is recommended to use `Signaling`.
+   * real-time messaging and status synchronization, it is recommended to use [Signaling](https://docs.agora.io/en/signaling/overview/product-overview).
    *
    * @param config The configurations for the data stream. See `DataStreamConfig`.
    *
@@ -6058,7 +6054,7 @@ public abstract class RtcEngine {
    *
    * @note
    * If you need a more comprehensive solution for low-latency, high-concurrency, and scalable
-   * real-time messaging and status synchronization, it is recommended to use `Signaling`.
+   * real-time messaging and status synchronization, it is recommended to use [Signaling](https://docs.agora.io/en/signaling/overview/product-overview).
    * - This method needs to be called after `createDataStream(DataStreamConfig config)` and joining the channel.
    * - This method applies to broadcasters only.
    *
@@ -8103,7 +8099,6 @@ public abstract class RtcEngine {
    * Applicable scenarios: After registering the raw video observer, you can use the obtained raw
    * video data in various video pre-processing scenarios, such as virtual backgrounds and image
    * enhacement by yourself.
-   * Agora provides an open source sample project `beautyapi` on GitHub for your reference.
    * Call timing: Call this method before joining a channel.
    *
    * @note
@@ -8467,7 +8462,7 @@ public abstract class RtcEngine {
    * @brief Creates a custom video track.
    *
    * @details
-   * To publish a custom video source, see the following steps:1. Call this method to create a video
+   * To publish a custom video source, see the following steps: 1. Call this method to create a video
    * track and get the video track ID.
    * 2. Call `joinChannel(String token, String channelId, int uid, ChannelMediaOptions options)` to join the channel. In `ChannelMediaOptions`, set
    * `customVideoTrackId` to the video track ID that you want to publish, and set

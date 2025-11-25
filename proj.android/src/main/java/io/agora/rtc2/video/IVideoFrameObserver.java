@@ -146,7 +146,7 @@ public interface IVideoFrameObserver {
    * unexpected rotation, distortion, and other issues in the local preview and remote video display.
    *
    * @param sourceType The type of the video source. See `VideoSourceType`.
-   * @param videoFrame The video frame. See `VideoFrame`.Note: The default value of the video frame
+   * @param videoFrame The video frame. See `VideoFrame`. Note: The default value of the video frame
    * data format obtained through this callback is as follows:
    * - Android: I420 or RGB (GLES20.GL_TEXTURE_2D)
    *
@@ -338,7 +338,7 @@ public interface IVideoFrameObserver {
    * unexpected rotation, distortion, and other issues in the local preview and remote video display.
    *
    * @param uid The user ID of the remote user who sends the current video frame.
-   * @param videoFrame The video frame. See `VideoFrame`.Note: The default value of the video frame
+   * @param videoFrame The video frame. See `VideoFrame`. Note: The default value of the video frame
    * data format obtained through this callback is as follows:
    * - Android: I420 or RGB (GLES20.GL_TEXTURE_2D)
    * @param channelId The channel ID.

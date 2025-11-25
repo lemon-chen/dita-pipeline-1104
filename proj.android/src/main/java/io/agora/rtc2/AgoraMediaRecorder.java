@@ -190,7 +190,7 @@ public class AgoraMediaRecorder {
    *
    * @return
    * - 0: The method call succeeds.
-   * - < 0: The method call fails. See `Error Codes` for details and troubleshooting suggestions.
+   * - < 0: The method call fails. 
    */
   public int setMediaRecorderObserver(IMediaRecorderCallback callback) {
     RtcEngineImpl engine = null;

@@ -336,7 +336,7 @@ public class PlayerConfig {
    * By default, after calling this method, you can only choose to fall back to `LOW` or `AUDIO_ONLY`. If you require higher video quality, you can contact technical support to enable the ABR feature. Once enabled, you can fall back to any quality layer of the multi-layer video stream and customize the resolution corresponding to each layer.
    * Applicable scenarios:
    * - In general video scenarios, you can call this method and set the fallback quality layer to `LOW` or `AUDIO_ONLY`. The SDK downgrades the video stream to a lower-quality stream or receives only the audio stream when the network is poor.
-   * - If you have higher requirements for the resolution of fallback video streams, you can contact technical support to enable the ABR feature. Once enabled, you can customize the resolution of each layer. The SDK dynamically adjusts the resolution within the range starting from the lowest resolution layer you specify, depending on the network conditions. For implementation details, refer to `Audience-side URL streaming`.
+   * - If you have higher requirements for the resolution of fallback video streams, you can contact technical support to enable the ABR feature. Once enabled, you can customize the resolution of each layer. The SDK dynamically adjusts the resolution within the range starting from the lowest resolution layer you specify, depending on the network conditions.
    * Call timing: You must call this method before `setConfigs(PlayerConfig config)`.
    *
    * @note If you have not enabled the ABR feature when calling this method, the fallback quality layer of the video stream can only be set to `LOW` or `AUDIO_ONLY`.

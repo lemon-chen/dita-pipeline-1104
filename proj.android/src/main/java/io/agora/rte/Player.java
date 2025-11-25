@@ -78,7 +78,7 @@ public class Player {
    *
    * @note This method currently supports only URLs that start with `rte://`, direct CDN streaming URLs, and local media files.
    *
-   * @param url The URL to open. It can be a direct CDN streaming URL, a local media file, or a URL prefixed with `rte://`. For detailed explanations of each field in the RTE URL, see "Audience-side URL playback".
+   * @param url The URL to open. It can be a direct CDN streaming URL, a local media file, or a URL prefixed with `rte://`. 
    * @param startTime The start playback position in milliseconds.
    * @param callback An asynchronous callback function used to notify the result of opening the URL resource. If an error occurs during the process, you can get the specific error information through the `onResult` callback under `AsyncCallback`.
    *

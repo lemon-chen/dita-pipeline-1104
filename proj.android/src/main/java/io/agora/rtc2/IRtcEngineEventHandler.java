@@ -2342,7 +2342,7 @@ public abstract class IRtcEngineEventHandler {
 
   /**
    * @brief Occurs when the SDK receives the first audio frame from a specific remote user.
-   *
+   * @deprecated This method is deprecated. Use `onRemoteAudioStateChanged` instead.
    * @param uid The user ID of the remote user.
    * @param elapsed The time elapsed (ms) from the local user calling `joinChannel(String token, String channelId, int uid, ChannelMediaOptions options)` until the
    * SDK triggers this callback.
@@ -2352,7 +2352,7 @@ public abstract class IRtcEngineEventHandler {
 
   /**
    * @brief Occurs when the SDK decodes the first remote audio frame for playback.
-   *
+   * @deprecated This method is deprecated. Use `onRemoteAudioStateChanged` instead.
    * @details
    * The SDK triggers this callback under one of the following circumstances:
    * - The remote user joins the channel and sends the audio stream for the first time.
@@ -3064,7 +3064,7 @@ public abstract class IRtcEngineEventHandler {
    * user sends by calling the `sendStreamMessage` method.
    *
    * @note If you need a more comprehensive solution for low-latency, high-concurrency, and scalable
-   * real-time messaging and status synchronization, it is recommended to use `Signaling`.
+   * real-time messaging and status synchronization, it is recommended to use [Signaling](https://docs.agora.io/en/signaling/overview/product-overview).
    *
    * @param uid The ID of the remote user sending the message.
    * @param streamId The stream ID of the received message.
@@ -3081,7 +3081,7 @@ public abstract class IRtcEngineEventHandler {
    * remote user sends by calling the `sendStreamMessage` method.
    *
    * @note If you need a more comprehensive solution for low-latency, high-concurrency, and scalable
-   * real-time messaging and status synchronization, it is recommended to use `Signaling`.
+   * real-time messaging and status synchronization, it is recommended to use [Signaling](https://docs.agora.io/en/signaling/overview/product-overview).
    *
    * @param uid The ID of the remote user sending the message.
    * @param streamId The stream ID of the received message.
@@ -3281,6 +3281,12 @@ public abstract class IRtcEngineEventHandler {
    * @param stream The video streams that cannot be mixed during video mixing. See
    * `TranscodingVideoStream`.
    * @param error The reason for local video mixing error.
+   * - 1: The specified video source has not captured video yet. You need to create a video track and start capturing.
+   * - 2: Invalid source type. You need to specify a video source type that is supported.
+   * - 3: Invalid image path. You need to specify a corrent image path.
+   * - 4: Invalid image format. Ensure that the image is in the format of PNG, JPEG, or GIF.
+   * - 5: The resolution of the mixed video is invalid.
+   * - 20: Internal error.
    *
    */
   public void onLocalVideoTranscoderError(

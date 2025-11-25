@@ -283,9 +283,7 @@ public interface IMediaPlayer {
    * - RENDER_MODE_FIT (2): Fit mode. Uniformly scale the video until one of its dimension fits the
    * boundary (zoomed to fit). Areas that are not filled due to the disparity in the aspect ratio are
    * filled with black.
-   * - RENDER_MODE_ADAPTIVE (3): Adaptive mode.
-   * Deprecated:
-   * This enumerator is deprecated and not recommended for use.
+   * - RENDER_MODE_ADAPTIVE (3): Adaptive mode. This enumerator is deprecated and not recommended for use.
    *
    * @return
    * - 0: Success.
