@@ -1,40 +1,40 @@
 ## 废弃
 
-onAudioMixingFinished
+onAudioMixingFinished - done
 
-setAudioProfile[1/2]
+setAudioProfile[1/2] - done
 
-onFirstRemoteAudioDecoded
+onFirstRemoteAudioDecoded - done
 
-onFirstRemoteAudioFrame
+onFirstRemoteAudioFrame - done
 
-onRemoteAudioTransportStats
+onRemoteAudioTransportStats - done
 
-onFirstRemoteVideoDecoded
+onFirstRemoteVideoDecoded - done
 
-onRemoteVideoTransportStats
+onRemoteVideoTransportStats - done
 
-onVideoStopped
+onVideoStopped - done
 
-addVideoWatermark[2/3]
+addVideoWatermark[2/3] - done
 
-preload[1/2]
+preload[1/2] - done
 
-onCameraReady
+onCameraReady - done
 
-enableWebSdkInteroperability
+enableWebSdkInteroperability - done
 
-setLogFile
+setLogFile - done
 
-setLogFileSize
+setLogFileSize - done
 
-setLogFilter
+setLogFilter - done
 
-setLogLevel
+setLogLevel - done
 
-onConnectionBanned
+onConnectionBanned - done
 
-onConnectionInterrupted
+onConnectionInterrupted - done
 
 
 ## 缺生成内容
@@ -299,3 +299,23 @@ setLoopbackDevice
 startAudioDeviceLoopbackTest
 
 stopAudioDeviceLoopbackTest
+
+registerLocalUserAccount
+joinChannelWithUserAccount
+joinChannelWithUserAccountEx
+getUserInfoByUserAccount
+getUserInfoByUserAccountEx
+getUserInfoByUid
+getUserInfoByUidEx
+
+## RTE 方法改数据类型相关
+
+GetStats
+
+SetMirrorMode
+
+onEvent
+
+onMetadata[2/2]
+
+onStateChanged

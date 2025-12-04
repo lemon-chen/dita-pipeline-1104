@@ -1,56 +1,56 @@
 ## 废弃
 
-setRemoteDefaultVideoStreamType[2/2]
+setRemoteDefaultVideoStreamType[2/2] - done
 
-setRemoteVideoStreamType[2/2]
+setRemoteVideoStreamType[2/2] - done
 
-setRemoteVideoStreamTypeEx[2/2]
+setRemoteVideoStreamTypeEx[2/2] - done
 
-setAudioProfile[1/2]
+setAudioProfile[1/2] - done
 
-onAudioQuality
+onAudioQuality - done
 
-onFirstRemoteAudioDecoded
+onFirstRemoteAudioDecoded - done
 
-onFirstRemoteAudioFrame
+onFirstRemoteAudioFrame - done
 
-onRemoteAudioTransportStats（还有重复生成）
+onRemoteAudioTransportStats - done
 
-setExternalAudioSource[1/2]
+setExternalAudioSource[1/2] - done
 
-onRemoteVideoTransportStats
+onRemoteVideoTransportStats - done
 
-onVideoStopped
+onVideoStopped - done
 
-seteLocalRenderMode[1/2]
+seteLocalRenderMode[1/2] - done
 
-setLocalVideoMirrorMode
+setLocalVideoMirrorMode - done
 
-setRemoteRenderMode
+setRemoteRenderMode - done
 
-pushExternalVideoFrame[1/2]
+pushExternalVideoFrame[1/2] - done
 
-onAudioMixingFinished
+onAudioMixingFinished - done
 
-preload[1/2]
+preload[1/2] - done
 
-onCameraReady
+onCameraReady - done
 
-setRemoteSubscribeFallbackOptions[2/2]
+setRemoteSubscribeFallbackOptions[2/2] - done
 
-ClientRole
+ClientRole - done
 
-getRed
+getRed - done
 
-getBlue
+getBlue - done
 
-getGreen
+getGreen - done
 
-setRed
+setRed - done
 
-setGreen
+setGreen - done
 
-setBlue
+setBlue - done
 
 
 ## 缺生成内容
@@ -261,6 +261,8 @@ onMusicChartsResult
 
 onMusicCollectionResult
 
+onRemoteAudioTransportStats
+
 ## 翻译有误
 
 setSubscribeAudioAllowlist
@@ -410,3 +412,13 @@ sendStreamMessageEx
 onStreamMessage
 
 onStreamMessageError
+
+
+
+registerLocalUserAccount
+joinChannelWithUserAccount
+joinChannelWithUserAccountEx
+getUserInfoByUserAccount
+getUserInfoByUserAccountEx
+getUserInfoByUid
+getUserInfoByUidEx

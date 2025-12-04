@@ -1,37 +1,37 @@
 ## 废弃
 
-pushExternalVideoFrame:
+pushExternalVideoFrame: - done
 
-pushExternalAudioFrameRawData:samples:trackId:timestamp:
+pushExternalAudioFrameRawData:samples:trackId:timestamp: - done
 
-pushExternalAudioFrameSampleBuffer:
+pushExternalAudioFrameSampleBuffer: - done
 
-setLocalVideoMirrorMode:
+setLocalVideoMirrorMode: - done
 
-firstRemoteVideoDecodedBlock:
+firstRemoteVideoDecodedBlock: - done
 
-audioQualityBlock:
+audioQualityBlock: - done
 
-setHighQualityAudioParametersWithFullband:stereo:fullBitrate:
+setHighQualityAudioParametersWithFullband:stereo:fullBitrate: - done
 
-getDeviceId:
+getDeviceId: - done
 
-setExternalAudioSource:sampleRate:channels:
+setExternalAudioSource:sampleRate:channels: - done
 
-setExternalAudioSource:sampleRate:channels:localPlayback:publish:
+setExternalAudioSource:sampleRate:channels:localPlayback:publish: - done
 
-setSpeakerphoneVolume:
+setSpeakerphoneVolume: - done
 
-setLocalRenderMode:mode:
+setLocalRenderMode:mode: - done
 
-enableExternalAudioSourceLocalPlayback:
+enableExternalAudioSourceLocalPlayback: - done
 
-rtcEngineCameraDidReady:
+rtcEngineCameraDidReady: - done
 
-rtcEngineVideoDidStop:
+rtcEngineVideoDidStop: - done
 
-rtcEngine:audioTransportStatsOfUid:delay:lost:rxKBitRate:
+rtcEngine:audioTransportStatsOfUid:delay:lost:rxKBitRate: - done
 
-rtcEngine:videoTransportStatsOfUid:delay:lost:rxKBitRate:
+rtcEngine:videoTransportStatsOfUid:delay:lost:rxKBitRate: - done
 
-AgoraVideoProfile
+AgoraVideoProfile - done
