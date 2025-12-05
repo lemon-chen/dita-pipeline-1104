@@ -1974,7 +1974,7 @@
               }
             ],
             "scenarios": "",
-            "timing": "调用 `getMusicCollectionWithMusicChartId` 或 `searchMusic` 后触发。",
+            "timing": "调用 `getMusicCollectionByMusicChartId` 或 `searchMusic` 后触发。",
             "return_value": ""
           }
         },
@@ -19275,7 +19275,7 @@
               {
                 "name": "frame",
                 "type": "const VideoFrame*",
-                "desc": "视频帧信息",
+                "desc": "视频帧信息，详见 `VideoFrame`。",
                 "change_type": "modify",
                 "is_output": false,
                 "is_array": false,
@@ -19329,7 +19329,7 @@
               "since": "",
               "desc": "调用 `registerVideoFrameObserver` 方法注册回调后，每次接收到视频帧时，SDK 会触发该回调。你需要在该回调的返回值中设置偏好的视频数据格式。",
               "deprecated": "",
-              "note": "原始视频的默认像素格式（`VIDEO_PIXEL_DEFAULT`）如下：\n- 在 Windows 平台，默认的视频帧类型为 `YUV420`。\n- 在 Android 平台，默认的视频帧类型可能为 `I420Buffer` 或 `TextureBuffer`。`TextureBuffer` 类型的纹理格式可能为 OES 或 RGB。如果你调用 `getVideoFormatPreference` 返回的视频帧类型为 `VIDEO_PIXEL_DEFAULT`，则在处理视频数据时需要适配 `I420Buffer` 或 `TextureBuffer`。视频帧类型固定为 `I420Buffer` 的情况包括但不限于：\n  - 特定设备，例如：LG G5 SE（H848）、Google Pixel 4a、Samsung Galaxy A7 或小米 Max。\n  - 集成了图像增强扩展并启用了视频降噪或弱光增强功能。\n- 在 iOS 和 macOS 平台，默认的视频帧类型可能为 `I420` 或 `CVPixelBufferRef`。"
+              "note": "原始视频的默认像素格式（`VIDEO_PIXEL_DEFAULT`）如下：\n- 在 Windows 平台，默认的视频帧类型为 `YUV420`。\n- 在 Android 平台，默认的视频帧类型可能为 `I420Buffer` 或 `TextureBuffer`。`TextureBuffer` 类型的纹理格式可能为 OES 或 RGB。如果你调用 `getVideoFormatPreference` 返回的视频帧类型为 `VIDEO_PIXEL_DEFAULT`，则在处理视频数据时需要适配 `I420Buffer` 或 `TextureBuffer`。视频帧类型固定为 `I420Buffer` 的情况包括但不限于：\n  - 特定设备，例如：LG G5 SE（H848）、Google Pixel 4a、Samsung Galaxy A7 或小米 Max。\n  - 集成了美颜特效扩展并启用了视频降噪或弱光增强功能。\n- 在 iOS 和 macOS 平台，默认的视频帧类型可能为 `I420` 或 `CVPixelBufferRef`。"
             },
             "platforms": "windows",
             "parent_class": "IVideoFrameObserver",
@@ -20305,7 +20305,7 @@
               {
                 "name": "videoFrame",
                 "type": "VideoFrame&",
-                "desc": "输出参数，表示视频帧。",
+                "desc": "输出参数，表示视频帧，详见 `VideoFrame`。",
                 "change_type": "create",
                 "is_output": true,
                 "is_array": false,
@@ -20372,7 +20372,7 @@
               "since": "",
               "desc": "当你成功注册视频帧观察器后，SDK 每次接收到视频帧时都会触发该回调。在该回调中，你可以获取编码前的视频数据，并根据具体场景进行处理。处理完成后，可以将处理后的视频数据返回给 SDK。",
               "deprecated": "",
-              "note": "- 如果你需要将预处理后的视频数据发送回 SDK，需要先调用 `getVideoFrameProcessMode` 将视频处理模式设置为读写模式（`PROCESS_MODE_READ_WRITE`）。\n- 如果你需要获取从第二路屏幕采集的编码前视频数据，需要通过 `getObservedFramePosition` 设置帧位置为 `POSITION_PRE_ENCODER`（1 << 2）。\n- 该回调获取的视频数据已经过预处理，包括裁剪、旋转和图像增强。\n- 建议你确保 `videoFrame` 中修改后的参数与视频帧缓冲区中视频帧的实际情况一致，否则可能导致本地预览和远端视频显示中出现旋转异常、图像失真等问题。"
+              "note": "- 如果你需要将预处理后的视频数据发送回 SDK，需要先调用 `getVideoFrameProcessMode` 将视频处理模式设置为读写模式（`PROCESS_MODE_READ_WRITE`）。\n- 如果你需要获取从第二路屏幕采集的编码前视频数据，需要通过 `getObservedFramePosition` 设置帧位置为 `POSITION_PRE_ENCODER`（1 << 2）。\n- 该回调获取的视频数据已经过预处理，包括裁剪、旋转和美颜特效。\n- 建议你确保 `videoFrame` 中修改后的参数与视频帧缓冲区中视频帧的实际情况一致，否则可能导致本地预览和远端视频显示中出现旋转异常、图像失真等问题。"
             },
             "platforms": "windows",
             "parent_class": "IVideoFrameObserver",
@@ -20389,7 +20389,7 @@
               {
                 "name": "videoFrame",
                 "type": "VideoFrame&",
-                "desc": "输出参数，表示编码前的视频帧。",
+                "desc": "输出参数，表示编码前的视频帧，详见 `VideoFrame`。",
                 "change_type": "create",
                 "is_output": true,
                 "is_array": false,
@@ -20397,7 +20397,7 @@
               }
             ],
             "scenarios": "",
-            "timing": "当 SDK 在编码前接收到视频帧时触发。",
+            "timing": "当 SDK 接收到编码前视频帧时触发。",
             "related": "",
             "return_value": "- 当视频处理模式为 `PROCESS_MODE_READ_ONLY` 时：\n  - `true`：保留以供后续使用。\n  - `false`：保留以供后续使用。\n- 当视频处理模式为 `PROCESS_MODE_READ_WRITE` 时：\n  - `true`：设置 SDK 接收该视频帧。\n  - `false`：设置 SDK 丢弃该视频帧。"
           }
@@ -20449,7 +20449,7 @@
               {
                 "name": "videoFrame",
                 "type": "VideoFrame&",
-                "desc": "输出参数，表示视频帧数据。",
+                "desc": "输出参数，表示视频帧数据，详见 `VideoFrame`。",
                 "change_type": "modify",
                 "is_output": true,
                 "is_array": false,
@@ -20550,7 +20550,7 @@
               {
                 "name": "videoFrame",
                 "type": "VideoFrame&",
-                "desc": "视频帧。",
+                "desc": "视频帧，详见 `VideoFrame`。",
                 "change_type": "create",
                 "is_output": false,
                 "is_array": false,
@@ -25092,7 +25092,7 @@
             "values": [
               {
                 "name": "POSITION_POST_CAPTURER",
-                "desc": "（1）：本地采集的视频数据在预处理之后的位置，对应 `onCaptureVideoFrame` 回调。此位置的视频已应用视频前处理效果，可通过启用图像增强、虚拟背景或水印进行验证。",
+                "desc": "（1）：本地采集的视频数据在预处理之后的位置，对应 `onCaptureVideoFrame` 回调。此位置的视频已应用视频前处理效果，可通过启用美颜特效、虚拟背景或水印进行验证。",
                 "is_public": true,
                 "change_type": "modify",
                 "note": ""
@@ -25106,14 +25106,14 @@
               },
               {
                 "name": "POSITION_PRE_ENCODER",
-                "desc": "（4）：编码前的位置，对应 `onPreEncodeVideoFrame` 回调中的视频数据。此位置的视频已应用视频前处理和编码前处理效果。\n- 若需验证视频前处理效果，可启用图像增强、虚拟背景或水印。\n- 若需验证编码前处理效果，可设置较低的帧率（例如 5 fps）。",
+                "desc": "（4）：编码前的位置，对应 `onPreEncodeVideoFrame` 回调中的视频数据。此位置的视频已应用视频前处理和编码前处理效果。\n- 若需验证视频前处理效果，可启用美颜特效、虚拟背景或水印。\n- 若需验证编码前处理效果，可设置较低的帧率（例如 5 fps）。",
                 "is_public": true,
                 "change_type": "modify",
                 "note": ""
               },
               {
                 "name": "POSITION_POST_CAPTURER_ORIGIN",
-                "desc": "（8）：本地视频采集之后、预处理之前的位置。此位置的视频未应用前处理效果，可通过启用图像增强、虚拟背景或水印进行验证。",
+                "desc": "（8）：本地视频采集之后、预处理之前的位置。此位置的视频未应用前处理效果，可通过启用美颜特效、虚拟背景或水印进行验证。",
                 "is_public": true,
                 "change_type": "modify",
                 "note": ""
@@ -34657,8 +34657,8 @@
             "struct_name": "BeautyOptions",
             "struct_signature": "struct BeautyOptions {\n  LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel;\n  float lighteningLevel;\n  float smoothnessLevel;\n  float rednessLevel;\n  float sharpnessLevel;\n};",
             "change_type": "modify",
-            "change_desc": "新增结构体 `BeautyOptions`：用于图像增强设置。包含以下新增参数：lighteningContrastLevel、lighteningLevel、smoothnessLevel、rednessLevel、sharpnessLevel。",
-            "shortdesc": "图像增强设置参数。",
+            "change_desc": "新增结构体 `BeautyOptions`：用于美颜特效设置。包含以下新增参数：lighteningContrastLevel、lighteningLevel、smoothnessLevel、rednessLevel、sharpnessLevel。",
+            "shortdesc": "美颜特效设置参数。",
             "detailed_desc": {
               "since": "",
               "desc": "",
@@ -57719,7 +57719,7 @@
             "shortdesc": "加入一个频道。",
             "detailed_desc": {
               "since": "",
-              "desc": "默认情况下，用户会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用管理发布与订阅的相关方法。",
+              "desc": "默认情况下，用户会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。",
               "deprecated": "",
               "note": "- 该方法仅支持用户同时加入一个频道。\n- 不同 App ID 的用户无法互通。\n- 加入频道前，请确保用于生成 Token 的 App ID 与调用 `initialize` 方法时传入的 App ID 一致，否则可能会导致加入频道失败。"
             },
@@ -57858,7 +57858,7 @@
             "shortdesc": "加入频道并设置媒体选项。",
             "detailed_desc": {
               "since": "",
-              "desc": "该方法相比 `joinChannel [1/2]` 增加了 `options` 参数，用于设置媒体选项，例如是否在频道内发布音视频流，或在加入频道时是否自动订阅所有远端用户的音视频流。默认情况下，用户会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 `options` 参数或调用管理发布与订阅的相关方法。",
+              "desc": "该方法相比 `joinChannel [1/2]` 增加了 `options` 参数，用于设置媒体选项，例如是否在频道内发布音视频流，或在加入频道时是否自动订阅所有远端用户的音视频流。默认情况下，用户会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 `options` 参数或调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。",
               "deprecated": "",
               "note": "- 该方法仅支持用户同时加入一个频道。\n- 不同 App ID 的用户无法互通。\n- 加入频道前，请确保用于生成 Token 的 App ID 与调用 `initialize` 方法时传入的 App ID 一致，否则可能会导致加入频道失败。"
             },
@@ -59067,7 +59067,7 @@
               "since": "",
               "desc": "",
               "deprecated": "",
-              "note": "- 该方法依赖图像增强动态库 `libagora_clear_vision_extension.dll`。如果该动态库被删除，将无法正常启用该功能。\n- 该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能能力。"
+              "note": "- 该方法依赖美颜特效动态库 `libagora_clear_vision_extension.dll`。如果该动态库被删除，将无法正常启用该功能。\n- 该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能能力。"
             },
             "platforms": "windows",
             "parent_class": "IRtcEngine",
@@ -59102,7 +59102,7 @@
             ],
             "scenarios": "",
             "timing": "在调用 `enableVideo` 或 `startPreview` 之后调用该方法。",
-            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能原因包括：\n    - 当前设备性能不满足图像增强的要求。建议更换为高性能设备。"
+            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能原因包括：\n    - 当前设备性能不满足美颜特效的要求。建议更换为高性能设备。"
           }
         },
         {
@@ -59157,7 +59157,7 @@
               "since": "",
               "desc": "调用该方法可以通过预设参数一次性调整多个面部部位，实现瘦脸、放大眼睛、瘦鼻等轻度美颜效果，并支持整体调节美型强度。",
               "deprecated": "",
-              "note": "该方法仅适用于 Android 4.4 或更高版本。\n该方法依赖图像增强动态库 `libagora_clear_vision_extension.dll`。如果该动态库被删除，将无法正常启用该功能。\n该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。"
+              "note": "该方法仅适用于 Android 4.4 或更高版本。\n该方法依赖美颜特效动态库 `libagora_clear_vision_extension.dll`。如果该动态库被删除，将无法正常启用该功能。\n该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。"
             },
             "platforms": "windows",
             "parent_class": "IRtcEngine",
@@ -59192,7 +59192,7 @@
             ],
             "scenarios": "",
             "timing": "在调用 `enableVideo` 方法之后调用该方法。",
-            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能原因包括：\n    - 当前设备能力不满足图像增强要求。声网建议更换为高性能设备。\n    - 当前设备版本低于 Android 4.4，不支持该功能。声网建议更换设备或升级操作系统。"
+            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能原因包括：\n    - 当前设备能力不满足美颜特效要求。声网建议更换为高性能设备。\n    - 当前设备版本低于 Android 4.4，不支持该功能。声网建议更换设备或升级操作系统。"
           }
         },
         {
@@ -59238,13 +59238,13 @@
             "api_name": "setFaceShapeAreaOptions",
             "api_signature": "virtual int setFaceShapeAreaOptions(const FaceShapeAreaOptions& options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;",
             "change_type": "create",
-            "change_desc": "新增 `setFaceShapeAreaOptions`：设置面部区域的图像增强选项并指定媒体源。",
-            "shortdesc": "设置面部区域的图像增强选项并指定媒体源。",
+            "change_desc": "新增 `setFaceShapeAreaOptions`：设置面部区域的美颜特效选项并指定媒体源。",
+            "shortdesc": "设置面部区域的美颜特效选项并指定媒体源。",
             "detailed_desc": {
               "since": "",
               "desc": "如果通过 `setFaceShapeBeautyOptions` 实现的预设美颜特效无法满足预期效果，你可以使用该方法设置美颜区域选项，单独微调面部的每个部分，从而实现更精细的美颜效果。",
               "deprecated": "",
-              "note": "- 该方法仅适用于 Android 4.4 或更高版本。\n- 该方法依赖图像增强动态库 `libagora_clear_vision_extension.dll`。如果该动态库被删除，则无法正常启用该功能。\n- 该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。"
+              "note": "- 该方法仅适用于 Android 4.4 或更高版本。\n- 该方法依赖美颜特效动态库 `libagora_clear_vision_extension.dll`。如果该动态库被删除，则无法正常启用该功能。\n- 该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。"
             },
             "platforms": "windows",
             "parent_class": "IRtcEngine",
@@ -59271,7 +59271,7 @@
             "scenarios": "",
             "timing": "在调用 `setFaceShapeBeautyOptions` 之后调用该方法。",
             "related": "",
-            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能原因包括：\n    - 当前设备能力不满足图像增强的要求。声网建议更换为高性能设备。\n    - 当前设备版本低于 Android 4.4，不支持该功能。声网建议更换设备或升级操作系统。"
+            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能原因包括：\n    - 当前设备能力不满足美颜特效的要求。声网建议更换为高性能设备。\n    - 当前设备版本低于 Android 4.4，不支持该功能。声网建议更换设备或升级操作系统。"
           }
         },
         {
@@ -59463,7 +59463,7 @@
               "since": "自 v4.4.1 版本新增。",
               "desc": "",
               "deprecated": "",
-              "note": "该方法依赖图像增强动态库 `libagora_clear_vision_extension.dll`。如果该动态库被删除，则无法正常启用此功能。\n该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能能力。"
+              "note": "该方法依赖美颜特效动态库 `libagora_clear_vision_extension.dll`。如果该动态库被删除，则无法正常启用此功能。\n该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能能力。"
             },
             "platforms": "windows",
             "parent_class": "IRtcEngine",
@@ -59670,7 +59670,7 @@
               "since": "自 v4.0.0 版本新增。",
               "desc": "你可以调用该方法启用暗光增强功能，并设置增强效果的参数。",
               "deprecated": "",
-              "note": "- 该方法依赖图像增强动态库 `libagora_clear_vision_extension.dll`。如果该动态库被删除，该功能将无法正常启用。\n- 暗光增强对设备性能有一定要求。如果启用暗光增强后设备出现过热，声网建议将暗光增强选项设置为较低的性能消耗等级，或完全关闭暗光增强功能。\n- 如果你希望在使用暗光增强功能时优先保证画质（`LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY`），需要先调用 `setVideoDenoiserOptions` 实现视频降噪，具体对应关系如下：\n  - 当暗光增强设置为自动模式（`LOW_LIGHT_ENHANCE_AUTO`）时，视频降噪需设置为优先保证画质（`VIDEO_DENOISER_LEVEL_HIGH_QUALITY`）和自动模式（`VIDEO_DENOISER_AUTO`）。\n  - 当暗光增强设置为手动模式（`LOW_LIGHT_ENHANCE_MANUAL`）时，视频降噪需设置为优先保证画质（`VIDEO_DENOISER_LEVEL_HIGH_QUALITY`）和手动模式（`VIDEO_DENOISER_MANUAL`）。"
+              "note": "- 该方法依赖美颜特效动态库 `libagora_clear_vision_extension.dll`。如果该动态库被删除，该功能将无法正常启用。\n- 暗光增强对设备性能有一定要求。如果启用暗光增强后设备出现过热，声网建议将暗光增强选项设置为较低的性能消耗等级，或完全关闭暗光增强功能。\n- 如果你希望在使用暗光增强功能时优先保证画质（`LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY`），需要先调用 `setVideoDenoiserOptions` 实现视频降噪，具体对应关系如下：\n  - 当暗光增强设置为自动模式（`LOW_LIGHT_ENHANCE_AUTO`）时，视频降噪需设置为优先保证画质（`VIDEO_DENOISER_LEVEL_HIGH_QUALITY`）和自动模式（`VIDEO_DENOISER_AUTO`）。\n  - 当暗光增强设置为手动模式（`LOW_LIGHT_ENHANCE_MANUAL`）时，视频降噪需设置为优先保证画质（`VIDEO_DENOISER_LEVEL_HIGH_QUALITY`）和手动模式（`VIDEO_DENOISER_MANUAL`）。"
             },
             "platforms": "windows",
             "parent_class": "IRtcEngine",
@@ -59770,7 +59770,7 @@
               "since": "自 v4.0.0 版本新增。",
               "desc": "",
               "deprecated": "",
-              "note": "- 该方法依赖图像增强动态库 `libagora_clear_vision_extension.dll`。如果该动态库被删除，将无法正常启用该功能。\n- 视频降噪对设备性能有一定要求。如果你在启用视频降噪后设备出现过热情况，声网建议你将视频降噪选项设置为较低的性能消耗等级，或完全关闭视频降噪功能。\n- 如果该方法实现的视频降噪效果无法满足你的需求，声网建议你调用 `setBeautyEffectOptions` 方法启用美颜和磨皮功能，以获得更好的视频降噪效果。推荐用于强降噪效果的 `BeautyOptions` 设置如下：\n  - `lighteningContrastLevel`：LIGHTENING_CONTRAST_NORMAL。\n  - `lighteningLevel`：0.0。\n  - `smoothnessLevel`：0.5。\n  - `rednessLevel`：0.0。\n  - `sharpnessLevel`：0.1。"
+              "note": "- 该方法依赖美颜特效动态库 `libagora_clear_vision_extension.dll`。如果该动态库被删除，将无法正常启用该功能。\n- 视频降噪对设备性能有一定要求。如果你在启用视频降噪后设备出现过热情况，声网建议你将视频降噪选项设置为较低的性能消耗等级，或完全关闭视频降噪功能。\n- 如果该方法实现的视频降噪效果无法满足你的需求，声网建议你调用 `setBeautyEffectOptions` 方法启用美颜和磨皮功能，以获得更好的视频降噪效果。推荐用于强降噪效果的 `BeautyOptions` 设置如下：\n  - `lighteningContrastLevel`：LIGHTENING_CONTRAST_NORMAL。\n  - `lighteningLevel`：0.0。\n  - `smoothnessLevel`：0.5。\n  - `rednessLevel`：0.0。\n  - `sharpnessLevel`：0.1。"
             },
             "platforms": "windows",
             "parent_class": "IRtcEngine",
@@ -59861,7 +59861,7 @@
               "since": "自 v4.0.0 版本新增。",
               "desc": "摄像头采集的视频图像可能存在色彩失真。色彩增强功能可智能调整视频的饱和度和对比度等特性，从而增强视频的色彩丰富度和还原度，使画面更加生动。",
               "deprecated": "",
-              "note": "- 请在调用 `enableVideo` 方法后调用此方法。\n- 色彩增强功能对设备性能有一定要求。开启该功能后，如设备出现严重发热，声网建议你降低色彩增强等级以减少性能消耗，或关闭该功能。\n- 此方法依赖图像增强动态库 `libagora_clear_vision_extension.dll`。若该动态库被删除，将无法正常启用该功能。"
+              "note": "- 请在调用 `enableVideo` 方法后调用此方法。\n- 色彩增强功能对设备性能有一定要求。开启该功能后，如设备出现严重发热，声网建议你降低色彩增强等级以减少性能消耗，或关闭该功能。\n- 此方法依赖美颜特效动态库 `libagora_clear_vision_extension.dll`。若该动态库被删除，将无法正常启用该功能。"
             },
             "platforms": "windows",
             "parent_class": "IRtcEngine",
@@ -60131,7 +60131,7 @@
             "shortdesc": "初始化本地视频画面。",
             "detailed_desc": {
               "since": "",
-              "desc": "该方法在本地设备上初始化本地视频流的画面视图，仅影响本地用户看到的视频画面，不影响本地视频的发布。你可以调用该方法将本地视频流绑定到指定的视频视图（`view`），并设置该视图的渲染模式和镜像模式。\n绑定关系在离开频道后仍然有效。若需停止渲染或解绑本地视频与视图的绑定关系，可将 `view` 设置为 `NULL`。\n在实时互动场景中，如果你需要在本地视频预览中同时查看多个不同观察位置的画面，可以多次调用该方法，为每个 `view` 设置不同的观察位置。例如，将视频源设置为摄像头后，配置两个 `view`，其 `position` 分别设置为 `POSITION_POST_CAPTURER_ORIGIN` 和 `POSITION_POST_CAPTURER`，即可同时预览原始未处理的视频帧和经过图像增强、虚拟背景、水印等预处理后的视频帧。",
+              "desc": "该方法在本地设备上初始化本地视频流的画面视图，仅影响本地用户看到的视频画面，不影响本地视频的发布。你可以调用该方法将本地视频流绑定到指定的视频视图（`view`），并设置该视图的渲染模式和镜像模式。\n绑定关系在离开频道后仍然有效。若需停止渲染或解绑本地视频与视图的绑定关系，可将 `view` 设置为 `NULL`。\n在实时互动场景中，如果你需要在本地视频预览中同时查看多个不同观察位置的画面，可以多次调用该方法，为每个 `view` 设置不同的观察位置。例如，将视频源设置为摄像头后，配置两个 `view`，其 `position` 分别设置为 `POSITION_POST_CAPTURER_ORIGIN` 和 `POSITION_POST_CAPTURER`，即可同时预览原始未处理的视频帧和经过美颜特效、虚拟背景、水印等预处理后的视频帧。",
               "deprecated": "",
               "note": "若仅需在通话中更新本地视频视图的渲染模式或镜像模式，请改用 `setLocalRenderMode`。"
             },
@@ -68364,7 +68364,7 @@
               }
             ],
             "scenarios": "",
-            "timing": "声网建议你在初始化 `IRtcEngine` 后、加入频道前调用此方法。\n- 对于视频扩展（如图像增强扩展），你需要在调用 `enableVideo` 或 `enableLocalVideo` 启用视频模块后再调用此方法。\n- 在调用此方法前，你需要先调用 `loadExtensionProvider` 加载扩展。",
+            "timing": "声网建议你在初始化 `IRtcEngine` 后、加入频道前调用此方法。\n- 对于视频扩展（如美颜特效扩展），你需要在调用 `enableVideo` 或 `enableLocalVideo` 启用视频模块后再调用此方法。\n- 在调用此方法前，你需要先调用 `loadExtensionProvider` 加载扩展。",
             "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -3：扩展库未加载。声网建议你检查动态库的存储位置或名称。"
           }
         },
@@ -73981,7 +73981,7 @@
             "shortdesc": "使用用户 User Account 和 Token 加入频道。",
             "detailed_desc": {
               "since": "",
-              "desc": "在调用该方法之前，如果你尚未调用 `registerLocalUserAccount` 注册用户 User Account，SDK 会在你调用该方法加入频道时自动为你创建一个用户 User Account。建议你先调用 `registerLocalUserAccount` 注册用户 User Account，再调用该方法加入频道，以缩短加入频道所需的时间。\n用户加入频道后，默认会订阅频道中所有其他用户的音视频流，从而产生用量和计费。如需停止订阅指定流或所有远端流，请调用管理发布与订阅的相关方法。",
+              "desc": "在调用该方法之前，如果你尚未调用 `registerLocalUserAccount` 注册用户 User Account，SDK 会在你调用该方法加入频道时自动为你创建一个用户 User Account。建议你先调用 `registerLocalUserAccount` 注册用户 User Account，再调用该方法加入频道，以缩短加入频道所需的时间。\n用户加入频道后，默认会订阅频道中所有其他用户的音视频流，从而产生用量和计费。如需停止订阅指定流或所有远端流，请调用 `setRemoteAudio/VideoStream` 或 `setAllRemoteAudio/VideoStreams`。",
               "deprecated": "",
               "note": "- 该方法仅支持用户同时加入一个频道。\n- 不同 App ID 的用户无法互通。\n- 加入频道前，请确保用于生成 Token 的 App ID 与调用 `initialize` 方法时传入的 App ID 相同，否则可能导致加入频道失败。\n- 为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用用户 ID 加入频道，则其他用户也应使用用户 ID；使用用户 User Account 加入频道的用户也应保持一致。如果用户使用声网 Web SDK 加入频道，请确保该用户的 ID 类型一致。"
             },
@@ -74123,7 +74123,9 @@
             "shortdesc": "使用用户 User Account 和 Token 加入频道，并设置媒体选项。",
             "detailed_desc": {
               "since": "",
-              "desc": "在调用该方法前，如果你尚未调用 `registerLocalUserAccount` 注册用户 User Account，SDK 会在你调用该方法加入频道时自动创建一个用户 User Account。提前调用 `registerLocalUserAccount` 可以缩短加入频道所需的时间。\n\n与 `joinChannelWithUserAccount` 方法相比，该方法新增了 `options` 参数，用于设置频道内的媒体选项，例如是否发布音视频流。\n\n默认情况下，用户会订阅频道内所有其他用户的音视频流，从而产生使用量和计费。若要停止订阅其他流，请设置 `options` 参数或调用管理发布与订阅的相关方法。"
+              "desc": "在调用该方法前，如果你尚未调用 `registerLocalUserAccount` 注册用户 User Account，SDK 会在你调用该方法加入频道时自动创建一个用户 User Account。提前调用 `registerLocalUserAccount` 可以缩短加入频道所需的时间。\n\n与 `joinChannelWithUserAccount` 方法相比，该方法新增了 `options` 参数，用于设置频道内的媒体选项，例如是否发布音视频流。\n\n默认情况下，用户会订阅频道内所有其他用户的音视频流，从而产生使用量和计费。若要停止订阅其他流，请设置 `options` 参数或调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。",
+              "deprecated": "",
+              "note": "该方法仅支持用户同时加入一个频道。\n不同 App ID 的用户无法互通。\n加入频道前，请确保用于生成 Token 的 App ID 与调用 `initialize` 方法时传入的 App ID 相同，否则可能导致加入频道失败。\n为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用用户 ID 加入频道，则其他用户也应使用用户 ID；使用用户账号加入频道时同理。如果用户使用声网 Web SDK 加入频道，请确保用户 ID 的参数类型一致。"
             },
             "platforms": "windows",
             "parent_class": "IRtcEngine",
@@ -74275,7 +74277,7 @@
             "shortdesc": "使用用户 User Account 和 Token 加入频道，并设置媒体选项。",
             "detailed_desc": {
               "since": "",
-              "desc": "在调用该方法之前，如果你尚未调用 `registerLocalUserAccount` 注册用户 User Account，SDK 会在你调用该方法加入频道时自动为你创建一个用户 User Account。提前调用 `registerLocalUserAccount` 注册用户 User Account 再加入频道，可以缩短加入频道所需的时间。\n用户加入频道后，默认会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 `options` 参数或调用管理发布与订阅的相关方法。",
+              "desc": "在调用该方法之前，如果你尚未调用 `registerLocalUserAccount` 注册用户 User Account，SDK 会在你调用该方法加入频道时自动为你创建一个用户 User Account。提前调用 `registerLocalUserAccount` 注册用户 User Account 再加入频道，可以缩短加入频道所需的时间。\n用户加入频道后，默认会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 `options` 参数或调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。",
               "deprecated": "",
               "note": "- 该方法仅支持用户同时加入一个频道。\n- 不同 App ID 的用户无法互通。\n- 加入频道前，请确保用于生成 Token 的 App ID 与调用 `initialize` 方法时传入的 App ID 相同，否则可能会导致使用该 Token 加入频道失败。\n- 为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用 UID 加入频道，则其他用户也应使用 UID；如果使用用户 User Account 加入频道，则其他用户也应使用用户 User Account。如果用户使用声网 Web SDK 加入频道，请确保用户 ID 的参数类型一致。"
             },
@@ -76115,7 +76117,7 @@
             "shortdesc": "检查当前设备是否支持指定的高级功能。",
             "detailed_desc": {
               "since": "自 v4.3.0 版本新增。",
-              "desc": "你可以通过该方法判断当前设备是否满足使用虚拟背景、图像增强等高级功能的性能要求，从而避免在低性能设备上启用相关功能导致性能下降或功能不可用。根据返回结果，你可以决定是否展示或启用对应功能按钮，或在设备性能不足时提示用户。",
+              "desc": "你可以通过该方法判断当前设备是否满足使用虚拟背景、美颜特效等高级功能的性能要求，从而避免在低性能设备上启用相关功能导致性能下降或功能不可用。根据返回结果，你可以决定是否展示或启用对应功能按钮，或在设备性能不足时提示用户。",
               "deprecated": "",
               "note": ""
             },
@@ -81546,7 +81548,7 @@
               },
               {
                 "name": "VIDEO_BEAUTY_EFFECT",
-                "desc": "（2）：图像增强功能。",
+                "desc": "（2）：美颜特效功能。",
                 "is_public": true,
                 "change_type": "modify",
                 "note": ""
@@ -91500,7 +91502,7 @@
             "shortdesc": "注册原始视频帧观察器对象。",
             "detailed_desc": {
               "since": "",
-              "desc": "通过此方法注册自定义的 `IVideoFrameObserver` 实例，可以观察原始视频帧（如 YUV 或 RGBA 格式）。注册成功后，每当接收到视频帧时，SDK 会触发相应的回调。你可以在虚拟背景、图像增强等视频预处理场景中使用这些原始视频数据。",
+              "desc": "通过此方法注册自定义的 `IVideoFrameObserver` 实例，可以观察原始视频帧（如 YUV 或 RGBA 格式）。注册成功后，每当接收到视频帧时，SDK 会触发相应的回调。你可以在虚拟背景、美颜特效等视频预处理场景中使用这些原始视频数据。",
               "deprecated": "",
               "note": "处理回调中返回的视频数据时，请注意 `width` 和 `height` 参数可能会发生变化，具体情况如下：\n- 当网络状况恶化时，视频分辨率会逐步降低。\n- 当用户调整视频配置文件时，回调中返回的视频分辨率也会随之变化。"
             },
@@ -94897,7 +94899,7 @@
             "scenarios": "",
             "timing": "",
             "related": "",
-            "return_value": "- 0：方法调用成功，返回已缓存的媒体文件数量。。\n- < 0：方法调用失败，详见 `MediaPlayerReason`。",
+            "return_value": "- 0：方法调用成功，返回已缓存的媒体文件数量。\n- < 0：方法调用失败，详见 `MediaPlayerReason`。",
             "exception": ""
           }
         }
@@ -103757,7 +103759,7 @@
             "parameters": [],
             "scenarios": "",
             "timing": "该方法必须在调用 `play` 之后调用。",
-            "related": "相关回调：成功调用该方法后，会触发 `onStateChanged` 回调，报告播放器状态为 `PAUSED`。",
+            "related": "成功调用该方法后，会触发 `onStateChanged` 回调，报告播放器状态为 `PAUSED`。",
             "return_value": "",
             "exception": "如果该方法调用失败，SDK 会抛出带有相应错误信息的 `RteException` 异常。你需要捕获并处理该异常。"
           }
@@ -104097,7 +104099,7 @@
             "shortdesc": "设置播放器配置。",
             "detailed_desc": {
               "since": "自 v4.4.0 版本新增。",
-              "desc": "",
+              "desc": "你可以调用此方法配置播放器，例如启用自动播放、订阅不同分辨率和码率的视频流。",
               "deprecated": "",
               "note": ""
             },
@@ -104643,7 +104645,7 @@
             "shortdesc": "设置播放器的私有参数。",
             "detailed_desc": {
               "since": "自 v4.4.0 版本新增。",
-              "desc": "你可以根据实际需求设置播放器的私有参数，具体设置方式可参考声网 SA 的建议。",
+              "desc": "你可以根据实际需求设置播放器的私有参数，具体设置方式可参考声网技术支持的建议。",
               "deprecated": "",
               "note": ""
             },
@@ -106800,7 +106802,7 @@
             "values": [
               {
                 "name": "VIDEO_MODULE_POSITION_POST_CAPTURER",
-                "desc": "（1）：本地采集的视频数据在预处理之后的位置，对应 `onCaptureVideoFrame` 回调。此位置的视频已应用视频预处理效果，可通过开启图像增强、虚拟背景或水印进行验证。",
+                "desc": "（1）：本地采集的视频数据在预处理之后的位置，对应 `onCaptureVideoFrame` 回调。此位置的视频已应用视频预处理效果，可通过开启美颜特效、虚拟背景或水印进行验证。",
                 "is_public": true,
                 "change_type": "modify",
                 "note": ""
@@ -106814,14 +106816,14 @@
               },
               {
                 "name": "VIDEO_MODULE_POSITION_PRE_ENCODER",
-                "desc": "（4）：编码前的位置，对应 `onPreEncodeVideoFrame` 回调中的视频数据。此位置的视频已应用视频预处理和编码前处理效果。\n- 若需验证视频预处理效果，可开启图像增强、虚拟背景或水印。\n- 若需验证编码前处理效果，可设置较低帧率（如 5 fps）。",
+                "desc": "（4）：编码前的位置，对应 `onPreEncodeVideoFrame` 回调中的视频数据。此位置的视频已应用视频预处理和编码前处理效果。\n- 若需验证视频预处理效果，可开启美颜特效、虚拟背景或水印。\n- 若需验证编码前处理效果，可设置较低帧率（如 5 fps）。",
                 "is_public": true,
                 "change_type": "modify",
                 "note": ""
               },
               {
                 "name": "VIDEO_MODULE_POSITION_POST_CAPTURER_ORIGIN",
-                "desc": "（8）：本地视频采集之后、预处理之前的位置。此位置的视频未应用预处理效果，可通过开启图像增强、虚拟背景或水印进行验证。",
+                "desc": "（8）：本地视频采集之后、预处理之前的位置。此位置的视频未应用预处理效果，可通过开启美颜特效、虚拟背景或水印进行验证。",
                 "is_public": true,
                 "change_type": "modify",
                 "note": ""
@@ -110759,7 +110761,7 @@
             "shortdesc": "通过资源 ID 打开音乐资源。",
             "detailed_desc": {
               "since": "",
-              "desc": "调用该方法前，请确保要播放的音乐资源已加载完成。你可以调用 `isPreloaded` 方法检查音乐资源是否已预加载，或监听 `onPreLoadEvent` 回调。",
+              "desc": "调用该方法后，将触发 `onPlayerStateChanged` 回调。当你收到 `OPEN_COMPLETED` 状态后，可以调用 `play` 方法播放媒体文件。",
               "deprecated": "",
               "note": "如果要打开的音乐资源受数字版权管理保护，必须使用该方法。对于未受数字版权管理保护的音乐资源，可以使用该方法或 `open` 方法（参数为 `String url, long startPos`）。"
             },
@@ -110783,7 +110785,7 @@
             ],
             "scenarios": "",
             "timing": "",
-            "related": "调用该方法后，将触发 `onPlayerStateChanged` 回调。当你收到 `OPEN_COMPLETED` 状态后，可以调用 `play` 方法播放媒体文件。",
+            "related": "调用该方法后，将触发 `onPlayerStateChanged` 回调。",
             "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。",
             "exception": ""
           }
@@ -110817,7 +110819,7 @@
             "shortdesc": "通过 URL 打开音乐资源。",
             "detailed_desc": {
               "since": "",
-              "desc": "",
+              "desc": "调用该方法会触发 `onPlayerStateChanged` 回调。在收到播放状态为 `OPEN_COMPLETED` 的上报后，你可以调用 `play` 方法播放媒体文件。",
               "deprecated": "",
               "note": "如果你要打开的音乐资源受数字版权保护，必须使用此方法打开。对于不受数字版权保护的音乐资源，你可以选择使用此方法，或使用 `open` 方法打开。"
             },
@@ -110841,7 +110843,7 @@
             ],
             "scenarios": "",
             "timing": "",
-            "related": "调用该方法会触发 `onPlayerStateChanged` 回调。在收到播放状态为 `OPEN_COMPLETED` 的上报后，你可以调用 `play` 方法播放媒体文件。",
+            "related": "调用该方法会触发 `onPlayerStateChanged` 回调。",
             "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。详见 `错误码` 获取详细信息和排查建议。",
             "exception": ""
           }
@@ -111906,7 +111908,7 @@
             "shortdesc": "获取音乐资源歌词的下载链接。",
             "detailed_desc": {
               "since": "",
-              "desc": "调用该方法后，SDK 会触发 `onLyricResult` 回调。",
+              "desc": "",
               "deprecated": "",
               "note": ""
             },
@@ -113268,7 +113270,7 @@
             "shortdesc": "设置直播场景下的用户角色和观众延迟等级。",
             "detailed_desc": {
               "since": "",
-              "desc": "默认情况下，SDK 会将用户角色设置为观众。你可以调用此方法将用户角色设置为主播。用户角色 (`role`) 决定了用户在 SDK 层级的权限，包括是否可以在频道中发布音视频流。\n该方法与 `setClientRole(int role)` 的区别在于，它支持设置 `audienceLatencyLevel`。`audienceLatencyLevel` 需要与 `role` 搭配使用，以确定用户在其权限范围内可享受的服务等级。例如，观众可以选择接收低延迟或超低延迟的远端流。\n如果你在加入频道前调用此方法并通过 `setupLocalVideo` 设置本地视频属性，则用户加入频道时会自动开启本地视频预览。\n如果你在加入频道后调用此方法设置用户角色，SDK 会自动调用 `muteLocalAudioStream` 和 `muteLocalVideoStream` 方法来改变音视频流的发布状态。",
+              "desc": "默认情况下，SDK 会将用户角色设置为观众。你可以调用此方法将用户角色设置为主播。用户角色 (`role`) 决定了用户在 SDK 层级的权限，包括是否可以在频道中发布音视频流。\n该方法与 `setClientRole(int role)` 的区别在于，它支持设置 `audienceLatencyLevel`。`audienceLatencyLevel` 需要与 `role` 搭配使用，以确定用户在其权限范围内可享受的服务等级。例如，观众可以选择接收低延迟或超低延迟的远端流。",
               "deprecated": "",
               "note": "当用户角色设置为主播时，观众延迟等级只能设置为 `AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY`。\n在加入频道前调用此方法并将 `role` 设置为 `BROADCASTER` 时，本地客户端不会触发 `onClientRoleChanged` 回调。\n在加入频道前调用此方法并将 `role` 设置为 `AUDIENCE` 时，也会触发该回调。"
             },
@@ -113291,7 +113293,7 @@
               }
             ],
             "scenarios": "",
-            "timing": "你可以在加入频道前或加入频道后调用此方法。",
+            "timing": "你可以在加入频道前或加入频道后调用此方法。\n- 如果你在加入频道前调用此方法并通过 `setupLocalVideo` 设置本地视频属性，则用户加入频道时会自动开启本地视频预览。\n- 如果你在加入频道后调用此方法设置用户角色，SDK 会自动调用 `muteLocalAudioStream` 和 `muteLocalVideoStream` 方法来改变音视频流的发布状态。",
             "related": "如果你在加入频道后调用此方法切换用户角色，SDK 会触发以下回调：\n- 本地客户端触发 `onClientRoleChanged` 回调。注意：在加入频道前调用此方法并将 `role` 设置为 `AUDIENCE` 也会触发该回调。\n- 远端客户端触发 `onUserJoined` 或 `onUserOffline` 回调。\n如果你在加入频道后调用此方法设置用户角色但失败，SDK 会触发 `onClientRoleChangeFailed` 回调，报告失败原因和当前用户角色。",
             "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -1：发生通用错误（无明确原因）。\n  - -2：参数无效。\n  - -5：请求被拒绝。\n  - -7：SDK 未初始化。",
             "exception": ""
@@ -113737,7 +113739,7 @@
             "shortdesc": "加入一个频道。",
             "detailed_desc": {
               "since": "",
-              "desc": "默认情况下，用户会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用管理发布与订阅的相关方法。",
+              "desc": "默认情况下，用户会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。",
               "deprecated": "",
               "note": "- 该方法仅支持用户同时加入一个频道。\n- 不同 App ID 的用户无法互通。\n- 加入频道前，请确保用于生成 Token 的 App ID 与调用 `create [2/2]` 方法时传入的 App ID 相同，否则可能会导致加入频道失败。"
             },
@@ -113869,7 +113871,7 @@
             "shortdesc": "加入频道并设置媒体选项。",
             "detailed_desc": {
               "since": "",
-              "desc": "该方法新增 `options` 参数，用于设置媒体选项，例如是否在频道内发布音视频流，或在加入频道时是否自动订阅所有远端用户的音视频流。默认情况下，用户会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 `options` 参数或调用管理发布与订阅的相关方法。",
+              "desc": "该方法新增 `options` 参数，用于设置媒体选项，例如是否在频道内发布音视频流，或在加入频道时是否自动订阅所有远端用户的音视频流。默认情况下，用户会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 `options` 参数或调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。",
               "deprecated": "",
               "note": "- 该方法仅支持用户同时加入一个频道。\n- 不同 App ID 的用户无法互通。\n- 加入频道前，请确保用于生成 Token 的 App ID 与调用 `create [2/2]` 方法时传入的 App ID 一致，否则可能导致加入频道失败。"
             },
@@ -114096,7 +114098,7 @@
             "shortdesc": "使用用户 User Account 和 Token 加入频道。",
             "detailed_desc": {
               "since": "",
-              "desc": "调用 `registerLocalUserAccount` 注册用户 User Account 后再调用此方法加入频道，可以缩短进入频道所需的时间。如果你尚未调用 `registerLocalUserAccount` 注册用户 User Account，当你调用此方法加入频道时，SDK 会自动为你创建一个用户 User Account。\n一旦用户加入频道，默认会订阅频道中所有其他用户的音视频流，从而产生用量和计费。如需停止订阅指定流或所有远端流，请调用管理发布与订阅的相关方法。",
+              "desc": "调用 `registerLocalUserAccount` 注册用户 User Account 后再调用此方法加入频道，可以缩短进入频道所需的时间。如果你尚未调用 `registerLocalUserAccount` 注册用户 User Account，当你调用此方法加入频道时，SDK 会自动为你创建一个用户 User Account。\n一旦用户加入频道，默认会订阅频道中所有其他用户的音视频流，从而产生用量和计费。如需停止订阅指定流或所有远端流，请调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。",
               "deprecated": "",
               "note": "- 该方法仅支持用户同时加入一个频道。\n- 不同 App ID 的用户无法互通。\n- 加入频道前，请确保用于生成 Token 的 App ID 与调用 `create [2/2]` 方法时传入的 App ID 相同，否则可能会导致使用该 Token 加入频道失败。\n- 为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用 `uid` 加入频道，则其他用户也应使用 `uid`；如果使用用户 User Account 加入频道，则其他用户也应使用用户 User Account。如果用户使用声网 Web SDK 加入频道，请确保用户 ID 设置为相同的参数类型。"
             },
@@ -114235,7 +114237,7 @@
             "shortdesc": "使用用户 User Account 和 Token 加入频道，并设置媒体选项。",
             "detailed_desc": {
               "since": "自 v3.3.0 版本新增。",
-              "desc": "该方法新增了 `options` 参数，用于设置媒体选项，例如是否在频道内发布音视频流。默认情况下，用户会订阅频道内所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 `options` 参数或调用管理发布与订阅的相关方法。",
+              "desc": "该方法新增了 `options` 参数，用于设置媒体选项，例如是否在频道内发布音视频流。默认情况下，用户会订阅频道内所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 `options` 参数或调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。",
               "deprecated": "",
               "note": "- 此方法仅支持用户同时加入一个频道。\n- 不同 App ID 的用户无法互通。\n- 加入频道前，请确保用于生成 Token 的 App ID 与调用 `create [2/2]` 方法时传入的 App ID 相同，否则可能会因 Token 不匹配而加入频道失败。\n- 为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用用户 ID 加入频道，则其他用户也应使用用户 ID；用户 User Account 亦同理。如果用户使用声网 Web SDK 加入频道，请确保用户 ID 的类型一致。"
             },
@@ -116056,7 +116058,7 @@
             "shortdesc": "初始化本地视频画面。",
             "detailed_desc": {
               "since": "",
-              "desc": "你可以调用该方法将本地视频流绑定到视频画面（`view`），并设置画面的渲染模式和镜像模式。绑定关系在离开频道后仍然有效。如需停止渲染或解绑本地视频与画面，可将 `view` 设为 `null`。\n\n在实时互动场景中，如果你需要在本地视频预览中同时查看多个预览画面，且每个画面位于视频链路的不同观察位置，可以多次调用该方法设置不同的 `view`，并为每个 `view` 设置不同的观察位置。例如，将视频源设置为摄像头后，配置两个 `view`，其 `position` 分别设置为 `VIDEO_MODULE_POSITION_POST_CAPTURER_ORIGIN` 和 `VIDEO_MODULE_POSITION_POST_CAPTURER`，即可在本地视频预览中同时查看原始未处理的视频帧和经过图像增强、虚拟背景、水印等预处理后的视频帧。",
+              "desc": "你可以调用该方法将本地视频流绑定到视频画面（`view`），并设置画面的渲染模式和镜像模式。绑定关系在离开频道后仍然有效。如需停止渲染或解绑本地视频与画面，可将 `view` 设为 `null`。\n\n在实时互动场景中，如果你需要在本地视频预览中同时查看多个预览画面，且每个画面位于视频链路的不同观察位置，可以多次调用该方法设置不同的 `view`，并为每个 `view` 设置不同的观察位置。例如，将视频源设置为摄像头后，配置两个 `view`，其 `position` 分别设置为 `VIDEO_MODULE_POSITION_POST_CAPTURER_ORIGIN` 和 `VIDEO_MODULE_POSITION_POST_CAPTURER`，即可在本地视频预览中同时查看原始未处理的视频帧和经过美颜特效、虚拟背景、水印等预处理后的视频帧。",
               "deprecated": "",
               "note": "如需在通话过程中仅更新本地视频画面的渲染模式或镜像模式，请调用 `setLocalRenderMode`。"
             },
@@ -117324,13 +117326,13 @@
             "api_name": "setBeautyEffectOptions",
             "api_signature": "public abstract int setBeautyEffectOptions(boolean enabled, BeautyOptions options);",
             "change_type": "create",
-            "change_desc": "新增 `setBeautyEffectOptions`：设置图像增强功能及其参数。",
-            "shortdesc": "设置图像增强功能及其参数。",
+            "change_desc": "新增 `setBeautyEffectOptions`：设置美颜特效功能及其参数。",
+            "shortdesc": "设置美颜特效功能及其参数。",
             "detailed_desc": {
               "since": "自 v2.4.0 版本新增。",
               "desc": "",
               "deprecated": "",
-              "note": "- 此方法仅适用于 Android 5.0 或更高版本。\n- 此方法依赖图像增强动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，则无法正常启用该功能。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。"
+              "note": "- 此方法仅适用于 Android 5.0 或更高版本。\n- 此方法依赖美颜特效动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，则无法正常启用该功能。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。"
             },
             "platforms": "android",
             "parent_class": "RtcEngine",
@@ -117338,14 +117340,14 @@
               {
                 "name": "enabled",
                 "type": "boolean",
-                "desc": "是否启用图像增强功能：\n- `true`：启用图像增强功能。\n- `false`：（默认）禁用图像增强功能。",
+                "desc": "是否启用美颜特效功能：\n- `true`：启用美颜特效功能。\n- `false`：（默认）禁用美颜特效功能。",
                 "change_type": "create",
                 "note": ""
               },
               {
                 "name": "options",
                 "type": "BeautyOptions",
-                "desc": "图像增强参数。详见 `BeautyOptions`。",
+                "desc": "美颜特效参数。详见 `BeautyOptions`。",
                 "change_type": "create",
                 "note": ""
               }
@@ -117353,7 +117355,7 @@
             "scenarios": "",
             "timing": "在调用 `enableVideo` 或 `startPreview` 之后调用此方法。",
             "related": "",
-            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能的原因包括：\n    - 当前设备能力不满足图像增强的要求。声网建议更换为高性能设备。\n    - 当前设备版本低于 Android 5.0，不支持该功能。声网建议更换设备或升级操作系统。",
+            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能的原因包括：\n    - 当前设备能力不满足美颜特效的要求。声网建议更换为高性能设备。\n    - 当前设备版本低于 Android 5.0，不支持该功能。声网建议更换设备或升级操作系统。",
             "exception": ""
           }
         },
@@ -117402,7 +117404,7 @@
             "shortdesc": "设置美颜特效选项并指定媒体源。",
             "detailed_desc": {
               "since": "自 v2.4.0 版本新增。",
-              "desc": "该方法用于启用或禁用图像增强功能，并设置相关选项。与 `setBeautyEffectOptions [1/2]` 方法类似，但该方法允许你指定应用图像增强的媒体源类型。",
+              "desc": "该方法用于启用或禁用美颜特效功能，并设置相关选项。与 `setBeautyEffectOptions [1/2]` 方法类似，但该方法允许你指定应用美颜特效的媒体源类型。",
               "deprecated": "",
               "note": ""
             },
@@ -117412,21 +117414,21 @@
               {
                 "name": "enabled",
                 "type": "boolean",
-                "desc": "是否启用图像增强功能：\n- `true`：启用图像增强功能。\n- `false`：（默认）禁用图像增强功能。",
+                "desc": "是否启用美颜特效功能：\n- `true`：启用美颜特效功能。\n- `false`：（默认）禁用美颜特效功能。",
                 "change_type": "create",
                 "note": ""
               },
               {
                 "name": "options",
                 "type": "BeautyOptions",
-                "desc": "图像增强选项。详见 `BeautyOptions`。",
+                "desc": "美颜特效选项。详见 `BeautyOptions`。",
                 "change_type": "create",
                 "note": ""
               },
               {
                 "name": "sourceType",
                 "type": "Constants.MediaSourceType",
-                "desc": "应用图像增强效果的媒体源类型。详见 `MediaSourceType`。",
+                "desc": "应用美颜特效效果的媒体源类型。详见 `MediaSourceType`。",
                 "change_type": "create",
                 "note": "该参数仅支持以下两种设置：\n- 默认值为 `PRIMARY_CAMERA_SOURCE`。\n- 如果使用自定义视频源，请将该参数设置为 `CUSTOM_VIDEO_SOURCE`。"
               }
@@ -117434,7 +117436,7 @@
             "scenarios": "",
             "timing": "在调用 `enableVideo` 或 `startPreview` 之后调用该方法。",
             "related": "",
-            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能原因包括：\n    - 当前设备的性能不满足图像增强的要求，建议更换为高性能设备。\n    - 当前设备的系统版本低于 Android 5.0，不支持该功能，建议更换设备或升级操作系统。",
+            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能原因包括：\n    - 当前设备的性能不满足美颜特效的要求，建议更换为高性能设备。\n    - 当前设备的系统版本低于 Android 5.0，不支持该功能，建议更换设备或升级操作系统。",
             "exception": ""
           }
         },
@@ -117485,7 +117487,7 @@
               "since": "",
               "desc": "",
               "deprecated": "",
-              "note": "- 此方法仅适用于 Android 4.4 或更高版本。\n- 此方法依赖图像增强动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，则无法正常启用该功能。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。"
+              "note": "- 此方法仅适用于 Android 4.4 或更高版本。\n- 此方法依赖美颜特效动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，则无法正常启用该功能。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。"
             },
             "platforms": "android",
             "parent_class": "RtcEngine",
@@ -117508,7 +117510,7 @@
             "scenarios": "",
             "timing": "在调用 `enableVideo` 方法之后调用此方法。",
             "related": "",
-            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能的原因包括：\n    - 当前设备的能力不满足图像增强的要求。建议更换为高性能设备。\n    - 当前设备版本低于 Android 4.4，不支持该功能。建议更换设备或升级操作系统。",
+            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能的原因包括：\n    - 当前设备的能力不满足美颜特效的要求。建议更换为高性能设备。\n    - 当前设备版本低于 Android 4.4，不支持该功能。建议更换设备或升级操作系统。",
             "exception": ""
           }
         },
@@ -117569,7 +117571,7 @@
               "since": "",
               "desc": "该方法可通过预设参数一次性调整面部多个部位，实现瘦脸、放大眼睛、瘦鼻等轻度美型效果，并支持整体调节美型强度。该方法与 `setFaceShapeBeautyOptions [2/2]` 功能类似，区别在于该方法支持指定应用美型特效的媒体源。",
               "deprecated": "",
-              "note": "- 此方法仅适用于 Android 4.4 或更高版本。\n- 此方法依赖图像增强动态库 `libagora_clear_vision_extension.so`。若该动态库被删除，则无法正常启用该功能。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。"
+              "note": "- 此方法仅适用于 Android 4.4 或更高版本。\n- 此方法依赖美颜特效动态库 `libagora_clear_vision_extension.so`。若该动态库被删除，则无法正常启用该功能。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。"
             },
             "platforms": "android",
             "parent_class": "RtcEngine",
@@ -117599,7 +117601,7 @@
             "scenarios": "",
             "timing": "在调用 `enableVideo` 后调用此方法。",
             "related": "",
-            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能原因包括：\n    - 当前设备能力不满足图像增强要求，建议更换为高性能设备。\n    - 当前设备系统版本低于 Android 4.4，建议更换设备或升级操作系统。",
+            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能原因包括：\n    - 当前设备能力不满足美颜特效要求，建议更换为高性能设备。\n    - 当前设备系统版本低于 Android 4.4，建议更换设备或升级操作系统。",
             "exception": ""
           }
         },
@@ -117750,7 +117752,7 @@
               "since": "",
               "desc": "你可以调用该方法设置面部区域选项，单独微调面部的每个部分，从而实现更精细的美颜效果。",
               "deprecated": "",
-              "note": "- 此方法仅适用于 Android 4.4 或更高版本。\n- 此方法依赖图像增强动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，则无法正常启用该功能。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。"
+              "note": "- 此方法仅适用于 Android 4.4 或更高版本。\n- 此方法依赖美颜特效动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，则无法正常启用该功能。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。"
             },
             "platforms": "android",
             "parent_class": "RtcEngine",
@@ -117766,7 +117768,7 @@
             "scenarios": "",
             "timing": "请在调用 `setFaceShapeBeautyOptions` 方法之后调用此方法。",
             "related": "",
-            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持此功能。可能原因包括：\n    - 当前设备的能力不满足图像增强的要求，建议你更换为高性能设备。\n    - 当前设备版本低于 Android 4.4，不支持此功能，建议你更换设备或升级操作系统。",
+            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持此功能。可能原因包括：\n    - 当前设备的能力不满足美颜特效的要求，建议你更换为高性能设备。\n    - 当前设备版本低于 Android 4.4，不支持此功能，建议你更换设备或升级操作系统。",
             "exception": ""
           }
         },
@@ -117819,13 +117821,13 @@
             "api_name": "setFaceShapeAreaOptions",
             "api_signature": "public abstract int setFaceShapeAreaOptions(FaceShapeAreaOptions options, Constants.MediaSourceType sourceType);",
             "change_type": "create",
-            "change_desc": "新增 `setFaceShapeAreaOptions`：设置面部区域的图像增强选项并指定媒体源。",
-            "shortdesc": "设置面部区域的图像增强选项并指定媒体源。",
+            "change_desc": "新增 `setFaceShapeAreaOptions`：设置面部区域的美颜特效选项并指定媒体源。",
+            "shortdesc": "设置面部区域的美颜特效选项并指定媒体源。",
             "detailed_desc": {
               "since": "",
               "desc": "如果通过 `setFaceShapeBeautyOptions` 方法实现的预设美颜特效无法满足预期，你可以使用此方法设置美颜区域选项，单独微调面部的每个部分，从而实现更精细的美颜效果。该方法与 `setFaceShapeAreaOptions [2/2]` 类似，区别在于该方法支持指定应用美颜特效的媒体源。",
               "deprecated": "",
-              "note": "- 此方法仅适用于 Android 4.4 或更高版本。\n- 此方法依赖图像增强动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，则无法正常启用该功能。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。"
+              "note": "- 此方法仅适用于 Android 4.4 或更高版本。\n- 此方法依赖美颜特效动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，则无法正常启用该功能。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。"
             },
             "platforms": "android",
             "parent_class": "RtcEngine",
@@ -117848,7 +117850,7 @@
             "scenarios": "",
             "timing": "在调用 `setFaceShapeBeautyOptions` 后调用此方法。",
             "related": "",
-            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持此功能。可能原因包括：\n    - 当前设备能力不满足图像增强的要求。建议更换为高性能设备。\n    - 当前设备版本低于 Android 4.4，不支持此功能。建议更换设备或升级操作系统。",
+            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持此功能。可能原因包括：\n    - 当前设备能力不满足美颜特效的要求。建议更换为高性能设备。\n    - 当前设备版本低于 Android 4.4，不支持此功能。建议更换设备或升级操作系统。",
             "exception": ""
           }
         },
@@ -118150,7 +118152,7 @@
               "since": "自 v4.4.1 版本新增。",
               "desc": "",
               "deprecated": "",
-              "note": "该方法仅适用于 Android 5.0 或更高版本。该方法依赖图像增强动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，则无法正常启用该功能。该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。"
+              "note": "该方法仅适用于 Android 5.0 或更高版本。该方法依赖美颜特效动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，则无法正常启用该功能。该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。"
             },
             "platforms": "android",
             "parent_class": "RtcEngine",
@@ -118227,7 +118229,7 @@
               "since": "自 v4.4.1 版本新增。",
               "desc": "该方法允许你设置滤镜特效参数，并指定滤镜特效应用的媒体源。",
               "deprecated": "",
-              "note": "- 该方法仅适用于 Android 5.0 或更高版本。\n- 该方法依赖图像增强动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，该功能将无法正常启用。\n- 该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。"
+              "note": "- 该方法仅适用于 Android 5.0 或更高版本。\n- 该方法依赖美颜特效动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，该功能将无法正常启用。\n- 该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。"
             },
             "platforms": "android",
             "parent_class": "RtcEngine",
@@ -118318,7 +118320,7 @@
               "since": "自 v3.6.2 版本新增。",
               "desc": "",
               "deprecated": "",
-              "note": "- 该方法依赖图像增强动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，将无法正常启用该功能。\n- 暗光增强功能对设备性能有一定要求。如果启用后设备出现过热，声网建议将暗光增强选项设置为较低的性能消耗等级，或关闭该功能。\n- 如果你希望在使用暗光增强功能时优先保证画质（`LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY`），需要先调用 `setVideoDenoiserOptions` 实现视频降噪，具体对应关系如下：\n  - 当暗光增强设置为自动模式（`LOW_LIGHT_ENHANCE_AUTO`）时，视频降噪需设置为优先保证画质（`VIDEO_DENOISER_LEVEL_HIGH_QUALITY`）和自动模式（`VIDEO_DENOISER_AUTO`）。\n  - 当暗光增强设置为手动模式（`LOW_LIGHT_ENHANCE_MANUAL`）时，视频降噪需设置为优先保证画质（`VIDEO_DENOISER_LEVEL_HIGH_QUALITY`）和手动模式（`VIDEO_DENOISER_MANUAL`）。"
+              "note": "- 该方法依赖美颜特效动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，将无法正常启用该功能。\n- 暗光增强功能对设备性能有一定要求。如果启用后设备出现过热，声网建议将暗光增强选项设置为较低的性能消耗等级，或关闭该功能。\n- 如果你希望在使用暗光增强功能时优先保证画质（`LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY`），需要先调用 `setVideoDenoiserOptions` 实现视频降噪，具体对应关系如下：\n  - 当暗光增强设置为自动模式（`LOW_LIGHT_ENHANCE_AUTO`）时，视频降噪需设置为优先保证画质（`VIDEO_DENOISER_LEVEL_HIGH_QUALITY`）和自动模式（`VIDEO_DENOISER_AUTO`）。\n  - 当暗光增强设置为手动模式（`LOW_LIGHT_ENHANCE_MANUAL`）时，视频降噪需设置为优先保证画质（`VIDEO_DENOISER_LEVEL_HIGH_QUALITY`）和手动模式（`VIDEO_DENOISER_MANUAL`）。"
             },
             "platforms": "android",
             "parent_class": "RtcEngine",
@@ -118398,7 +118400,7 @@
               "since": "自 v3.6.2 版本新增。",
               "desc": "该方法用于设置低光增强选项，并允许你指定应用低光增强的媒体源类型。",
               "deprecated": "",
-              "note": "- 该方法依赖图像增强动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，则无法正常启用该功能。\n- 视频降噪对设备性能有一定要求。如果你在启用视频降噪后设备出现过热，声网建议你将视频降噪选项设置为较低的性能消耗等级，或完全关闭视频降噪。"
+              "note": "- 该方法依赖美颜特效动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，则无法正常启用该功能。\n- 视频降噪对设备性能有一定要求。如果你在启用视频降噪后设备出现过热，声网建议你将视频降噪选项设置为较低的性能消耗等级，或完全关闭视频降噪。"
             },
             "platforms": "android",
             "parent_class": "RtcEngine",
@@ -118488,7 +118490,7 @@
               "since": "自 v3.6.2 版本新增。",
               "desc": "你可以调用该方法设置视频降噪效果的相关选项。",
               "deprecated": "",
-              "note": "- 此方法依赖图像增强动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，将无法正常启用该功能。\n- 视频降噪对设备性能有一定要求。如果启用后设备出现过热，声网建议你将降噪选项调整为较低性能消耗的等级，或关闭视频降噪功能。\n- 如果该方法实现的降噪效果无法满足你的需求，声网建议你调用 `setBeautyEffectOptions` 方法启用美颜和磨皮功能，以获得更好的降噪效果。推荐用于强降噪效果的 `BeautyOptions` 设置如下：\n  - `lighteningContrastLevel`: `LIGHTENING_CONTRAST_NORMAL`\n  - `lighteningLevel`: 0.0\n  - `smoothnessLevel`: 0.5\n  - `rednessLevel`: 0.0\n  - `sharpnessLevel`: 0.1"
+              "note": "- 此方法依赖美颜特效动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，将无法正常启用该功能。\n- 视频降噪对设备性能有一定要求。如果启用后设备出现过热，声网建议你将降噪选项调整为较低性能消耗的等级，或关闭视频降噪功能。\n- 如果该方法实现的降噪效果无法满足你的需求，声网建议你调用 `setBeautyEffectOptions` 方法启用美颜和磨皮功能，以获得更好的降噪效果。推荐用于强降噪效果的 `BeautyOptions` 设置如下：\n  - `lighteningContrastLevel`: `LIGHTENING_CONTRAST_NORMAL`\n  - `lighteningLevel`: 0.0\n  - `smoothnessLevel`: 0.5\n  - `rednessLevel`: 0.0\n  - `sharpnessLevel`: 0.1"
             },
             "platforms": "android",
             "parent_class": "RtcEngine",
@@ -118578,7 +118580,7 @@
             "detailed_desc": {
               "since": "自 v3.6.2 版本新增。",
               "desc": "你可以调用此方法启用视频降噪功能并设置视频降噪效果的选项。该方法与 `setVideoDenoiserOptions [1/2]` 类似，但支持你指定应用降噪的媒体源类型。",
-              "note": "- 此方法依赖图像增强动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，则无法正常启用该功能。\n- 视频降噪对设备性能有一定要求。如果启用视频降噪后设备出现过热，声网建议你将视频降噪选项设置为较低的性能消耗等级，或完全关闭视频降噪功能。\n- 如果该方法实现的视频降噪效果无法满足你的需求，声网建议你调用 `setBeautyEffectOptions` 方法启用美颜和磨皮功能，以获得更好的视频降噪效果。推荐用于强降噪效果的 `BeautyOptions` 设置如下：\n  - `lighteningContrastLevel`: LIGHTENING_CONTRAST_NORMAL。\n  - `lighteningLevel`: 0.0。\n  - `smoothnessLevel`: 0.5。\n  - `rednessLevel`: 0.0。\n  - `sharpnessLevel`: 0.1。"
+              "note": "- 此方法依赖美颜特效动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，则无法正常启用该功能。\n- 视频降噪对设备性能有一定要求。如果启用视频降噪后设备出现过热，声网建议你将视频降噪选项设置为较低的性能消耗等级，或完全关闭视频降噪功能。\n- 如果该方法实现的视频降噪效果无法满足你的需求，声网建议你调用 `setBeautyEffectOptions` 方法启用美颜和磨皮功能，以获得更好的视频降噪效果。推荐用于强降噪效果的 `BeautyOptions` 设置如下：\n  - `lighteningContrastLevel`: LIGHTENING_CONTRAST_NORMAL。\n  - `lighteningLevel`: 0.0。\n  - `smoothnessLevel`: 0.5。\n  - `rednessLevel`: 0.0。\n  - `sharpnessLevel`: 0.1。"
             },
             "platforms": "android",
             "parent_class": "RtcEngine",
@@ -118659,7 +118661,7 @@
               "since": "自 v3.6.2 版本新增。",
               "desc": "摄像头采集的视频图像可能存在色彩失真。该功能可智能调整视频的饱和度和对比度等参数，从而提升视频的色彩丰富度和还原度，使画面更加生动。",
               "deprecated": "",
-              "note": "- 请在调用 `enableVideo` 方法之后调用此方法。\n- 色彩增强功能对设备性能有一定要求。开启该功能后，如果设备出现严重发热问题，声网建议你降低色彩增强等级以减少性能消耗，或关闭该功能。\n- 此方法依赖图像增强动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，将无法正常启用该功能。"
+              "note": "- 请在调用 `enableVideo` 方法之后调用此方法。\n- 色彩增强功能对设备性能有一定要求。开启该功能后，如果设备出现严重发热问题，声网建议你降低色彩增强等级以减少性能消耗，或关闭该功能。\n- 此方法依赖美颜特效动态库 `libagora_clear_vision_extension.so`。如果该动态库被删除，将无法正常启用该功能。"
             },
             "platforms": "android",
             "parent_class": "RtcEngine",
@@ -118739,7 +118741,7 @@
               "since": "自 v3.6.2 版本新增。",
               "desc": "摄像头采集的视频图像可能存在色彩失真。色彩增强功能可智能调整视频的饱和度和对比度等参数，从而提升视频的色彩丰富度和还原度，使画面更加生动。该方法与 `setColorEnhanceOptions [1/2]` 功能相同，但允许你指定应用色彩增强的媒体源类型。",
               "deprecated": "",
-              "note": "- 请在调用 `enableVideo` 后调用此方法。\n- 色彩增强功能对设备性能有一定要求。开启该功能后，如设备出现严重发热，声网建议你降低色彩增强等级以减少性能消耗，或关闭该功能。\n- 此方法依赖图像增强动态库 `libagora_clear_vision_extension.so`。若该动态库被删除，则无法正常启用该功能。"
+              "note": "- 请在调用 `enableVideo` 后调用此方法。\n- 色彩增强功能对设备性能有一定要求。开启该功能后，如设备出现严重发热，声网建议你降低色彩增强等级以减少性能消耗，或关闭该功能。\n- 此方法依赖美颜特效动态库 `libagora_clear_vision_extension.so`。若该动态库被删除，则无法正常启用该功能。"
             },
             "platforms": "android",
             "parent_class": "RtcEngine",
@@ -126109,7 +126111,7 @@
               "since": "",
               "desc": "调用 `createDataStream` 后，可以使用该方法向频道内的所有用户发送数据流消息。SDK 对该方法有限制：\n- 每个频道内的客户端实例最多可同时拥有 5 个数据通道，所有数据通道共享的总包比特率上限为 30 KB/s。\n- 每个数据通道每秒最多可发送 60 个数据包，每个数据包最大为 1 KB。",
               "deprecated": "",
-              "note": "如果你需要更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用实时消息。\n- 必须在调用 `createDataStream` 并加入频道后调用该方法。\n- 该方法仅适用于主播角色。"
+              "note": "- 如果你需要更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用实时消息。\n- 必须在调用 `createDataStream` 并加入频道后调用该方法。\n- 该方法仅适用于主播角色。"
             },
             "platforms": "android",
             "parent_class": "RtcEngine",
@@ -130490,7 +130492,7 @@
               }
             ],
             "scenarios": "",
-            "timing": "声网建议你在初始化 `RtcEngine` 后、加入频道前调用此方法。\n- 对于视频扩展（如图像增强扩展），你需要在调用 `enableVideo` 或 `enableLocalVideo` 启用视频模块后再调用此方法。\n- 在调用此方法之前，你需要先调用 `addExtension` 加载扩展。",
+            "timing": "声网建议你在初始化 `RtcEngine` 后、加入频道前调用此方法。\n- 对于视频扩展（如美颜特效扩展），你需要在调用 `enableVideo` 或 `enableLocalVideo` 启用视频模块后再调用此方法。\n- 在调用此方法之前，你需要先调用 `addExtension` 加载扩展。",
             "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -3：扩展库未加载。建议你检查动态库的存储位置或名称。"
           }
         },
@@ -131694,7 +131696,7 @@
             "shortdesc": "注册原始视频帧观察器对象。",
             "detailed_desc": {
               "since": "",
-              "desc": "建议通过该方法注册一个 `IVideoFrameObserver` 实例，并在该类中根据需要实现回调。成功注册后，每当接收到视频帧时，SDK 会触发相应的回调。你可以在虚拟背景、图像增强等视频预处理场景中使用这些原始视频数据。",
+              "desc": "建议通过该方法注册一个 `IVideoFrameObserver` 实例，并在该类中根据需要实现回调。成功注册后，每当接收到视频帧时，SDK 会触发相应的回调。你可以在虚拟背景、美颜特效等视频预处理场景中使用这些原始视频数据。",
               "deprecated": "",
               "note": "在处理回调中返回的视频数据时，请注意 `width` 和 `height` 参数可能发生变化，具体情况如下：\n- 当网络状况恶化时，视频分辨率会逐步降低。\n- 当用户调整视频配置时，回调中返回的视频分辨率也会随之变化。"
             },
@@ -132476,7 +132478,7 @@
             "shortdesc": "开始将媒体流直接推送到 CDN。",
             "detailed_desc": {
               "since": "",
-              "desc": "声网不支持同时将 `publishCameraTrack` 和 `publishCustomVideoTrack` 设置为 `true`，或将 `publishMicrophoneTrack` 和 `publishCustomAudioTrack` 设置为 `true`。在选择媒体设置选项（`DirectCdnStreamingMediaOptions`）时，你可以参考以下示例：\n\n如果你希望从自定义源推送由主播采集的音视频流，媒体设置选项应如下设置：\n- 将 `publishCustomAudioTrack` 设置为 `true`，并调用 `pushExternalAudioFrame` 方法；\n- 将 `publishCustomVideoTrack` 设置为 `true`，并调用 `pushExternalVideoFrameById` 方法；\n- 将 `publishCameraTrack` 设置为 `false`（默认值）；\n- 将 `publishMicrophoneTrack` 设置为 `false`（默认值）。\n\n自 v4.2.0 起，声网 SDK 支持纯音频直播。你可以在 `DirectCdnStreamingMediaOptions` 中将 `publishCustomAudioTrack` 或 `publishMicrophoneTrack` 设置为 `true`，并调用 `pushExternalAudioFrame` 推送音频流。\n\n该方法自 v4.6.0 起废弃。\n\n仅支持将一路音视频流或一路音频流推送到 CDN。",
+              "desc": "声网不支持同时将 `publishCameraTrack` 和 `publishCustomVideoTrack` 设置为 `true`，或将 `publishMicrophoneTrack` 和 `publishCustomAudioTrack` 设置为 `true`。在选择媒体设置选项（`DirectCdnStreamingMediaOptions`）时，你可以参考以下示例：\n\n如果你希望从自定义源推送由主播采集的音视频流，媒体设置选项应如下设置：\n- 将 `publishCustomAudioTrack` 设置为 `true`，并调用 `pushExternalAudioFrame` 方法；\n- 将 `publishCustomVideoTrack` 设置为 `true`，并调用 `pushExternalVideoFrameById` 方法；\n- 将 `publishCameraTrack` 设置为 `false`（默认值）；\n- 将 `publishMicrophoneTrack` 设置为 `false`（默认值）。\n\n自 v4.2.0 起，声网 SDK 支持纯音频直播。你可以在 `DirectCdnStreamingMediaOptions` 中将 `publishCustomAudioTrack` 或 `publishMicrophoneTrack` 设置为 `true`，并调用 `pushExternalAudioFrame` 推送音频流。",
               "deprecated": "自 v4.6.0 版本废弃。",
               "note": "声网仅支持将一路音视频流或一路音频流推送到 CDN。"
             },
@@ -148546,7 +148548,7 @@
             "shortdesc": "使用用户 User Account 和 Token 加入频道，并设置媒体选项。",
             "detailed_desc": {
               "since": "",
-              "desc": "在调用此方法之前，如果你尚未调用 `registerLocalUserAccount` 注册用户 User Account，SDK 会在你调用此方法加入频道时自动创建用户 User Account。提前调用 `registerLocalUserAccount` 可以缩短加入频道所需的时间。\n\n一旦用户加入频道，默认会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 `options` 参数或调用管理发布与订阅的相关方法。",
+              "desc": "在调用此方法之前，如果你尚未调用 `registerLocalUserAccount` 注册用户 User Account，SDK 会在你调用此方法加入频道时自动创建用户 User Account。提前调用 `registerLocalUserAccount` 可以缩短加入频道所需的时间。\n\n一旦用户加入频道，默认会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 `options` 参数或调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。",
               "deprecated": "",
               "note": "- 该方法仅支持用户同时加入一个频道。\n- 不同 App ID 的用户无法互通。\n- 加入频道前，请确保用于生成 Token 的 App ID 与调用 `create [2/2]` 方法时传入的 App ID 相同，否则可能导致加入频道失败。\n- 为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用 `uid` 加入频道，则其他用户也应使用 `uid`；如果使用用户 User Account 加入频道，则其他用户也应使用用户 User Account。若使用声网 Web SDK 加入频道，请确保用户 ID 的参数类型一致。"
             },
@@ -157621,8 +157623,8 @@
             "api_name": "BeautyOptions",
             "api_signature": "public BeautyOptions(int contrastLevel, float lightening, float smoothness, float redness, float sharpness)",
             "change_type": "modify",
-            "change_desc": "新增 `BeautyOptions`：设置图像增强选项。",
-            "shortdesc": "设置图像增强选项。",
+            "change_desc": "新增 `BeautyOptions`：设置美颜特效选项。",
+            "shortdesc": "设置美颜特效选项。",
             "detailed_desc": {
               "since": "",
               "desc": "",
@@ -157738,7 +157740,7 @@
             "struct_signature": "public class BeautyOptions {\n  public static final int LIGHTENING_CONTRAST_LOW = 0;\n  public static final int LIGHTENING_CONTRAST_NORMAL = 1;\n  public static final int LIGHTENING_CONTRAST_HIGH = 2;\n  public int lighteningContrastLevel;\n  public float lighteningLevel;\n  public float smoothnessLevel;\n  public float rednessLevel;\n  public float sharpnessLevel;\n}",
             "change_type": "modify",
             "change_desc": "新增类 `BeautyOptions`。包含参数：`LIGHTENING_CONTRAST_LOW`、`LIGHTENING_CONTRAST_NORMAL`、`LIGHTENING_CONTRAST_HIGH`、`lighteningContrastLevel`、`lighteningLevel`、`smoothnessLevel`、`rednessLevel`、`sharpnessLevel`。",
-            "shortdesc": "图像增强选项设置。",
+            "shortdesc": "美颜特效选项设置。",
             "detailed_desc": {
               "since": "",
               "desc": "",
@@ -158212,12 +158214,12 @@
             "api_signature": "@CalledByNative boolean onPreEncodeVideoFrame(int sourceType, VideoFrame videoFrame);",
             "change_type": "create",
             "change_desc": "新增 `onPreEncodeVideoFrame`：每次 SDK 在编码前接收到视频帧时触发的回调。",
-            "shortdesc": "`onPreEncodeVideoFrame` 回调。每次 SDK 在编码前接收到视频帧时触发该回调。",
+            "shortdesc": "每次 SDK 接收到编码前视频帧时触发该回调。",
             "detailed_desc": {
               "since": "",
               "desc": "在你成功注册视频帧观察器后，SDK 每次接收到视频帧时都会触发该回调。在该回调中，你可以获取编码前的视频数据，并根据具体场景对数据进行处理。处理完成后，可以将处理后的视频数据返回给 SDK。",
               "deprecated": "",
-              "note": "- 如果你需要将预处理后的视频数据发送回 SDK，需要先调用 `getVideoFrameProcessMode` 将视频处理模式设置为读写模式（`PROCESS_MODE_READ_WRITE`）。\n- 若需获取从第二路屏幕采集的编码前视频数据，需要通过 `getObservedFramePosition` 设置帧位置为 `VIDEO_MODULE_POSITION_PRE_ENCODER`（1 << 2）。\n- 该回调获取的视频数据已被预处理，包括裁剪、旋转和图像增强。\n- 建议确保 `videoFrame` 中修改后的参数与视频帧缓冲区中视频帧的实际情况一致，否则可能导致本地预览和远端视频显示出现异常旋转、图像拉伸等问题。"
+              "note": "- 如果你需要将预处理后的视频数据发送回 SDK，需要先调用 `getVideoFrameProcessMode` 将视频处理模式设置为读写模式（`PROCESS_MODE_READ_WRITE`）。\n- 若需获取从第二路屏幕采集的编码前视频数据，需要通过 `getObservedFramePosition` 设置帧位置为 `VIDEO_MODULE_POSITION_PRE_ENCODER`（1 << 2）。\n- 该回调获取的视频数据已被预处理，包括裁剪、旋转和美颜特效。\n- 建议确保 `videoFrame` 中修改后的参数与视频帧缓冲区中视频帧的实际情况一致，否则可能导致本地预览和远端视频显示出现异常旋转、图像拉伸等问题。"
             },
             "platforms": "android",
             "parent_class": "IVideoFrameObserver",
@@ -158392,7 +158394,7 @@
               "since": "",
               "desc": "调用 `registerVideoFrameObserver` 方法注册回调后，SDK 每次接收到视频帧时会触发该回调。你需要在该回调的返回值中设置期望的视频数据格式。",
               "deprecated": "",
-              "note": "`VIDEO_PIXEL_DEFAULT` 表示原始视频的默认像素格式类型，具体如下：\n- 在 Android 平台上，默认的视频帧类型可能为 `I420Buffer` 或 `TextureBuffer`。`TextureBuffer` 类型的纹理格式可能为 OES 或 RGB。如果 `getVideoFormatPreference` 返回的视频帧类型为 `VIDEO_PIXEL_DEFAULT`，则在处理视频数据时需要适配 `I420Buffer` 或 `TextureBuffer`。\n  视频帧类型固定为 `I420Buffer` 的情况包括但不限于：\n  - 特定设备，例如：LG G5 SE（H848）、Google Pixel 4a、Samsung Galaxy A7 或小米 Max。\n  - 已集成图像增强扩展并启用了视频降噪或弱光增强功能。"
+              "note": "`VIDEO_PIXEL_DEFAULT` 表示原始视频的默认像素格式类型，具体如下：\n- 在 Android 平台上，默认的视频帧类型可能为 `I420Buffer` 或 `TextureBuffer`。`TextureBuffer` 类型的纹理格式可能为 OES 或 RGB。如果 `getVideoFormatPreference` 返回的视频帧类型为 `VIDEO_PIXEL_DEFAULT`，则在处理视频数据时需要适配 `I420Buffer` 或 `TextureBuffer`。\n  视频帧类型固定为 `I420Buffer` 的情况包括但不限于：\n  - 特定设备，例如：LG G5 SE（H848）、Google Pixel 4a、Samsung Galaxy A7 或小米 Max。\n  - 已集成美颜特效扩展并启用了视频降噪或弱光增强功能。"
             },
             "platforms": "android",
             "parent_class": "IVideoFrameObserver",
@@ -164766,67 +164768,6 @@
         {
           "diff": [
             "+  /**",
-            "+   * Audio sample rate (Hz).",
-            "+   */",
-            "+  public enum AudioSampleRateType {",
-            "+    /**",
-            "+     * 32000: 32 kHz.",
-            "+     */",
-            "+    TYPE_32000(32000),",
-            "+    /**",
-            "+     * (Default) 44100: 44.1 kHz.",
-            "+     */",
-            "+    TYPE_44100(44100),",
-            "+    /**",
-            "+     * 48000: 48 kHz.",
-            "+     */",
-            "+    TYPE_48000(48000);",
-            "+",
-            "+    private int value;",
-            "+  }"
-          ],
-          "parent_class": "",
-          "package_name": "io.agora.rtc2.live",
-          "details": {
-            "enum_name": "AudioSampleRateType",
-            "change_type": "modify",
-            "change_desc": "新增枚举 AudioSampleRateType 及其三个枚举值 TYPE_32000、TYPE_44100、TYPE_48000。",
-            "shortdesc": "音频采样率（Hz）。",
-            "detailed_desc": {
-              "since": "",
-              "desc": "",
-              "deprecated": "",
-              "note": ""
-            },
-            "platforms": "android",
-            "values": [
-              {
-                "name": "TYPE_32000",
-                "desc": "（32000）：32 kHz。",
-                "is_public": true,
-                "change_type": "modify",
-                "note": ""
-              },
-              {
-                "name": "TYPE_44100",
-                "desc": "（44100）：44.1 kHz（默认）。",
-                "is_public": true,
-                "change_type": "modify",
-                "note": ""
-              },
-              {
-                "name": "TYPE_48000",
-                "desc": "（48000）：48 kHz。",
-                "is_public": true,
-                "change_type": "modify",
-                "note": ""
-              }
-            ]
-          }
-        },
-        {
-          "diff": [
-            "+  /**",
             "+   * @brief Video codec profile types.",
             "+   */",
             "+  public enum VideoCodecProfileType {",
@@ -165935,12 +165876,12 @@
             "api_signature": "- (BOOL)onPreEncodeVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame sourceType:(AgoraVideoSourceType)sourceType;",
             "change_type": "modify",
             "change_desc": "新增 `onPreEncodeVideoFrame:sourceType:`：每次 SDK 在编码前接收到视频帧时触发。",
-            "shortdesc": "每次 SDK 在编码前接收到视频帧时触发。",
+            "shortdesc": "每次 SDK 接收到编码前视频帧时触发。",
             "detailed_desc": {
               "since": "",
               "desc": "在你成功注册视频帧观察器后，SDK 每次接收到视频帧时都会触发该回调。在该回调中，你可以获取编码前的视频数据，并根据具体场景对其进行处理。处理完成后，你可以将处理后的视频数据返回给 SDK。",
               "deprecated": "",
-              "note": "- 如果你需要将预处理后的视频数据发送回 SDK，你需要先调用 `getVideoFrameProcessMode` 将视频处理模式设置为读写模式（`AgoraVideoFrameProcessModeReadWrite`）。\n- 如果你需要获取从第二屏幕采集的编码前的视频数据，你需要通过 `getObservedFramePosition` 设置帧位置为 `AgoraVideoModulePositionPreEncoder`（1 << 2）。\n- 该回调获取的视频数据已被预处理，包括裁剪、旋转和图像增强。\n- 建议你确保 `videoFrame` 中修改后的参数与视频帧缓冲区中视频帧的实际情况一致。否则，可能会导致本地预览和远端视频显示出现意外的旋转、变形等问题。"
+              "note": "- 如果你需要将预处理后的视频数据发送回 SDK，你需要先调用 `getVideoFrameProcessMode` 将视频处理模式设置为读写模式（`AgoraVideoFrameProcessModeReadWrite`）。\n- 如果你需要获取从第二屏幕采集的编码前的视频数据，你需要通过 `getObservedFramePosition` 设置帧位置为 `AgoraVideoModulePositionPreEncoder`（1 << 2）。\n- 该回调获取的视频数据已被预处理，包括裁剪、旋转和美颜特效。\n- 建议你确保 `videoFrame` 中修改后的参数与视频帧缓冲区中视频帧的实际情况一致。否则，可能会导致本地预览和远端视频显示出现意外的旋转、变形等问题。"
             },
             "platforms": "ios",
             "parent_class": "AgoraVideoFrameDelegate",
@@ -165961,7 +165902,7 @@
               }
             ],
             "scenarios": "",
-            "timing": "该回调在每次 SDK 在编码前接收到视频帧时被触发。",
+            "timing": "该回调在每次 SDK 接收到编码前视频帧时被触发。",
             "return_value": "- 当视频处理模式为 `AgoraVideoFrameProcessModeReadOnly` 时：\n  - `YES`：保留以供将来使用。\n  - `NO`：保留以供将来使用。\n- 当视频处理模式为 `AgoraVideoFrameProcessModeReadWrite` 时：\n  - `YES`：设置 SDK 接收该视频帧。\n  - `NO`：设置 SDK 丢弃该视频帧。"
           }
         },
@@ -169377,7 +169318,7 @@
             "shortdesc": "加入一个频道。",
             "detailed_desc": {
               "since": "",
-              "desc": "默认情况下，你会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用管理发布与订阅的相关方法。请在调用 `sharedEngineWithConfig:delegate:` 方法后调用本方法。",
+              "desc": "默认情况下，你会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。请在调用 `sharedEngineWithConfig:delegate:` 方法后调用本方法。",
               "deprecated": "",
               "note": "该方法每次仅支持加入一个频道。\n不同 App ID 的用户无法互通。\n加入频道前，请确保用于生成 Token 的 App ID 与传入 `sharedEngineWithConfig:delegate:` 方法中的 App ID 一致，否则可能导致加入频道失败。"
             },
@@ -169527,7 +169468,7 @@
             "shortdesc": "加入频道并设置媒体选项。",
             "detailed_desc": {
               "since": "",
-              "desc": "与 `joinChannelByToken:channelId:info:uid:joinSuccess:` 方法相比，该方法新增了 `mediaOptions` 参数，用于设置媒体选项，例如是否在频道内发布音视频流，或在加入频道时是否自动订阅所有远端用户的音视频流。默认情况下，你会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 `mediaOptions` 参数或调用发布与订阅相关的方法。",
+              "desc": "与 `joinChannelByToken:channelId:info:uid:joinSuccess:` 方法相比，该方法新增了 `mediaOptions` 参数，用于设置媒体选项，例如是否在频道内发布音视频流，或在加入频道时是否自动订阅所有远端用户的音视频流。默认情况下，你会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 `mediaOptions` 参数或调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。",
               "deprecated": "",
               "note": "- 该方法仅支持用户同时加入一个频道。\n- 不同 App ID 的用户无法互通。\n- 加入频道前，请确保用于生成 Token 的 App ID 与调用 `sharedEngineWithConfig:delegate:` 方法时传入的 App ID 一致，否则可能导致加入频道失败。"
             },
@@ -172052,7 +171993,7 @@
               }
             ],
             "scenarios": "",
-            "timing": "声网建议你在初始化 `AgoraRtcEngineKit` 后、加入频道前调用此方法。\n- 对于视频扩展（如图像增强扩展），你需要在调用 `enableVideo` 或 `enableLocalVideo:` 启用视频模块后调用此方法。\n- 在调用此方法之前，你需要将扩展动态库（.xcframework）链接到 Xcode 项目中以加载扩展。",
+            "timing": "声网建议你在初始化 `AgoraRtcEngineKit` 后、加入频道前调用此方法。\n- 对于视频扩展（如美颜特效扩展），你需要在调用 `enableVideo` 或 `enableLocalVideo:` 启用视频模块后调用此方法。\n- 在调用此方法之前，你需要将扩展动态库（.xcframework）链接到 Xcode 项目中以加载扩展。",
             "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -3：扩展库未加载。声网建议你检查动态库的存储位置或名称。"
           }
         },
@@ -173326,7 +173267,7 @@
             "shortdesc": "初始化本地视频画面。",
             "detailed_desc": {
               "since": "",
-              "desc": "该方法在本地设备上初始化本地视频流的画面，仅影响你本地看到的视频内容，不影响本地视频的发布。你可以调用该方法将本地视频流绑定到指定的视频画面（`view`），并设置画面的渲染模式和镜像模式。绑定关系在离开频道后仍然有效。如需停止渲染或解绑本地视频与画面，将 `view` 设为 `nil` 即可。\n\n在实时互动场景中，如果你需要在本地视频预览中同时查看多个处于视频链路不同观察位置的预览画面，可以多次调用该方法，设置不同的 `view`，并为每个 `view` 设置不同的观察位置。例如，将视频源设置为摄像头后，配置两个 `view`，分别设置 `position` 为 `AgoraVideoModulePositionPostCaptureOrigin` 和 `AgoraVideoModulePositionPostCapture`，即可在本地视频预览中同时查看原始未处理的视频帧和经过图像增强、虚拟背景、水印等预处理后的视频帧。",
+              "desc": "该方法在本地设备上初始化本地视频流的画面，仅影响你本地看到的视频内容，不影响本地视频的发布。你可以调用该方法将本地视频流绑定到指定的视频画面（`view`），并设置画面的渲染模式和镜像模式。绑定关系在离开频道后仍然有效。如需停止渲染或解绑本地视频与画面，将 `view` 设为 `nil` 即可。\n\n在实时互动场景中，如果你需要在本地视频预览中同时查看多个处于视频链路不同观察位置的预览画面，可以多次调用该方法，设置不同的 `view`，并为每个 `view` 设置不同的观察位置。例如，将视频源设置为摄像头后，配置两个 `view`，分别设置 `position` 为 `AgoraVideoModulePositionPostCaptureOrigin` 和 `AgoraVideoModulePositionPostCapture`，即可在本地视频预览中同时查看原始未处理的视频帧和经过美颜特效、虚拟背景、水印等预处理后的视频帧。",
               "deprecated": "",
               "note": "若仅需在通话中更新本地视频画面的渲染模式或镜像模式，请调用 `setLocalRenderMode:mirror:` 方法。"
             },
@@ -174045,13 +173986,13 @@
             "api_name": "setBeautyEffectOptions:options:",
             "api_signature": "- (int)setBeautyEffectOptions:(BOOL)enable options:(AgoraBeautyOptions* _Nullable)options NS_SWIFT_NAME(setBeautyEffectOptions(_:options:));",
             "change_type": "modify",
-            "change_desc": "新增 `setBeautyEffectOptions:options:` 方法：设置图像增强选项。",
-            "shortdesc": "设置图像增强选项。",
+            "change_desc": "新增 `setBeautyEffectOptions:options:` 方法：设置美颜特效选项。",
+            "shortdesc": "设置美颜特效选项。",
             "detailed_desc": {
               "since": "",
-              "desc": "你可以通过该方法启用或禁用图像增强功能，并设置相关选项。请在调用 `enableVideo` 或 `startPreview:` 方法之后调用本方法。",
+              "desc": "你可以通过该方法启用或禁用美颜特效功能，并设置相关选项。请在调用 `enableVideo` 或 `startPreview:` 方法之后调用本方法。",
               "deprecated": "",
-              "note": "- 该方法依赖图像增强动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果该动态库被删除，则无法正常启用该功能。\n- 该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能能力。"
+              "note": "- 该方法依赖美颜特效动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果该动态库被删除，则无法正常启用该功能。\n- 该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能能力。"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -174059,21 +174000,21 @@
               {
                 "name": "enable",
                 "type": "BOOL",
-                "desc": "是否启用图像增强功能：\n- `YES`：启用图像增强功能。\n- `NO`：（默认）禁用图像增强功能。",
+                "desc": "是否启用美颜特效功能：\n- `YES`：启用美颜特效功能。\n- `NO`：（默认）禁用美颜特效功能。",
                 "change_type": "modify",
                 "note": ""
               },
               {
                 "name": "options",
                 "type": "AgoraBeautyOptions* _Nullable",
-                "desc": "图像增强选项，详见 `AgoraBeautyOptions`。",
+                "desc": "美颜特效选项，详见 `AgoraBeautyOptions`。",
                 "change_type": "modify",
                 "note": ""
               }
             ],
             "scenarios": "",
             "timing": "请在调用 `enableVideo` 或 `startPreview:` 方法之后调用本方法。",
-            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能的原因包括：\n    - 当前设备性能不满足图像增强的要求。声网建议你更换为高性能设备。"
+            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能的原因包括：\n    - 当前设备性能不满足美颜特效的要求。声网建议你更换为高性能设备。"
           }
         },
         {
@@ -174194,7 +174135,7 @@
               "since": "",
               "desc": "调用该方法可以调整面部的特定部位，实现瘦脸、放大眼睛和瘦鼻等美型效果。",
               "deprecated": "",
-              "note": "- 此方法依赖图像增强动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果删除该动态库，则无法正常启用此功能。\n- 此功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。"
+              "note": "- 此方法依赖美颜特效动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果删除该动态库，则无法正常启用此功能。\n- 此功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -174216,8 +174157,8 @@
             ],
             "scenarios": "",
             "timing": "在调用 `enableVideo` 方法之后调用。",
-            "note": "- 此方法依赖图像增强动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果删除该动态库，则无法正常启用此功能。\n- 此功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。",
-            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持此功能。可能的原因包括：\n    - 当前设备的图像增强能力不满足要求。声网建议你更换为高性能设备。"
+            "note": "- 此方法依赖美颜特效动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果删除该动态库，则无法正常启用此功能。\n- 此功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。",
+            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持此功能。可能的原因包括：\n    - 当前设备的美颜特效能力不满足要求。声网建议你更换为高性能设备。"
           }
         },
         {
@@ -174274,7 +174215,7 @@
               "since": "",
               "desc": "调用该方法可以通过预设参数一次性修改面部多个部位，实现瘦脸、放大眼睛、瘦鼻等轻度美型效果，并支持整体调整美型强度。该方法支持指定应用美颜特效的媒体源。",
               "deprecated": "",
-              "note": "- 该方法依赖图像增强动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果删除该动态库，功能将无法正常启用。\n- 该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。"
+              "note": "- 该方法依赖美颜特效动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果删除该动态库，功能将无法正常启用。\n- 该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -174303,7 +174244,7 @@
             ],
             "scenarios": "",
             "timing": "在调用 `enableVideo` 后调用该方法。",
-            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能原因包括：\n    - 当前设备能力不满足图像增强要求。声网建议你更换为高性能设备。"
+            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持该功能。可能原因包括：\n    - 当前设备能力不满足美颜特效要求。声网建议你更换为高性能设备。"
           }
         },
         {
@@ -174445,7 +174386,7 @@
               "since": "",
               "desc": "如果通过 `setFaceShapeBeautyOptions:` 方法设置的预设美型特效无法满足预期，可以使用此方法设置美颜区域选项，单独微调面部的每个部分，实现更精细的美颜效果。",
               "deprecated": "",
-              "note": "- 此方法依赖图像增强动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果删除该动态库，功能将无法正常启用。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。"
+              "note": "- 此方法依赖美颜特效动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果删除该动态库，功能将无法正常启用。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -174460,7 +174401,7 @@
             ],
             "scenarios": "",
             "timing": "在调用 `setFaceShapeBeautyOptions:` 方法之后调用。",
-            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持此功能。可能的原因包括：\n    - 当前设备的能力不满足图像增强的要求。声网建议你更换为高性能设备。"
+            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持此功能。可能的原因包括：\n    - 当前设备的能力不满足美颜特效的要求。声网建议你更换为高性能设备。"
           }
         },
         {
@@ -174512,7 +174453,7 @@
               "since": "",
               "desc": "如果通过 `setFaceShapeBeautyOptions:options:` 方法实现的预设美型效果不符合预期，你可以使用此方法设置美颜区域选项，单独微调面部的每个部分，从而实现更精细的美颜效果。",
               "deprecated": "",
-              "note": "- 此方法依赖图像增强动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果删除该动态库，功能将无法正常启用。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。"
+              "note": "- 此方法依赖美颜特效动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果删除该动态库，功能将无法正常启用。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -174534,7 +174475,7 @@
             ],
             "scenarios": "",
             "timing": "在调用 `setFaceShapeBeautyOptions` 方法之后调用此方法。",
-            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持此功能。可能原因包括：\n    - 当前设备的能力不满足图像增强的要求。声网建议你更换为高性能设备。"
+            "return_value": "- 0：方法调用成功。\n- < 0：方法调用失败。\n  - -4：当前设备不支持此功能。可能原因包括：\n    - 当前设备的能力不满足美颜特效的要求。声网建议你更换为高性能设备。"
           }
         },
         {
@@ -174709,7 +174650,7 @@
               "since": "自 v4.0.0 版本新增。",
               "desc": "你可以调用该方法开启视频降噪功能，并设置视频降噪效果的选项。",
               "deprecated": "",
-              "note": "- 此方法依赖图像增强动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果该动态库被删除，则无法正常启用该功能。\n- 视频降噪对设备性能有一定要求。如果启用视频降噪后设备过热，声网建议将视频降噪选项设置为较低的性能消耗等级，或完全关闭视频降噪功能。\n- 如果该方法实现的视频降噪效果无法满足你的需求，声网建议调用 `setBeautyEffectOptions:options:` 方法启用美颜和磨皮功能，以获得更好的视频降噪效果。推荐用于强降噪效果的 `AgoraBeautyOptions` 设置如下：\n  - `lighteningContrastLevel`: `AgoraLighteningContrastNormal`\n  - `lighteningLevel`: 0.0\n  - `smoothnessLevel`: 0.5\n  - `rednessLevel`: 0.0\n  - `sharpnessLevel`: 0.1"
+              "note": "- 此方法依赖美颜特效动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果该动态库被删除，则无法正常启用该功能。\n- 视频降噪对设备性能有一定要求。如果启用视频降噪后设备过热，声网建议将视频降噪选项设置为较低的性能消耗等级，或完全关闭视频降噪功能。\n- 如果该方法实现的视频降噪效果无法满足你的需求，声网建议调用 `setBeautyEffectOptions:options:` 方法启用美颜和磨皮功能，以获得更好的视频降噪效果。推荐用于强降噪效果的 `AgoraBeautyOptions` 设置如下：\n  - `lighteningContrastLevel`: `AgoraLighteningContrastNormal`\n  - `lighteningLevel`: 0.0\n  - `smoothnessLevel`: 0.5\n  - `rednessLevel`: 0.0\n  - `sharpnessLevel`: 0.1"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -174798,7 +174739,7 @@
               "since": "自 v4.0.0 版本新增。",
               "desc": "你可以调用此方法启用视频降噪功能并设置视频降噪效果的选项。此方法与 `setVideoDenoiserOptions:options:` 都可设置视频降噪，但此方法允许你指定应用降噪的媒体源类型。",
               "deprecated": "",
-              "note": "- 此方法依赖图像增强动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果该动态库被删除，则无法正常启用该功能。\n- 视频降噪对设备性能有一定要求。如果启用视频降噪后设备出现过热情况，声网建议你将视频降噪选项设置为较低的性能消耗等级，或完全关闭视频降噪功能。\n- 如果该方法实现的视频降噪效果无法满足你的需求，声网建议你调用 `setBeautyEffectOptions:options:` 方法启用美颜和磨皮功能，以获得更好的视频降噪效果。推荐用于强降噪效果的 `AgoraBeautyOptions` 设置如下：\n  - `lighteningContrastLevel`: `AgoraLighteningContrastNormal`\n  - `lighteningLevel`: 0.0\n  - `smoothnessLevel`: 0.5\n  - `rednessLevel`: 0.0\n  - `sharpnessLevel`: 0.1"
+              "note": "- 此方法依赖美颜特效动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果该动态库被删除，则无法正常启用该功能。\n- 视频降噪对设备性能有一定要求。如果启用视频降噪后设备出现过热情况，声网建议你将视频降噪选项设置为较低的性能消耗等级，或完全关闭视频降噪功能。\n- 如果该方法实现的视频降噪效果无法满足你的需求，声网建议你调用 `setBeautyEffectOptions:options:` 方法启用美颜和磨皮功能，以获得更好的视频降噪效果。推荐用于强降噪效果的 `AgoraBeautyOptions` 设置如下：\n  - `lighteningContrastLevel`: `AgoraLighteningContrastNormal`\n  - `lighteningLevel`: 0.0\n  - `smoothnessLevel`: 0.5\n  - `rednessLevel`: 0.0\n  - `sharpnessLevel`: 0.1"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -174871,7 +174812,7 @@
               "since": "自 v4.4.1 版本新增。",
               "desc": "在调用 `enableVideo` 方法之后调用本方法。",
               "deprecated": "",
-              "note": "- 此方法依赖图像增强动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果该动态库被删除，则无法正常启用此功能。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的性能能力。"
+              "note": "- 此方法依赖美颜特效动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果该动态库被删除，则无法正常启用此功能。\n- 此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的性能能力。"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -174946,7 +174887,7 @@
               "since": "自 v4.4.1 版本新增。",
               "desc": "该方法与 `setBeautyEffectOptions:options:sourceType:` 方法都用于设置滤镜特效参数。不同之处在于，该方法允许你指定滤镜特效应用的媒体源。",
               "deprecated": "",
-              "note": "- 该方法依赖图像增强动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果删除该动态库，该功能将无法正常启用。\n- 该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能能力。"
+              "note": "- 该方法依赖美颜特效动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果删除该动态库，该功能将无法正常启用。\n- 该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能能力。"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -175142,7 +175083,7 @@
               "since": "自 v4.0.0 版本新增。",
               "desc": "你可以调用此方法开启暗光增强功能并设置暗光增强效果的选项。",
               "deprecated": "",
-              "note": "- 此方法依赖图像增强动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果该动态库被删除，则无法正常启用该功能。\n- 暗光增强对设备性能有一定要求。如果启用暗光增强后设备出现过热，声网建议将暗光增强选项设置为较低的性能消耗等级，或完全关闭暗光增强功能。\n- 如果你希望在使用暗光增强功能时优先保证画质（`AgoraLowlightEnhanceLevelQuality`），需要先调用 `setVideoDenoiserOptions:options:` 实现视频降噪，具体对应关系如下：\n  - 当暗光增强设置为自动模式（`AgoraLowlightEnhanceModeAuto`）时，视频降噪需设置为优先保证画质（`AgoraVideoDenoiserLevelHighQuality`）和自动模式（`AgoraVideoDenoiserModeAuto`）。\n  - 当暗光增强设置为手动模式（`AgoraLowlightEnhanceModeManual`）时，视频降噪需设置为优先保证画质（`AgoraVideoDenoiserLevelHighQuality`）和手动模式（`AgoraVideoDenoiserModeManual`）。"
+              "note": "- 此方法依赖美颜特效动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果该动态库被删除，则无法正常启用该功能。\n- 暗光增强对设备性能有一定要求。如果启用暗光增强后设备出现过热，声网建议将暗光增强选项设置为较低的性能消耗等级，或完全关闭暗光增强功能。\n- 如果你希望在使用暗光增强功能时优先保证画质（`AgoraLowlightEnhanceLevelQuality`），需要先调用 `setVideoDenoiserOptions:options:` 实现视频降噪，具体对应关系如下：\n  - 当暗光增强设置为自动模式（`AgoraLowlightEnhanceModeAuto`）时，视频降噪需设置为优先保证画质（`AgoraVideoDenoiserLevelHighQuality`）和自动模式（`AgoraVideoDenoiserModeAuto`）。\n  - 当暗光增强设置为手动模式（`AgoraLowlightEnhanceModeManual`）时，视频降噪需设置为优先保证画质（`AgoraVideoDenoiserLevelHighQuality`）和手动模式（`AgoraVideoDenoiserModeManual`）。"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -175220,7 +175161,7 @@
               "since": "自 v4.0.0 版本新增。",
               "desc": "该方法与 `setLowlightEnhanceOptions:options:` 方法都用于设置低光增强选项，但该方法允许你指定应用低光增强选项的媒体源类型。",
               "deprecated": "",
-              "note": "- 该方法依赖图像增强动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果删除该动态库，该功能将无法正常启用。\n- 视频降噪对设备性能有一定要求。如果你在启用视频降噪后设备出现过热，声网建议你将视频降噪选项调整为较低的性能消耗等级，或完全关闭视频降噪功能。"
+              "note": "- 该方法依赖美颜特效动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果删除该动态库，该功能将无法正常启用。\n- 视频降噪对设备性能有一定要求。如果你在启用视频降噪后设备出现过热，声网建议你将视频降噪选项调整为较低的性能消耗等级，或完全关闭视频降噪功能。"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -175300,7 +175241,7 @@
               "since": "自 v4.0.0 版本新增。",
               "desc": "摄像头采集的视频图像可能存在色彩失真。色彩增强功能可智能调整视频的饱和度和对比度等特性，从而增强视频的色彩丰富度和色彩还原度，使视频画面更加生动。你可以调用 `setColorEnhanceOptions:options:` 方法开启色彩增强功能并设置色彩增强效果的参数。",
               "deprecated": "",
-              "note": "- 请在调用 `enableVideo` 方法之后调用此方法。\n- 色彩增强功能对设备性能有一定要求。开启色彩增强后，如果设备出现严重发热问题，声网建议你降低色彩增强等级以减少性能消耗，或关闭色彩增强功能。\n- 此方法依赖图像增强动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果该动态库被删除，则无法正常启用该功能。"
+              "note": "- 请在调用 `enableVideo` 方法之后调用此方法。\n- 色彩增强功能对设备性能有一定要求。开启色彩增强后，如果设备出现严重发热问题，声网建议你降低色彩增强等级以减少性能消耗，或关闭色彩增强功能。\n- 此方法依赖美颜特效动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果该动态库被删除，则无法正常启用该功能。"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -175378,7 +175319,7 @@
               "since": "自 v4.0.0 版本新增。",
               "desc": "摄像头采集的视频图像可能存在色彩失真。色彩增强功能可智能调整视频的饱和度和对比度等特性，从而增强视频的色彩丰富度和色彩还原度，使视频画面更加生动。该方法与 `setColorEnhanceOptions:options:` 方法类似，但该方法允许你指定应用色彩增强选项的媒体源。",
               "deprecated": "",
-              "note": "- 请在调用 `enableVideo` 方法之后调用此方法。\n- 色彩增强功能对设备性能有一定要求。开启色彩增强功能后，如果设备出现严重发热问题，声网建议你降低色彩增强等级以减少性能消耗，或关闭色彩增强功能。\n- 此方法依赖图像增强动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果该动态库被删除，则无法正常启用该功能。"
+              "note": "- 请在调用 `enableVideo` 方法之后调用此方法。\n- 色彩增强功能对设备性能有一定要求。开启色彩增强功能后，如果设备出现严重发热问题，声网建议你降低色彩增强等级以减少性能消耗，或关闭色彩增强功能。\n- 此方法依赖美颜特效动态库 `AgoraClearVisionExtension.xcframework`（iOS）或 `AgoraClearVisionExtension.framework`（macOS）。如果该动态库被删除，则无法正常启用该功能。"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -175806,7 +175747,7 @@
             "shortdesc": "检查当前设备是否支持指定的高级功能。",
             "detailed_desc": {
               "since": "自 v4.3.0 版本新增。",
-              "desc": "你可以使用该方法检查当前设备的能力是否满足虚拟背景、图像增强等高级功能的要求。该方法适用于在启用高级功能前进行设备能力判断，以避免在低端设备上启用功能时出现性能下降或功能不可用的问题。你可以根据该方法的返回值决定是否显示或启用相应的功能按钮，或在设备能力不足时通知用户。",
+              "desc": "你可以使用该方法检查当前设备的能力是否满足虚拟背景、美颜特效等高级功能的要求。该方法适用于在启用高级功能前进行设备能力判断，以避免在低端设备上启用功能时出现性能下降或功能不可用的问题。你可以根据该方法的返回值决定是否显示或启用相应的功能按钮，或在设备能力不足时通知用户。",
               "deprecated": "",
               "note": ""
             },
@@ -178781,7 +178722,7 @@
               "since": "",
               "desc": "获取音频文件的音轨索引后，可以调用该方法指定任意音轨进行播放。例如，如果多音轨文件的不同音轨存储了不同语言的歌曲，可以调用该方法设置播放语言。",
               "deprecated": "",
-              "note": "- 支持的音频文件格式，详见 `audio_format`。\n- 需要在调用 `startAudioMixing` 并收到 `audioMixingStateChanged` 回调（状态为 `AgoraAudioMixingStateTypePlaying`）后调用该方法。"
+              "note": "- 支持的音频文件格式，详见[声网 RTC SDK 支持哪些格式的音频文件](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。\n- 需要在调用 `startAudioMixing` 并收到 `audioMixingStateChanged` 回调（状态为 `AgoraAudioMixingStateTypePlaying`）后调用该方法。"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -186329,7 +186270,7 @@
             "shortdesc": "使用用户 User Account 和 Token 加入频道。",
             "detailed_desc": {
               "since": "",
-              "desc": "在调用该方法之前，如果你尚未调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，当你调用该方法加入频道时，SDK 会自动为你创建一个用户 User Account。先调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，再调用该方法加入频道，可以缩短进入频道所需的时间。\n一旦用户加入频道，默认会订阅频道中所有其他用户的音视频流，从而产生用量和计费。如需停止订阅指定或所有远端流，请调用相应的 `mute` 方法。",
+              "desc": "在调用该方法之前，如果你尚未调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，当你调用该方法加入频道时，SDK 会自动为你创建一个用户 User Account。先调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，再调用该方法加入频道，可以缩短进入频道所需的时间。\n一旦用户加入频道，默认会订阅频道中所有其他用户的音视频流，从而产生用量和计费。如需停止订阅指定或所有远端流，请调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。",
               "deprecated": "",
               "note": "- 该方法仅支持用户同时加入一个频道。\n- 不同 App ID 的用户无法互通。\n- 加入频道前，请确保用于生成 Token 的 App ID 与调用 `sharedEngineWithConfig:delegate:` 时传入的 App ID 一致，否则可能导致使用该 Token 加入频道失败。\n- 为确保通信顺畅，请统一使用相同的参数类型标识用户。例如，如果某用户使用用户 ID 加入频道，则其他用户也应使用用户 ID。用户 User Account 亦同理。如果用户使用声网 Web SDK 加入频道，请确保用户 ID 的参数类型一致。"
             },
@@ -186482,7 +186423,7 @@
             "shortdesc": "使用用户 User Account 和 Token 加入频道，并设置媒体选项。",
             "detailed_desc": {
               "since": "",
-              "desc": "在调用该方法之前，如果你尚未调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，当你调用该方法加入频道时，SDK 会自动为你创建一个用户 User Account。先调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，再调用该方法加入频道，可以缩短进入频道所需的时间。\n\n与 `joinChannelByToken:channelId:userAccount:joinSuccess:` 方法相比，该方法多了一个 `mediaOptions` 参数，用于设置媒体选项，例如是否在频道内发布音视频流。默认情况下，你会订阅频道内所有其他用户的音视频流，从而产生使用量和计费。若要停止订阅其他流，请设置 `mediaOptions` 参数或调用发布与订阅相关的方法。",
+              "desc": "在调用该方法之前，如果你尚未调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，当你调用该方法加入频道时，SDK 会自动为你创建一个用户 User Account。先调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，再调用该方法加入频道，可以缩短进入频道所需的时间。\n\n与 `joinChannelByToken:channelId:userAccount:joinSuccess:` 方法相比，该方法多了一个 `mediaOptions` 参数，用于设置媒体选项，例如是否在频道内发布音视频流。默认情况下，你会订阅频道内所有其他用户的音视频流，从而产生使用量和计费。若要停止订阅其他流，请设置 `mediaOptions` 参数或调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。",
               "deprecated": "",
               "note": "- 该方法仅支持用户同时加入一个频道。\n- 不同 App ID 的用户无法互通。\n- 加入频道前，请确保用于生成 Token 的 App ID 与 `sharedEngineWithConfig:delegate:` 方法中传入的 App ID 一致，否则可能导致使用该 Token 加入频道失败。\n- 为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用用户 ID 加入频道，则其他用户也应使用用户 ID。用户 User Account 同理。如果用户使用声网 Web SDK 加入频道，请确保用户 ID 的参数类型一致。"
             },
@@ -186749,7 +186690,7 @@
             "shortdesc": "注册原始视频帧观察者对象。",
             "detailed_desc": {
               "since": "",
-              "desc": "如果你希望观察原始视频帧（例如 YUV 或 RGBA 格式），声网建议你通过此方法实现一个 `AgoraVideoFrameDelegate` 类。当你调用此方法注册视频观察者时，可以根据需要在 `AgoraVideoFrameDelegate` 类中注册回调。注册成功后，SDK 每次接收到视频帧时都会触发已注册的回调。\n\n你可以在各种视频预处理场景中使用获取到的原始视频数据，例如虚拟背景和图像增强。声网在 GitHub 上提供了一个开源的 iOS 示例项目 `BeautyAPI` 供你参考。"
+              "desc": "如果你希望观察原始视频帧（例如 YUV 或 RGBA 格式），声网建议你通过此方法实现一个 `AgoraVideoFrameDelegate` 类。当你调用此方法注册视频观察者时，可以根据需要在 `AgoraVideoFrameDelegate` 类中注册回调。注册成功后，SDK 每次接收到视频帧时都会触发已注册的回调。\n\n你可以在各种视频预处理场景中使用获取到的原始视频数据，例如虚拟背景和美颜特效。声网在 GitHub 上提供了一个开源的 iOS 示例项目 `BeautyAPI` 供你参考。"
             },
             "platforms": "ios",
             "parent_class": "AgoraRtcEngineKit",
@@ -196580,7 +196521,7 @@
             "api_signature": "- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstLocalVideoFramePublishedWithElapsed:(NSInteger)elapsed sourceType:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(rtcEngine(_:firstLocalVideoFramePublishedWithElapsed:sourceType:));",
             "change_type": "modify",
             "change_desc": "新增 `rtcEngine:firstLocalVideoFramePublishedWithElapsed:sourceType:`：当首帧本地视频发布时触发。",
-            "shortdesc": "`rtcEngine:firstLocalVideoFramePublishedWithElapsed:sourceType:` 回调。当首帧本地视频发布时触发。",
+            "shortdesc": "当首帧本地视频发布时触发。",
             "detailed_desc": {
               "since": "",
               "desc": "",
@@ -197203,7 +197144,7 @@
             "api_signature": "- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstRemoteAudioFrameOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:firstRemoteAudioFrameOfUid:elapsed:));",
             "change_type": "modify",
             "change_desc": "新增 `rtcEngine:firstRemoteAudioFrameOfUid:elapsed:`：远端用户的第一帧音频被接收并解码时触发的回调。",
-            "shortdesc": "`rtcEngine:firstRemoteAudioFrameOfUid:elapsed:` 回调。远端用户的第一帧音频被接收并解码时触发。",
+            "shortdesc": "远端用户的第一帧音频被接收并解码时触发。",
             "detailed_desc": {
               "since": "",
               "desc": "",
@@ -197384,7 +197325,7 @@
             "api_signature": "- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioMuted:(BOOL)muted byUid:(NSUInteger)uid NS_SWIFT_NAME(rtcEngine(_:didAudioMuted:byUid:));",
             "change_type": "modify",
             "change_desc": "新增 `rtcEngine:didAudioMuted:byUid:`：当远端用户（在通信频道场景中）或主播（在极速直播频道场景中）停止或恢复发送音频流时触发。",
-            "shortdesc": "`rtcEngine:didAudioMuted:byUid:` 回调。当远端用户或主播停止或恢复发送音频流时触发。",
+            "shortdesc": "当远端用户或主播停止或恢复发送音频流时触发。",
             "detailed_desc": {
               "since": "",
               "desc": "当远端用户调用 `muteLocalAudioStream:` 方法停止或恢复发送音频流时，SDK 会触发该回调。",
@@ -199958,7 +199899,7 @@
             "api_signature": "- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didTranscodedStreamLayoutInfoUpdatedWithUserId:(NSUInteger)uid videoLayoutInfo:(AgoraVideoLayoutInfo* _Nonnull)videoLayoutInfo NS_SWIFT_NAME(rtcEngine(_:didTranscodedStreamLayoutInfoUpdatedWithUserId:videoLayoutInfo:));",
             "change_type": "modify",
             "change_desc": "新增 `rtcEngine:didTranscodedStreamLayoutInfoUpdatedWithUserId:videoLayoutInfo:`：当本地用户接收到携带视频合流布局信息的合图视频时触发。",
-            "shortdesc": "`rtcEngine:didTranscodedStreamLayoutInfoUpdatedWithUserId:videoLayoutInfo:` 回调。当本地用户接收到携带视频合流布局信息的合图视频时触发。",
+            "shortdesc": "当本地用户接收到携带视频合流布局信息的合图视频时触发。",
             "detailed_desc": {
               "since": "",
               "desc": "该回调在你首次接收到由视频合流服务器发送的合图视频，或混合流的布局信息发生变化时被触发。",
@@ -208538,8 +208479,8 @@
             "struct_name": "AgoraBeautyOptions",
             "struct_signature": "__attribute__((visibility(\"default\"))) @interface AgoraBeautyOptions : NSObject\n@property(nonatomic, assign) AgoraLighteningContrastLevel lighteningContrastLevel;\n@property(nonatomic, assign) float lighteningLevel;\n@property(nonatomic, assign) float smoothnessLevel;\n@property(nonatomic, assign) float rednessLevel;\n@property(nonatomic, assign) float sharpnessLevel;\n@end",
             "change_type": "modify",
-            "change_desc": "新增 `AgoraBeautyOptions` 类：图像增强选项。新增参数包括：lighteningContrastLevel、lighteningLevel、smoothnessLevel、rednessLevel、sharpnessLevel。",
-            "shortdesc": "图像增强选项。",
+            "change_desc": "新增 `AgoraBeautyOptions` 类：美颜特效选项。新增参数包括：lighteningContrastLevel、lighteningLevel、smoothnessLevel、rednessLevel、sharpnessLevel。",
+            "shortdesc": "美颜特效选项。",
             "detailed_desc": {
               "since": "",
               "desc": "",
@@ -213663,7 +213604,7 @@
                 "is_public": true,
                 "change_type": "create",
                 "note": ""
-              }
+              },
               {
                 "name": "AgoraErrorCodeInvalidAppId",
                 "desc": "（101）：指定的 App ID 无效。请使用有效的 App ID 重新加入频道。",
@@ -218282,7 +218223,7 @@
               },
               {
                 "name": "AgoraAudioOutputRoutingBluetoothDeviceA2dp",
-                "desc": "（10）：音频路由为使用 A2DP 协议的蓝牙设备（仅适用于 macOS 平台）。",
+                "desc": "（10）：音频路由为使用 A2DP 协议的蓝牙设备。",
                 "is_public": true,
                 "change_type": "modify",
                 "note": ""
@@ -226959,7 +226900,7 @@
             "values": [
               {
                 "name": "AgoraVideoFramePositionPostCapture",
-                "desc": "（1）：本地采集的视频数据在预处理后的位置，对应 `onCaptureVideoFrame:sourceType:` 回调。此位置的视频已应用视频预处理效果，可通过启用图像增强、虚拟背景或水印进行验证。",
+                "desc": "（1）：本地采集的视频数据在预处理后的位置，对应 `onCaptureVideoFrame:sourceType:` 回调。此位置的视频已应用视频预处理效果，可通过启用美颜特效、虚拟背景或水印进行验证。",
                 "is_public": true,
                 "change_type": "modify",
                 "note": ""
@@ -226973,7 +226914,7 @@
               },
               {
                 "name": "AgoraVideoFramePositionPreEncoder",
-                "desc": "（4）：编码器前的位置，对应 `onPreEncodeVideoFrame:sourceType:` 回调中的视频数据。此位置的视频已应用视频预处理和编码前处理效果。\n- 若要验证视频预处理效果，可启用图像增强、虚拟背景或水印。\n- 若要验证编码前处理效果，可设置较低帧率（如 5 fps）。",
+                "desc": "（4）：编码器前的位置，对应 `onPreEncodeVideoFrame:sourceType:` 回调中的视频数据。此位置的视频已应用视频预处理和编码前处理效果。\n- 若要验证视频预处理效果，可启用美颜特效、虚拟背景或水印。\n- 若要验证编码前处理效果，可设置较低帧率（如 5 fps）。",
                 "is_public": true,
                 "change_type": "modify",
                 "note": ""
@@ -227576,7 +227517,7 @@
             "values": [
               {
                 "name": "AgoraVideoModulePositionPostCapture",
-                "desc": "（1）：本地采集的视频数据在预处理之后的位置，对应 `onCaptureVideoFrame:sourceType:` 回调。此位置的视频已应用图像增强、虚拟背景或水印等预处理效果。",
+                "desc": "（1）：本地采集的视频数据在预处理之后的位置，对应 `onCaptureVideoFrame:sourceType:` 回调。此位置的视频已应用美颜特效、虚拟背景或水印等预处理效果。",
                 "is_public": true,
                 "change_type": "modify",
                 "note": ""
@@ -227590,14 +227531,14 @@
               },
               {
                 "name": "AgoraVideoModulePositionPreEncoder",
-                "desc": "（4）：编码器之前的位置，对应 `onPreEncodeVideoFrame:sourceType:` 回调。此位置的视频已应用预处理和编码前处理效果。\n- 若需验证预处理效果，可启用图像增强、虚拟背景或水印。\n- 若需验证编码前处理效果，可设置较低帧率（如 5 fps）。",
+                "desc": "（4）：编码器之前的位置，对应 `onPreEncodeVideoFrame:sourceType:` 回调。此位置的视频已应用预处理和编码前处理效果。\n- 若需验证预处理效果，可启用美颜特效、虚拟背景或水印。\n- 若需验证编码前处理效果，可设置较低帧率（如 5 fps）。",
                 "is_public": true,
                 "change_type": "modify",
                 "note": ""
               },
               {
                 "name": "AgoraVideoModulePositionPostCaptureOrigin",
-                "desc": "（8）：本地采集之后、预处理之前的位置。此位置的视频未应用图像增强、虚拟背景或水印等预处理效果。",
+                "desc": "（8）：本地采集之后、预处理之前的位置。此位置的视频未应用美颜特效、虚拟背景或水印等预处理效果。",
                 "is_public": true,
                 "change_type": "modify",
                 "note": ""
@@ -227848,7 +227789,7 @@
               },
               {
                 "name": "AgoraVideoPreprocessBeauty",
-                "desc": "（2）：图像增强功能。",
+                "desc": "（2）：美颜特效功能。",
                 "is_public": true,
                 "change_type": "modify",
                 "note": ""
@@ -230058,7 +229999,7 @@
             "shortdesc": "使用 token 加入频道并设置媒体选项。",
             "detailed_desc": {
               "since": "",
-              "desc": "在调用该方法之前，如果你尚未调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，当你调用该方法加入频道时，SDK 会自动为你创建一个用户 User Account。先调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，再调用该方法加入频道，可以缩短进入频道所需的时间。\n一旦用户加入频道，默认会订阅频道中其他所有用户的音视频流，从而产生用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 `mediaOptions` 参数或调用发布与订阅相关的方法。",
+              "desc": "在调用该方法之前，如果你尚未调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，当你调用该方法加入频道时，SDK 会自动为你创建一个用户 User Account。先调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，再调用该方法加入频道，可以缩短进入频道所需的时间。\n一旦用户加入频道，默认会订阅频道中其他所有用户的音视频流，从而产生用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 `mediaOptions` 参数或调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。",
               "deprecated": "",
               "note": "- 该方法仅支持用户同时加入一个频道。\n- 不同 App ID 的用户无法互通。\n- 加入频道前，请确保用于生成 token 的 App ID 与 `sharedEngineWithConfig:delegate:` 方法中传入的 App ID 一致，否则可能会导致使用该 token 加入频道失败。\n- 为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用 UID 加入频道，则其他用户也应使用 UID。用户 User Account 同理。如果用户使用声网 Web SDK 加入频道，请确保用户 ID 的参数类型一致。"
             },
@@ -230220,7 +230161,7 @@
             "shortdesc": "使用用户 User Account 和 Token 加入频道，并设置媒体选项。",
             "detailed_desc": {
               "since": "",
-              "desc": "在调用该方法之前，如果你尚未调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，当你调用该方法加入频道时，SDK 会自动为你创建一个用户 User Account。先调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，再调用该方法加入频道，可以缩短进入频道所需的时间。\n一旦你加入频道，默认会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 `mediaOptions` 参数或调用发布与订阅相关的方法。",
+              "desc": "在调用该方法之前，如果你尚未调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，当你调用该方法加入频道时，SDK 会自动为你创建一个用户 User Account。先调用 `registerLocalUserAccountWithAppID:userAccount:` 注册用户 User Account，再调用该方法加入频道，可以缩短进入频道所需的时间。\n一旦你加入频道，默认会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 `mediaOptions` 参数或调用 `muteRemoteAudio/VideoStream` 或 `muteAllRemoteAudio/VideoStreams`。",
               "deprecated": "",
               "note": "- 该方法仅支持用户同时加入一个频道。\n- 不同 App ID 的用户无法互通。\n- 加入频道前，请确保用于生成 Token 的 App ID 与 `sharedEngineWithConfig:delegate:` 方法中传入的 App ID 一致，否则可能会导致使用该 Token 加入频道失败。\n- 为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用 `uid` 加入频道，则其他用户也应使用 `uid`。用户 User Account 同理。如果用户使用声网 Web SDK 加入频道，请确保用户 ID 的参数类型一致。"
             },
@@ -236470,12 +236411,12 @@
             "api_signature": "- (AgoraAudioParams* _Nonnull)getPlaybackAudioParams NS_SWIFT_NAME(getPlaybackAudioParams());",
             "change_type": "modify",
             "change_desc": "新增 getPlaybackAudioParams：设置 onPlaybackAudioFrame: 回调的音频格式。",
-            "shortdesc": "设置 `onPlaybackAudioFrame:` 回调的音频格式。",
+            "shortdesc": "设置 `onPlaybackAudioFrame:channelId:` 回调的音频格式。",
             "detailed_desc": {
               "since": "",
               "desc": "你需要在调用 `setAudioFrameDelegate:` 方法时注册回调。成功注册音频观察器后，SDK 会触发该回调，你可以在该回调的返回值中设置音频格式。",
               "deprecated": "",
-              "note": "SDK 会根据你在返回值中设置的 `AgoraAudioParams` 计算采样间隔，并以此触发 `onPlaybackAudioFrame:` 回调。采样间隔（秒）= `samplePerCall` / (`sampleRate` × `channel`)。确保采样间隔 ≥ 0.01 秒。"
+              "note": "SDK 会根据你在返回值中设置的 `AgoraAudioParams` 计算采样间隔，并以此触发 `onPlaybackAudioFrame:channelId:` 回调。采样间隔（秒）= `samplePerCall` / (`sampleRate` × `channel`)。确保采样间隔 ≥ 0.01 秒。"
             },
             "platforms": "ios",
             "parent_class": "AgoraAudioFrameDelegate",
